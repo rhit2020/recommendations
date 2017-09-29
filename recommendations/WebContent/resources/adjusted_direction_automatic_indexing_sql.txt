@@ -1,0 +1,1659 @@
+SELECT-FROM_question1,Topic 1,Tuple,1,outcome,question
+SELECT-FROM_question1,Topic 1,AttributeColumn,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,Tuple,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,DomainType,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,FromClause,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,SingleAttributeSelection,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,DomainType,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,SelectStatement,1,outcome,question
+SELECT-FROM_question1,Topic 1,SelectStatement,1,outcome,question
+SELECT-FROM_question1,Topic 1,AllAttributeSelection,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,MultipleAttributeSelection,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,AttributeName,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,Tuple,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,SingleAttributeSelection,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,MultiplicationExpression,1,outcome,question
+SELECT-FROM_question1,Topic 1,Instance,1,outcome,question
+SELECT-FROM_question1,Topic 1,SelectClause,1,outcome,question
+SELECT-FROM_question1,Topic 1,SELECT-FROM,0.37,outcome,question
+Arithmetic_Expressions_question3,Topic 1,Multiplication,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,AttributeColumn,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,SelectStatement,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,Division,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,AttributeName,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,AttributeColumn,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,NumericType,1,outcome,question
+SELECT-FROM_question1,Topic 1,Column,1,outcome,question
+SELECT-FROM_question1,Topic 1,TupleRow,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,MultipleAttributeSelection,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,TupleRow,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,Instance,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,DivisionExpression,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,TupleRow,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,FromClause,1,outcome,question
+SELECT-FROM_question1,Topic 1,FromClause,1,outcome,question
+SELECT-FROM_question1,Topic 1,SingleTableSelection,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,SingleTableSelection,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,"Arithmetic Expressions",0.38,outcome,question
+Arithmetic_Expressions_question2,Topic 1,NumericType,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,SingleTableSelection,1,outcome,question
+Arithmetic_Expressions_question3,Topic 1,Instance,1,outcome,question
+Arithmetic_Expressions_question2,Topic 1,"Arithmetic Expressions",0.38,outcome,question
+TableCreation1,Table Creation,NotNullClause,1,outcome,example
+TableCreation1,Table Creation,FixedLengthCharacterString,1,outcome,example
+TableCreation1,Table Creation,SubQuery,1,outcome,example
+TableCreation1,Table Creation,AttributeName,1,outcome,example
+TableCreation1,Table Creation,DefaultValueClause,1,outcome,example
+TableCreation1,Table Creation,CommaCharacter,1,outcome,example
+TableCreation1,Table Creation,IntegrityConstraint,1,outcome,example
+TableCreation1,Table Creation,Double,1,outcome,example
+TableCreation1,Table Creation,AttributeSpecification,1,outcome,example
+TableCreation1,Table Creation,EquiJoin,1,outcome,example
+TableCreation1,Table Creation,CreateTableStatement,1,outcome,example
+TableCreation1,Table Creation,Integer,1,outcome,example
+TableCreation1,Table Creation,CreateTableClause,1,outcome,example
+TableCreation1,Table Creation,Float,1,outcome,example
+TableCreation1,Table Creation,NotNullConstraint,1,outcome,example
+TableCreation1,Table Creation,BracketCharacter,1,outcome,example
+TableCreation1,Table Creation,Rule,1,outcome,example
+TableDrop1,Table Deletion and Alteration,DeleteTableStatement,1,outcome,example
+TableAlteration2,Table Deletion and Alteration,AlterTableStatement,1,outcome,example
+TableAlteration1,Table Deletion and Alteration,Integer,1,prerequisite,example
+TableAlteration1,Table Deletion and Alteration,DatabaseDeletion,1,outcome,example
+TableAlteration2,Table Deletion and Alteration,AttributeName,1,prerequisite,example
+TableAlteration2,Table Deletion and Alteration,TableCreation,1,outcome,example
+TableAlteration1,Table Deletion and Alteration,AlterTableStatement,1,outcome,example
+TableDrop1,Table Deletion and Alteration,SimpleSubQuery,1,outcome,example
+TableAlteration2,Table Deletion and Alteration,DropColumnClause,1,outcome,example
+TableAlteration1,Table Deletion and Alteration,AlterTableClause,1,outcome,example
+TableDrop1,Table Deletion and Alteration,DeleteTableClause,1,outcome,example
+TableAlteration2,Table Deletion and Alteration,AlterTableClause,1,outcome,example
+TableAlteration1,Table Deletion and Alteration,AttributeName,1,prerequisite,example
+TableAlteration1,Table Deletion and Alteration,RangeTest,1,outcome,example
+TableAlteration2,Table Deletion and Alteration,RangeTest,1,outcome,example
+TableAlteration1,Table Deletion and Alteration,AddColumnClause,1,outcome,example
+TableCreation4,Key Constraints,OnUpdateClause,1,outcome,example
+TableCreation3,Key Constraints,UniqueKeyConstraint,1,outcome,example
+TableCreation4,Key Constraints,CascadeOnReferentialAction,1,outcome,example
+TableCreation2,Key Constraints,AttributeName,1,prerequisite,example
+TableCreation4,Key Constraints,CommaCharacter,1,prerequisite,example
+TableCreation2,Key Constraints,BracketCharacter,1,prerequisite,example
+TableCreation4,Key Constraints,SubQuery,1,prerequisite,example
+TableCreation2,Key Constraints,SubQuery,1,prerequisite,example
+TableCreation9,Key Constraints,NotNullClause,1,prerequisite,example
+TableCreation4,Key Constraints,NotNullConstraint,1,prerequisite,example
+TableCreation9,Key Constraints,CommaCharacter,1,prerequisite,example
+TableCreation3,Key Constraints,CreateTableStatement,1,prerequisite,example
+TableCreation9,Key Constraints,TupleSelectionCondition,1,outcome,example
+TableCreation3,Key Constraints,AttributeSpecification,1,prerequisite,example
+TableCreation4,Key Constraints,IntegrityOnUpdate,1,outcome,example
+TableCreation3,Key Constraints,UniqueConstraint,1,outcome,example
+TableCreation4,Key Constraints,PrimaryKeyConstraint,1,outcome,example
+TableCreation3,Key Constraints,TupleSelectionCondition,1,outcome,example
+TableCreation4,Key Constraints,BracketCharacter,1,prerequisite,example
+TableCreation2,Key Constraints,FixedLengthCharacterString,1,prerequisite,example
+TableCreation4,Key Constraints,SetNullOnReferentialAction,1,outcome,example
+TableCreation2,Key Constraints,CreateTableClause,1,prerequisite,example
+TableCreation4,Key Constraints,TupleSelectionCondition,1,outcome,example
+TableCreation9,Key Constraints,AttributeSpecification,1,prerequisite,example
+TableCreation4,Key Constraints,NullValue,1,outcome,example
+TableCreation9,Key Constraints,UniqueKeyConstraint,1,outcome,example
+TableCreation3,Key Constraints,PrimaryKeyConstraint,1,outcome,example
+TableCreation4,Key Constraints,OnDeleteClause,1,outcome,example
+TableCreation3,Key Constraints,CommaCharacter,1,prerequisite,example
+TableCreation4,Key Constraints,NotNullConstraint,1,prerequisite,example
+TableCreation4,Key Constraints,ForeignKeyConstraint,1,outcome,example
+TableCreation3,Key Constraints,ExceptionOfTupleSetWithDuplicate,1,outcome,example
+TableCreation4,Key Constraints,FixedLengthCharacterString,1,prerequisite,example
+TableCreation2,Key Constraints,CreateTableStatement,1,prerequisite,example
+TableCreation4,Key Constraints,PrimaryKeyClause,1,outcome,example
+TableCreation2,Key Constraints,CommaCharacter,1,prerequisite,example
+TableCreation4,Key Constraints,CaseChanging,1,outcome,example
+TableCreation2,Key Constraints,TupleSelectionCondition,1,outcome,example
+TableCreation9,Key Constraints,PrimaryKeyConstraint,1,outcome,example
+TableCreation4,Key Constraints,Rule,1,prerequisite,example
+TableCreation9,Key Constraints,PrimaryKeyClause,1,outcome,example
+TableCreation3,Key Constraints,NotNullClause,1,prerequisite,example
+TableCreation9,Key Constraints,EquiJoin,1,prerequisite,example
+TableCreation3,Key Constraints,BracketCharacter,1,prerequisite,example
+TableCreation4,Key Constraints,CreateTableStatement,1,prerequisite,example
+TableCreation3,Key Constraints,CreateTableClause,1,prerequisite,example
+TableCreation4,Key Constraints,ReferencesClause,1,outcome,example
+TableCreation3,Key Constraints,Rule,1,prerequisite,example
+TableCreation4,Key Constraints,IntegrityOnDelete,1,outcome,example
+TableCreation2,Key Constraints,AttributeSpecification,1,prerequisite,example
+TableCreation4,Key Constraints,CreateTableClause,1,prerequisite,example
+TableCreation2,Key Constraints,UniqueKeyConstraint,1,outcome,example
+TableCreation9,Key Constraints,CreateTableStatement,1,prerequisite,example
+TableCreation4,Key Constraints,AggregateOperation,1,outcome,example
+TableCreation9,Key Constraints,BracketCharacter,1,prerequisite,example
+TableCreation3,Key Constraints,AttributeName,1,prerequisite,example
+TableCreation9,Key Constraints,SubQuery,1,prerequisite,example
+TableCreation3,Key Constraints,FixedLengthCharacterString,1,prerequisite,example
+TableCreation4,Key Constraints,AttributeName,1,prerequisite,example
+TableCreation3,Key Constraints,PrimaryKeyClause,1,outcome,example
+TableCreation4,Key Constraints,DefaultValueClause,1,prerequisite,example
+TableCreation4,Key Constraints,NotNullClause,1,prerequisite,example
+TableCreation3,Key Constraints,SubQuery,1,prerequisite,example
+TableCreation4,Key Constraints,AttributeSpecification,1,prerequisite,example
+TableCreation2,Key Constraints,PrimaryKeyConstraint,1,outcome,example
+TableCreation4,Key Constraints,ForeignKeyClause,1,outcome,example
+TableCreation2,Key Constraints,PrimaryKeyClause,1,outcome,example
+TableCreation4,Key Constraints,OrLogicOperation,1,outcome,example
+TableCreation2,Key Constraints,Rule,1,prerequisite,example
+TableCreation9,Key Constraints,FixedLengthCharacterString,1,prerequisite,example
+TableCreation4,Key Constraints,IntegrityConstraint,1,prerequisite,example
+TableCreation9,Key Constraints,CreateTableClause,1,prerequisite,example
+TableCreation3,Key Constraints,NotNullConstraint,1,prerequisite,example
+TableCreation9,Key Constraints,Rule,1,prerequisite,example
+TableCreation3,Key Constraints,UniqueClause,1,outcome,example
+TableCreation6,General Constraints,DataManipulationLanguage,1,outcome,example
+TableCreation7,General Constraints,SelectClause,1,outcome,example
+TableCreation5,General Constraints,Rule,1,prerequisite,example
+TableCreation7,General Constraints,UniqueKeyConstraint,1,prerequisite,example
+TableCreation8,General Constraints,Assertion,1,outcome,example
+TableCreation5,General Constraints,NotEqualComparison,1,outcome,example
+TableCreation7,General Constraints,Rule,1,prerequisite,example
+TableCreation8,General Constraints,SingleTableSelection,1,outcome,example
+TableCreation5,General Constraints,PrimaryKeyConstraint,1,prerequisite,example
+TableCreation6,General Constraints,CreateTableStatement,1,prerequisite,example
+TableCreation8,General Constraints,Float,1,prerequisite,example
+TableCreation5,General Constraints,AttributeSpecification,1,prerequisite,example
+TableCreation6,General Constraints,GreaterThanOrEqualComparison,1,outcome,example
+TableCreation7,General Constraints,FromClause,1,outcome,example
+TableCreation5,General Constraints,PrimaryKeyClause,1,prerequisite,example
+TableCreation6,General Constraints,CommaCharacter,1,prerequisite,example
+TableCreation7,General Constraints,Integer,1,prerequisite,example
+TableCreation5,General Constraints,SingleTableSelection,1,outcome,example
+TableCreation6,General Constraints,TupleSelectionCondition,1,prerequisite,example
+TableCreation7,General Constraints,AdditionExpression,1,outcome,example
+TableCreation5,General Constraints,TupleSelectionCondition,1,prerequisite,example
+TableCreation7,General Constraints,CreateTableClause,1,prerequisite,example
+TableCreation8,General Constraints,LessThanComparison,1,outcome,example
+TableCreation6,General Constraints,FixedLengthCharacterString,1,prerequisite,example
+TableCreation7,General Constraints,TupleSelectionCondition,1,prerequisite,example
+TableCreation8,General Constraints,CountDistinctFunction,1,outcome,example
+TableCreation5,General Constraints,SelectStatement,1,outcome,example
+TableCreation5,General Constraints,CheckConstraint,1,outcome,example
+TableCreation6,General Constraints,AndLogicalOperator,1,outcome,example
+TableCreation7,General Constraints,SQLBasicConcept,1,outcome,example
+TableCreation8,General Constraints,TableAlteration,1,outcome,example
+TableCreation6,General Constraints,PrimaryKeyConstraint,1,prerequisite,example
+TableCreation7,General Constraints,AttributeName,1,prerequisite,example
+TableCreation5,General Constraints,SelectClause,1,outcome,example
+TableCreation6,General Constraints,AttributeSpecification,1,prerequisite,example
+TableCreation7,General Constraints,Double,1,prerequisite,example
+TableCreation5,General Constraints,CreateTableClause,1,prerequisite,example
+TableCreation6,General Constraints,UniqueKeyConstraint,1,prerequisite,example
+TableCreation7,General Constraints,AttributeSpecification,1,prerequisite,example
+TableCreation5,General Constraints,SubQuery,1,prerequisite,example
+TableCreation6,General Constraints,Rule,1,prerequisite,example
+TableCreation7,General Constraints,PrimaryKeyClause,1,prerequisite,example
+TableCreation5,General Constraints,DatabaseManagement,1,outcome,example
+TableCreation7,General Constraints,SubQuery,1,prerequisite,example
+TableCreation8,General Constraints,AdditionExpression,1,outcome,example
+TableCreation5,General Constraints,CreateTableStatement,1,prerequisite,example
+TableCreation7,General Constraints,TableAlteration,1,outcome,example
+TableCreation8,General Constraints,TableAlias,1,outcome,example
+TableCreation6,General Constraints,LessThanOrEqualComparison,1,outcome,example
+TableCreation8,General Constraints,SQLBasicConcept,1,outcome,example
+TableCreation5,General Constraints,BracketCharacter,1,prerequisite,example
+TableCreation6,General Constraints,CheckConstraint,1,outcome,example
+TableCreation7,General Constraints,SelectStatement,1,outcome,example
+TableCreation5,General Constraints,WhereClause,1,outcome,example
+TableCreation6,General Constraints,PrimaryKeyClause,1,prerequisite,example
+TableCreation7,General Constraints,CheckConstraint,1,outcome,example
+TableCreation5,General Constraints,TableAlias,1,outcome,example
+TableCreation6,General Constraints,Average,1,outcome,example
+TableCreation7,General Constraints,CommaCharacter,1,prerequisite,example
+TableCreation5,General Constraints,MultipleTableSelection,1,outcome,example
+TableCreation7,General Constraints,SingleTableSelection,1,outcome,example
+TableCreation8,General Constraints,BracketCharacter,1,prerequisite,example
+TableCreation5,General Constraints,AttributeName,1,prerequisite,example
+TableCreation7,General Constraints,Assertion,1,outcome,example
+TableCreation8,General Constraints,SingleAttributeSelection,1,outcome,example
+TableCreation5,General Constraints,Date,1,outcome,example
+TableCreation6,General Constraints,AttributeName,1,prerequisite,example
+TableCreation8,General Constraints,DatabaseManagement,1,outcome,example
+TableCreation5,General Constraints,FixedLengthCharacterString,1,prerequisite,example
+TableCreation6,General Constraints,Integer,1,prerequisite,example
+TableCreation7,General Constraints,CreateTableStatement,1,prerequisite,example
+TableCreation5,General Constraints,DotCharacter,1,outcome,example
+TableCreation6,General Constraints,BracketCharacter,1,prerequisite,example
+TableCreation7,General Constraints,PrimaryKeyConstraint,1,prerequisite,example
+TableCreation5,General Constraints,EqualComparison,1,outcome,example
+TableCreation6,General Constraints,SubQuery,1,prerequisite,example
+TableCreation7,General Constraints,BracketCharacter,1,prerequisite,example
+TableCreation5,General Constraints,SubstringExtraction,1,outcome,example
+TableCreation6,General Constraints,DatabaseManagement,1,outcome,example
+TableCreation7,General Constraints,SingleAttributeSelection,1,outcome,example
+TableCreation8,General Constraints,FromClause,1,outcome,example
+TableCreation7,General Constraints,SubstringExtraction,1,outcome,example
+TableCreation8,General Constraints,SelectClause,1,outcome,example
+TableCreation5,General Constraints,FromClause,1,outcome,example
+TableCreation5,General Constraints,Integer,1,prerequisite,example
+TableCreation6,General Constraints,Float,1,prerequisite,example
+TableCreation7,General Constraints,DatabaseManagement,1,outcome,example
+TableCreation8,General Constraints,AggregateOperation,1,prerequisite,example
+TableCreation6,General Constraints,Double,1,prerequisite,example
+TableCreation7,General Constraints,Float,1,prerequisite,example
+TableCreation5,General Constraints,CommaCharacter,1,prerequisite,example
+TableCreation6,General Constraints,FixedLengthCharacterString,1,prerequisite,example
+TableCreation7,General Constraints,LessThanOrEqualComparison,1,outcome,example
+TableCreation5,General Constraints,SingleAttributeSelection,1,outcome,example
+TableCreation6,General Constraints,CreateTableClause,1,prerequisite,example
+TableCreation7,General Constraints,FixedLengthCharacterString,1,prerequisite,example
+TableCreation5,General Constraints,UniqueKeyConstraint,1,prerequisite,example
+DataInsertion1,Tuple Insertion,AttributeName,1,prerequisite,example
+DataInsertion4,Tuple Insertion,ReferentialAction,1,outcome,example
+DataInsertion1,Tuple Insertion,StringType,1,outcome,example
+DataInsertion3,Tuple Insertion,SelectStatement,1,prerequisite,example
+DataInsertion4,Tuple Insertion,FromClause,1,prerequisite,example
+DataInsertion1,Tuple Insertion,SubQuery,1,prerequisite,example
+DataInsertion3,Tuple Insertion,CommaCharacter,1,prerequisite,example
+DataInsertion4,Tuple Insertion,StringType,1,outcome,example
+DataInsertion3,Tuple Insertion,SetOperation,1,outcome,example
+DataInsertion2,Tuple Insertion,AttributeName,1,prerequisite,example
+DataInsertion4,Tuple Insertion,InsertIntoClause,1,outcome,example
+DataInsertion2,Tuple Insertion,StringType,1,outcome,example
+DataInsertion4,Tuple Insertion,WhereClause,1,prerequisite,example
+DataInsertion2,Tuple Insertion,SubQuery,1,prerequisite,example
+DataInsertion4,Tuple Insertion,SubQuery,1,prerequisite,example
+DataInsertion1,Tuple Insertion,InsertStatement,1,outcome,example
+DataInsertion3,Tuple Insertion,SingleQuotationCharacter,1,outcome,example
+DataInsertion4,Tuple Insertion,AttributeName,1,prerequisite,example
+DataInsertion1,Tuple Insertion,CommaCharacter,1,prerequisite,example
+DataInsertion3,Tuple Insertion,StringType,1,outcome,example
+DataInsertion4,Tuple Insertion,MultipleAttributeSelection,1,outcome,example
+DataInsertion3,Tuple Insertion,EqualComparison,1,prerequisite,example
+DataInsertion3,Tuple Insertion,Deletion,1,outcome,example
+DataInsertion2,Tuple Insertion,InsertStatement,1,outcome,example
+DataInsertion4,Tuple Insertion,SelectClause,1,prerequisite,example
+DataInsertion2,Tuple Insertion,CommaCharacter,1,prerequisite,example
+DataInsertion4,Tuple Insertion,SetOperation,1,outcome,example
+DataInsertion1,Tuple Insertion,SingleQuotationCharacter,1,outcome,example
+DataInsertion4,Tuple Insertion,FixedLengthCharacterString,1,prerequisite,example
+DataInsertion1,Tuple Insertion,InsertIntoClause,1,outcome,example
+DataInsertion3,Tuple Insertion,MultipleAttributeSelection,1,outcome,example
+DataInsertion4,Tuple Insertion,SelectStatement,1,prerequisite,example
+DataInsertion1,Tuple Insertion,Deletion,1,outcome,example
+DataInsertion3,Tuple Insertion,SelectClause,1,prerequisite,example
+DataInsertion3,Tuple Insertion,SubQueryCheckingDuplicateTuples,1,outcome,example
+DataInsertion2,Tuple Insertion,SingleQuotationCharacter,1,outcome,example
+DataInsertion4,Tuple Insertion,MultipleTableSelection,1,prerequisite,example
+DataInsertion2,Tuple Insertion,InsertIntoClause,1,outcome,example
+DataInsertion4,Tuple Insertion,EqualComparison,1,prerequisite,example
+DataInsertion2,Tuple Insertion,Deletion,1,outcome,example
+DataInsertion4,Tuple Insertion,Deletion,1,outcome,example
+DataInsertion1,Tuple Insertion,ValuesClause,1,outcome,example
+DataInsertion3,Tuple Insertion,FromClause,1,prerequisite,example
+DataInsertion4,Tuple Insertion,SingleQuotationCharacter,1,outcome,example
+DataInsertion1,Tuple Insertion,SubQueryCheckingDuplicateTuples,1,outcome,example
+DataInsertion3,Tuple Insertion,InsertIntoClause,1,outcome,example
+DataInsertion4,Tuple Insertion,InsertStatement,1,outcome,example
+DataInsertion3,Tuple Insertion,SingleTableSelection,1,prerequisite,example
+DataInsertion3,Tuple Insertion,ReferentialAction,1,outcome,example
+DataInsertion2,Tuple Insertion,ValuesClause,1,outcome,example
+DataInsertion4,Tuple Insertion,DotCharacter,1,prerequisite,example
+DataInsertion2,Tuple Insertion,SubQueryCheckingDuplicateTuples,1,outcome,example
+DataInsertion4,Tuple Insertion,SubQueryCheckingDuplicateTuples,1,outcome,example
+DataInsertion1,Tuple Insertion,NumericType,1,outcome,example
+DataInsertion3,Tuple Insertion,AttributeName,1,prerequisite,example
+DataInsertion4,Tuple Insertion,AndLogicalOperator,1,prerequisite,example
+DataInsertion1,Tuple Insertion,BracketCharacter,1,prerequisite,example
+DataInsertion3,Tuple Insertion,InsertStatement,1,outcome,example
+DataInsertion4,Tuple Insertion,EquiWhereJoin,1,outcome,example
+DataInsertion3,Tuple Insertion,WhereClause,1,prerequisite,example
+DataInsertion3,Tuple Insertion,SubQuery,1,prerequisite,example
+DataInsertion2,Tuple Insertion,NumericType,1,outcome,example
+DataInsertion4,Tuple Insertion,CommaCharacter,1,prerequisite,example
+DataInsertion2,Tuple Insertion,BracketCharacter,1,prerequisite,example
+DataInsertion4,Tuple Insertion,TableAlias,1,prerequisite,example
+DataDeletion3,Tuple Deletion,AggregateOperation,1,prerequisite,example
+DataDeletion1,Tuple Deletion,SetOperation,1,prerequisite,example
+DataDeletion2,Tuple Deletion,FromClause,1,prerequisite,example
+DataDeletion2,Tuple Deletion,BracketCharacter,1,prerequisite,example
+DataDeletion2,Tuple Deletion,DeleteStatement,1,outcome,example
+DataDeletion2,Tuple Deletion,SubstringExtraction,1,prerequisite,example
+DataDeletion3,Tuple Deletion,FromClause,1,prerequisite,example
+DataDeletion3,Tuple Deletion,SelectClause,1,prerequisite,example
+DataDeletion1,Tuple Deletion,SingleQuotationCharacter,1,prerequisite,example
+DataDeletion3,Tuple Deletion,SetOperation,1,prerequisite,example
+DataDeletion1,Tuple Deletion,DeleteStatement,1,outcome,example
+DataDeletion2,Tuple Deletion,AttributeName,1,prerequisite,example
+DataDeletion2,Tuple Deletion,InPredicate,1,outcome,example
+DataDeletion2,Tuple Deletion,SingleAttributeSelection,1,prerequisite,example
+DataDeletion2,Tuple Deletion,SetOperation,1,prerequisite,example
+DataDeletion3,Tuple Deletion,AvgFunction,1,outcome,example
+DataDeletion2,Tuple Deletion,KeyConstraint,1,outcome,example
+DataDeletion3,Tuple Deletion,DeleteFromClause,1,outcome,example
+DataDeletion3,Tuple Deletion,DeleteStatement,1,outcome,example
+DataDeletion1,Tuple Deletion,WhereClause,1,prerequisite,example
+DataDeletion3,Tuple Deletion,KeyConstraint,1,outcome,example
+DataDeletion1,Tuple Deletion,KeyConstraint,1,outcome,example
+DataDeletion2,Tuple Deletion,SelectStatement,1,prerequisite,example
+DataDeletion2,Tuple Deletion,SelectClause,1,prerequisite,example
+DataDeletion2,Tuple Deletion,SingleTableSelection,1,prerequisite,example
+DataDeletion2,Tuple Deletion,ToUpperCase,1,outcome,example
+DataDeletion3,Tuple Deletion,LessThanComparison,1,prerequisite,example
+DataDeletion3,Tuple Deletion,WhereClause,1,prerequisite,example
+DataDeletion1,Tuple Deletion,DeleteFromClause,1,outcome,example
+DataDeletion3,Tuple Deletion,SubstringExtraction,1,prerequisite,example
+DataDeletion1,Tuple Deletion,SingleTableSelection,1,prerequisite,example
+DataDeletion2,Tuple Deletion,SingleQuotationCharacter,1,prerequisite,example
+DataDeletion2,Tuple Deletion,StringType,1,prerequisite,example
+DataDeletion2,Tuple Deletion,EqualComparison,1,prerequisite,example
+DataDeletion2,Tuple Deletion,SubQueryCheckingDuplicateTuples,1,prerequisite,example
+DataDeletion3,Tuple Deletion,AttributeName,1,prerequisite,example
+DataDeletion3,Tuple Deletion,BracketCharacter,1,prerequisite,example
+DataDeletion1,Tuple Deletion,AttributeName,1,prerequisite,example
+DataDeletion3,Tuple Deletion,SingleTableSelection,1,prerequisite,example
+DataDeletion1,Tuple Deletion,EqualComparison,1,prerequisite,example
+DataDeletion3,Tuple Deletion,Timestamp,1,outcome,example
+DataDeletion2,Tuple Deletion,DeleteFromClause,1,outcome,example
+DataDeletion2,Tuple Deletion,WhereClause,1,prerequisite,example
+DataDeletion2,Tuple Deletion,SimpleSubquery,1,outcome,example
+DataDeletion2,Tuple Deletion,ReferentialAction,1,prerequisite,example
+DataDeletion3,Tuple Deletion,SelectStatement,1,prerequisite,example
+DataDeletion3,Tuple Deletion,SingleAttributeSelection,1,prerequisite,example
+DataDeletion1,Tuple Deletion,StringType,1,prerequisite,example
+DataUpdate5,Tuple Update,SelectStatement,1,prerequisite,example
+DataUpdate1,Tuple Update,WhereClause,1,prerequisite,example
+DataUpdate2,Tuple Update,SubtractionExpression,1,outcome,example
+DataUpdate5,Tuple Update,SetClause,1,outcome,example
+DataUpdate1,Tuple Update,UnionOfTwoTupleSets,1,outcome,example
+DataUpdate2,Tuple Update,EqualComparison,1,prerequisite,example
+DataUpdate5,Tuple Update,SimpleSubquery,1,prerequisite,example
+DataUpdate3,Tuple Update,MultiplicationExpression,1,outcome,example
+DataUpdate2,Tuple Update,UnionOfTwoTupleSets,1,outcome,example
+DataUpdate5,Tuple Update,Assertion,1,prerequisite,example
+DataUpdate3,Tuple Update,GroupBy,1,outcome,example
+DataUpdate2,Tuple Update,SetOperation,1,prerequisite,example
+DataUpdate4,Tuple Update,NumericType,1,prerequisite,example
+DataUpdate1,Tuple Update,UpdateClause,1,outcome,example
+DataUpdate4,Tuple Update,WhereClause,1,prerequisite,example
+DataUpdate5,Tuple Update,DistinctClause,1,outcome,example
+DataUpdate1,Tuple Update,SetClause,1,outcome,example
+DataUpdate2,Tuple Update,UpdateStatement,1,outcome,example
+DataUpdate5,Tuple Update,GreaterThanComparison,1,outcome,example
+DataUpdate1,Tuple Update,GroupBy,1,outcome,example
+DataUpdate2,Tuple Update,DotCharacter,1,prerequisite,example
+DataUpdate5,Tuple Update,SingleAttributeSelection,1,prerequisite,example
+DataUpdate1,Tuple Update,DataManipulationLanguage,1,prerequisite,example
+DataUpdate2,Tuple Update,GroupBy,1,outcome,example
+DataUpdate5,Tuple Update,SubstringExtraction,1,prerequisite,example
+DataUpdate3,Tuple Update,SetClause,1,outcome,example
+DataUpdate4,Tuple Update,UpdateClause,1,outcome,example
+DataUpdate2,Tuple Update,FixedLengthCharacterString,1,prerequisite,example
+DataUpdate4,Tuple Update,CommaCharacter,1,prerequisite,example
+DataUpdate5,Tuple Update,UpdateClause,1,outcome,example
+DataUpdate1,Tuple Update,NumericType,1,prerequisite,example
+DataUpdate4,Tuple Update,ToUpperCase,1,prerequisite,example
+DataUpdate5,Tuple Update,NumericType,1,prerequisite,example
+DataUpdate1,Tuple Update,SingleTableSelection,1,prerequisite,example
+DataUpdate2,Tuple Update,AdditionExpression,1,prerequisite,example
+DataUpdate5,Tuple Update,SelectClause,1,prerequisite,example
+DataUpdate1,Tuple Update,SetOperation,1,prerequisite,example
+DataUpdate2,Tuple Update,SingleTableSelection,1,prerequisite,example
+DataUpdate5,Tuple Update,GroupBy,1,outcome,example
+DataUpdate3,Tuple Update,UpdateStatement,1,outcome,example
+DataUpdate5,Tuple Update,IntegrityOnUpdate,1,prerequisite,example
+DataUpdate3,Tuple Update,CombinationWithAll,1,outcome,example
+DataUpdate2,Tuple Update,LessThanComparison,1,prerequisite,example
+DataUpdate4,Tuple Update,InPredicate,1,prerequisite,example
+DataUpdate1,Tuple Update,MultiplicationExpression,1,outcome,example
+DataUpdate4,Tuple Update,SingleTableSelection,1,prerequisite,example
+DataUpdate5,Tuple Update,FromClause,1,prerequisite,example
+DataUpdate1,Tuple Update,DotCharacter,1,prerequisite,example
+DataUpdate2,Tuple Update,NumericType,1,prerequisite,example
+DataUpdate5,Tuple Update,AdditionExpression,1,prerequisite,example
+DataUpdate1,Tuple Update,CombinationWithAll,1,outcome,example
+DataUpdate2,Tuple Update,WhereClause,1,prerequisite,example
+DataUpdate5,Tuple Update,SingleTableSelection,1,prerequisite,example
+DataUpdate3,Tuple Update,UpdateClause,1,outcome,example
+DataUpdate2,Tuple Update,CombinationWithAll,1,outcome,example
+DataUpdate5,Tuple Update,ToUpperCase,1,prerequisite,example
+DataUpdate3,Tuple Update,SingleTableSelection,1,prerequisite,example
+DataUpdate4,Tuple Update,UpdateStatement,1,outcome,example
+DataUpdate2,Tuple Update,SQLBasicConcept,1,prerequisite,example
+DataUpdate4,Tuple Update,SetClause,1,outcome,example
+DataUpdate5,Tuple Update,UpdateStatement,1,outcome,example
+DataUpdate1,Tuple Update,GreaterThanOrEqualComparison,1,prerequisite,example
+DataUpdate2,Tuple Update,UpdateClause,1,outcome,example
+DataUpdate5,Tuple Update,InPredicate,1,prerequisite,example
+DataUpdate1,Tuple Update,TableAlias,1,prerequisite,example
+DataUpdate2,Tuple Update,SetClause,1,outcome,example
+DataUpdate5,Tuple Update,WhereClause,1,prerequisite,example
+DataUpdate1,Tuple Update,NullValueIgnorance,1,outcome,example
+DataUpdate2,Tuple Update,TableAlias,1,prerequisite,example
+DataUpdate5,Tuple Update,SetOperation,1,prerequisite,example
+DataUpdate3,Tuple Update,NumericType,1,prerequisite,example
+DataUpdate5,Tuple Update,SQLBasicConcept,1,prerequisite,example
+DataUpdate3,Tuple Update,NullValueIgnorance,1,outcome,example
+DataUpdate2,Tuple Update,ReferentialAction,1,prerequisite,example
+DataUpdate4,Tuple Update,BracketCharacter,1,prerequisite,example
+DataUpdate1,Tuple Update,UpdateStatement,1,outcome,example
+DataUpdate4,Tuple Update,GroupBy,1,outcome,example
+DataSelection1,SELECT-FROM,SelectClause,1,prerequisite,example
+SELECT-FROM_question3,SELECT-FROM,SingleTableSelection,1,prerequisite,question
+SELECT-FROM_question5,SELECT-FROM,AttributeColumn,1,outcome,question
+SELECT-DISTINCT_question6,SELECT-FROM,AttributeName,1,prerequisite,question
+SELECT-FROM_question2,SELECT-FROM,AttributeName,1,prerequisite,question
+DataSelection4,SELECT-FROM,DistinctClause,1,prerequisite,example
+SELECT-FROM_question4,SELECT-FROM,SelectStatement,1,prerequisite,question
+SELECT-DISTINCT_question6,SELECT-FROM,Column,1,outcome,question
+SELECT-FROM_question2,SELECT-FROM,Tuple,1,outcome,question
+DataSelection4,SELECT-FROM,SingleTableSelection,1,prerequisite,example
+SELECT-FROM_question4,SELECT-FROM,SingleTableSelection,1,prerequisite,question
+SELECT-DISTINCT_question6,SELECT-FROM,SingleAttributeSelection,1,prerequisite,question
+SELECT-FROM_question2,SELECT-FROM,AttributeColumn,1,outcome,question
+DataSelection3,SELECT-FROM,AllAttributeSelection,1,outcome,example
+SELECT-FROM_question5,SELECT-FROM,Instance,1,outcome,question
+SELECT-FROM_question1,SELECT-FROM,Column,1,outcome,question
+DataSelection3,SELECT-FROM,IntegrityConstraint,1,prerequisite,example
+SELECT-FROM_question4,SELECT-FROM,RenamingAttribute,1,outcome,question
+SELECT-FROM_question5,SELECT-FROM,RenameClause,1,outcome,question
+SELECT-FROM_question1,SELECT-FROM,TupleRow,1,outcome,question
+DataSelection2,SELECT-FROM,SelectClause,1,prerequisite,example
+SELECT-FROM_question3,SELECT-FROM,AttributeName,1,prerequisite,question
+SELECT-FROM_question5,SELECT-FROM,MultipleAttributeSelection,1,prerequisite,question
+DataSelection1,SELECT-FROM,FromClause,1,prerequisite,example
+SELECT-FROM_question3,SELECT-FROM,Tuple,1,outcome,question
+DataSelection1,SELECT-FROM,RightWhitespaceTrim,1,outcome,example
+SELECT-FROM_question3,SELECT-FROM,AttributeColumn,1,outcome,question
+SELECT-FROM_question4,SELECT-FROM,Instance,1,outcome,question
+SELECT-DISTINCT_question6,SELECT-FROM,FromClause,1,prerequisite,question
+SELECT-FROM_question2,SELECT-FROM,SelectStatement,1,prerequisite,question
+DataSelection4,SELECT-FROM,SelectClause,1,prerequisite,example
+SELECT-FROM_question4,SELECT-FROM,RenameClause,1,outcome,question
+SELECT-DISTINCT_question6,SELECT-FROM,DuplicateHandling,1,outcome,question
+SELECT-FROM_question2,SELECT-FROM,SingleAttributeSelection,1,prerequisite,question
+DataSelection3,SELECT-FROM,AttributeName,1,prerequisite,example
+SELECT-DISTINCT_question6,SELECT-FROM,SELECT-FROM,0.37,outcome,question
+SELECT-FROM_question1,SELECT-FROM,FromClause,1,prerequisite,question
+DataSelection3,SELECT-FROM,SingleTableSelection,1,prerequisite,example
+SELECT-FROM_question5,SELECT-FROM,Column,1,outcome,question
+SELECT-FROM_question1,SELECT-FROM,SingleTableSelection,1,prerequisite,question
+DataSelection2,SELECT-FROM,SelectStatement,1,prerequisite,example
+SELECT-FROM_question4,SELECT-FROM,AttributeColumn,1,outcome,question
+SELECT-FROM_question5,SELECT-FROM,SingleTableSelection,1,prerequisite,question
+DataSelection2,SELECT-FROM,CountingNoInColumn,1,outcome,example
+SELECT-FROM_question3,SELECT-FROM,SelectStatement,1,prerequisite,question
+DataSelection1,SELECT-FROM,SingleAttributeSelection,1,prerequisite,example
+SELECT-FROM_question3,SELECT-FROM,MultipleAttributeSelection,1,prerequisite,question
+SELECT-FROM_question5,SELECT-FROM,SELECT-FROM,0.37,outcome,question
+SELECT-DISTINCT_question6,SELECT-FROM,Instance,1,outcome,question
+SELECT-FROM_question2,SELECT-FROM,Instance,1,outcome,question
+DataSelection4,SELECT-FROM,FromClause,1,prerequisite,example
+SELECT-FROM_question4,SELECT-FROM,Column,1,outcome,question
+SELECT-DISTINCT_question6,SELECT-FROM,Tuple,1,outcome,question
+SELECT-FROM_question2,SELECT-FROM,SelectClause,1,prerequisite,question
+DataSelection4,SELECT-FROM,RightWhitespaceTrim,1,outcome,example
+SELECT-DISTINCT_question6,SELECT-FROM,TupleRow,1,outcome,question
+SELECT-FROM_question2,SELECT-FROM,SELECT-FROM,0.37,outcome,question
+DataSelection3,SELECT-FROM,SelectStatement,1,prerequisite,example
+SELECT-FROM_question5,SELECT-FROM,FromClause,1,prerequisite,question
+SELECT-FROM_question1,SELECT-FROM,Tuple,1,outcome,question
+DataSelection2,SELECT-FROM,AttributeName,1,prerequisite,example
+SELECT-FROM_question4,SELECT-FROM,SingleAttributeSelection,1,prerequisite,question
+SELECT-FROM_question5,SELECT-FROM,AttributeAlias,1,outcome,question
+SELECT-FROM_question1,SELECT-FROM,AttributeColumn,1,outcome,question
+DataSelection2,SELECT-FROM,SingleTableSelection,1,prerequisite,example
+SELECT-FROM_question3,SELECT-FROM,Instance,1,outcome,question
+DataSelection1,SELECT-FROM,SelectStatement,1,prerequisite,example
+SELECT-FROM_question3,SELECT-FROM,SelectClause,1,prerequisite,question
+SELECT-FROM_question5,SELECT-FROM,TupleRow,1,outcome,question
+DataSelection1,SELECT-FROM,LeftWhitespaceTrim,1,outcome,example
+SELECT-FROM_question3,SELECT-FROM,SELECT-FROM,0.37,outcome,question
+DataSelection4,SELECT-FROM,AttributeName,1,prerequisite,example
+SELECT-FROM_question4,SELECT-FROM,FromClause,1,prerequisite,question
+SELECT-DISTINCT_question6,SELECT-FROM,SelectStatement,1,prerequisite,question
+SELECT-FROM_question2,SELECT-FROM,Column,1,outcome,question
+DataSelection4,SELECT-FROM,SingleAttributeSelection,1,prerequisite,example
+SELECT-FROM_question4,SELECT-FROM,AttributeAlias,1,outcome,question
+SELECT-DISTINCT_question6,SELECT-FROM,MultipleAttributeSelection,1,prerequisite,question
+SELECT-FROM_question2,SELECT-FROM,TupleRow,1,outcome,question
+DataSelection3,SELECT-FROM,FromClause,1,prerequisite,example
+SELECT-FROM_question5,SELECT-FROM,AttributeName,1,prerequisite,question
+SELECT-FROM_question1,SELECT-FROM,SelectStatement,1,prerequisite,question
+DataSelection3,SELECT-FROM,RightWhitespaceTrim,1,outcome,example
+SELECT-FROM_question5,SELECT-FROM,Tuple,1,outcome,question
+SELECT-FROM_question1,SELECT-FROM,AllAttributeSelection,1,outcome,question
+DataSelection2,SELECT-FROM,MultipleAttributeSelection,1,prerequisite,example
+SELECT-FROM_question4,SELECT-FROM,SELECT-FROM,0.37,outcome,question
+SELECT-FROM_question5,SELECT-FROM,RenamingAttribute,1,outcome,question
+DataSelection1,SELECT-FROM,AttributeName,1,prerequisite,example
+SELECT-FROM_question3,SELECT-FROM,Column,1,outcome,question
+DataSelection1,SELECT-FROM,SingleTableSelection,1,prerequisite,example
+SELECT-FROM_question3,SELECT-FROM,TupleRow,1,outcome,question
+SELECT-FROM_question4,SELECT-FROM,AttributeName,1,prerequisite,question
+SELECT-DISTINCT_question6,SELECT-FROM,DistinctClause,1,prerequisite,question
+SELECT-FROM_question2,SELECT-FROM,FromClause,1,prerequisite,question
+DataSelection4,SELECT-FROM,SelectStatement,1,prerequisite,example
+SELECT-FROM_question4,SELECT-FROM,Tuple,1,outcome,question
+SELECT-DISTINCT_question6,SELECT-FROM,SingleTableSelection,1,prerequisite,question
+SELECT-FROM_question2,SELECT-FROM,SingleTableSelection,1,prerequisite,question
+DataSelection4,SELECT-FROM,IntegrityOnUpdate,1,prerequisite,example
+SELECT-DISTINCT_question6,SELECT-FROM,AttributeColumn,1,outcome,question
+SELECT-FROM_question1,SELECT-FROM,Instance,1,outcome,question
+DataSelection3,SELECT-FROM,SelectClause,1,prerequisite,example
+SELECT-FROM_question5,SELECT-FROM,SelectStatement,1,prerequisite,question
+SELECT-FROM_question1,SELECT-FROM,SelectClause,1,prerequisite,question
+DataSelection2,SELECT-FROM,FromClause,1,prerequisite,example
+SELECT-FROM_question4,SELECT-FROM,TupleRow,1,outcome,question
+SELECT-FROM_question5,SELECT-FROM,AsClause,1,outcome,question
+SELECT-FROM_question1,SELECT-FROM,SELECT-FROM,0.37,outcome,question
+DataSelection2,SELECT-FROM,RightWhitespaceTrim,1,outcome,example
+SELECT-FROM_question3,SELECT-FROM,FromClause,1,prerequisite,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,SelectStatement,1,prerequisite,question
+Arithmetic_Expressions_question4,Arithmetic Expressions,Instance,1,prerequisite,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,TupleRow,1,prerequisite,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,Division,1,outcome,question
+Arithmetic_Expressions_question4,Arithmetic Expressions,Tuple,1,prerequisite,question
+DataSelection12,Arithmetic Expressions,FromClause,1,prerequisite,example
+Arithmetic_Expressions_question2,Arithmetic Expressions,AttributeColumn,1,prerequisite,question
+Arithmetic_Expressions_question4,Arithmetic Expressions,TupleRow,1,prerequisite,question
+DataSelection12,Arithmetic Expressions,SingleTableSelection,1,prerequisite,example
+Arithmetic_Expressions_question3,Arithmetic Expressions,Instance,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,FromClause,1,prerequisite,question
+Arithmetic_Expressions_question3,Arithmetic Expressions,MultipleAttributeSelection,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,DivisionExpression,1,outcome,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,"Arithmetic Expressions",0.38,outcome,question
+Arithmetic_Expressions_question3,Arithmetic Expressions,TupleRow,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,RenamingAttribute,1,prerequisite,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,SelectStatement,1,prerequisite,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,Instance,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,"Arithmetic Expressions",0.38,outcome,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,SingleTableSelection,1,prerequisite,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,DivisionExpression,1,outcome,question
+Arithmetic_Expressions_question4,Arithmetic Expressions,NumericType,1,prerequisite,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,"Arithmetic Expressions",0.38,outcome,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,TupleRow,1,prerequisite,question
+Arithmetic_Expressions_question4,Arithmetic Expressions,SingleTableSelection,1,prerequisite,question
+DataSelection12,Arithmetic Expressions,CommaCharacter,1,prerequisite,example
+Arithmetic_Expressions_question4,Arithmetic Expressions,"Arithmetic Expressions",0.38,outcome,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,AttributeName,1,prerequisite,question
+Arithmetic_Expressions_question3,Arithmetic Expressions,SelectStatement,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,MultipleAttributeSelection,1,prerequisite,question
+Arithmetic_Expressions_question3,Arithmetic Expressions,SingleTableSelection,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,Division,1,outcome,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,MultiplicationExpression,1,prerequisite,question
+Arithmetic_Expressions_question3,Arithmetic Expressions,"Arithmetic Expressions",0.38,outcome,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,DomainType,1,outcome,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,SingleAttributeSelection,1,prerequisite,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,NumericType,1,prerequisite,question
+Arithmetic_Expressions_question4,Arithmetic Expressions,FromClause,1,prerequisite,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,DomainType,1,outcome,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,SingleTableSelection,1,prerequisite,question
+Arithmetic_Expressions_question4,Arithmetic Expressions,DivisionExpression,1,outcome,question
+DataSelection12,Arithmetic Expressions,SelectStatement,1,prerequisite,example
+Arithmetic_Expressions_question4,Arithmetic Expressions,DomainType,1,outcome,question
+DataSelection12,Arithmetic Expressions,NullValueIgnorance,1,prerequisite,example
+Arithmetic_Expressions_question3,Arithmetic Expressions,MultiplicationExpression,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,SelectStatement,1,prerequisite,question
+Arithmetic_Expressions_question3,Arithmetic Expressions,Tuple,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,RenameClause,1,prerequisite,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,AttributeName,1,prerequisite,question
+Arithmetic_Expressions_question3,Arithmetic Expressions,DomainType,1,outcome,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,MultipleAttributeSelection,1,prerequisite,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,NumericType,1,prerequisite,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,FromClause,1,prerequisite,question
+Arithmetic_Expressions_question4,Arithmetic Expressions,AttributeName,1,prerequisite,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,SingleAttributeSelection,1,prerequisite,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,SingleAttributeSelection,1,prerequisite,question
+Arithmetic_Expressions_question4,Arithmetic Expressions,MultipleAttributeSelection,1,prerequisite,question
+DataSelection12,Arithmetic Expressions,MultiplicationExpression,1,prerequisite,example
+Arithmetic_Expressions_question2,Arithmetic Expressions,DomainType,1,outcome,question
+Arithmetic_Expressions_question4,Arithmetic Expressions,MultipleAttributeSelection,1,prerequisite,question
+DataSelection12,Arithmetic Expressions,SelectClause,1,prerequisite,example
+Arithmetic_Expressions_question3,Arithmetic Expressions,AttributeName,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,Instance,1,prerequisite,question
+Arithmetic_Expressions_question3,Arithmetic Expressions,NumericType,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,Tuple,1,prerequisite,question
+Arithmetic_Expressions_question3,Arithmetic Expressions,MultipleAttributeSelection,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,SingleTableSelection,1,prerequisite,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,FromClause,1,prerequisite,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,AttributeName,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,AttributeColumn,1,prerequisite,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,Multiplication,1,outcome,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,Tuple,1,prerequisite,question
+Arithmetic_Expressions_question4,Arithmetic Expressions,SelectStatement,1,prerequisite,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,AttributeColumn,1,prerequisite,question
+Arithmetic_Expressions_question2,Arithmetic Expressions,SingleAttributeSelection,1,prerequisite,question
+Arithmetic_Expressions_question4,Arithmetic Expressions,Division,1,outcome,question
+DataSelection12,Arithmetic Expressions,MultipleAttributeSelection,1,prerequisite,example
+Arithmetic_Expressions_question4,Arithmetic Expressions,AttributeColumn,1,prerequisite,question
+DataSelection12,Arithmetic Expressions,CountingNoInColumn,1,prerequisite,example
+Arithmetic_Expressions_question3,Arithmetic Expressions,FromClause,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,NumericType,1,prerequisite,question
+Arithmetic_Expressions_question3,Arithmetic Expressions,Multiplication,1,outcome,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,AttributeAlias,1,prerequisite,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,Instance,1,prerequisite,question
+Arithmetic_Expressions_question3,Arithmetic Expressions,AttributeColumn,1,prerequisite,question
+Arithmetic_Expressions_question5,Arithmetic Expressions,TupleRow,1,prerequisite,question
+Arithmetic_Expressions_question1,Arithmetic Expressions,Tuple,1,prerequisite,question
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,FromClause,1,prerequisite,question
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,NumericType,1,prerequisite,question
+DataSelection9,SELECT-FROM-WHERE,NumericType,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,IntegrityConstraint,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,SingleTableSelection,1,prerequisite,question
+DataSelection13,SELECT-FROM-WHERE,EquiWhereJoin,1,prerequisite,example
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,EqualComparison,1,prerequisite,question
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,SingleAttributeSelection,1,prerequisite,question
+DataSelection9,SELECT-FROM-WHERE,SetOperation,1,prerequisite,example
+DataSelection6,SELECT-FROM-WHERE,MultipleAttributeSelection,1,prerequisite,example
+DataSelection13,SELECT-FROM-WHERE,SelectClause,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,AttributeName,1,prerequisite,question
+DataSelection15,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,example
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,MultipleAttributeSelection,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,MultiplicationExpression,1,prerequisite,example
+DataSelection6,SELECT-FROM-WHERE,CountingNoInColumn,1,prerequisite,example
+DataSelection13,SELECT-FROM-WHERE,FixedLengthCharacterString,1,prerequisite,example
+DataSelection15,SELECT-FROM-WHERE,SingleTableSelection,1,prerequisite,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,Instance,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,MultipleAttributeSelection,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,FromClause,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,NumericType,1,prerequisite,example
+DataSelection14,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,Tuple,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,SetOperation,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,EqualComparison,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,SingleAttributeSelection,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,AttributeName,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,Instance,1,prerequisite,question
+DataSelection14,SELECT-FROM-WHERE,SingleTableSelection,1,prerequisite,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,SingleTableSelection,1,prerequisite,question
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,DomainType,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,Assertion,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,GreaterThanComparison,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,NumericType,1,prerequisite,question
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,Instance,1,prerequisite,question
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,FromClause,1,prerequisite,question
+DataSelection9,SELECT-FROM-WHERE,FromClause,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,RightWhitespaceTrim,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,EqualComparison,1,prerequisite,question
+DataSelection13,SELECT-FROM-WHERE,FromClause,1,prerequisite,example
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,StringType,1,prerequisite,question
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,GreaterThanComparison,1,prerequisite,question
+DataSelection9,SELECT-FROM-WHERE,WhereClause,1,prerequisite,example
+DataSelection6,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,SELECT-FROM-WHERE,0.38,outcome,question
+DataSelection13,SELECT-FROM-WHERE,MultipleTableSelection,1,prerequisite,example
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,DomainType,1,prerequisite,question
+DataSelection15,SELECT-FROM-WHERE,SingleQuotationCharacter,1,prerequisite,example
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,OrLogicOperation,1,prerequisite,question
+DataSelection9,SELECT-FROM-WHERE,CountingNoInColumn,1,prerequisite,example
+DataSelection6,SELECT-FROM-WHERE,EqualComparison,1,prerequisite,example
+DataSelection13,SELECT-FROM-WHERE,CountingRows,1,outcome,example
+DataSelection15,SELECT-FROM-WHERE,SelectClause,1,prerequisite,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,AndLogicalOperator,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,Instance,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,FromClause,1,prerequisite,example
+DataSelection15,SELECT-FROM-WHERE,CountingNoInColumn,1,prerequisite,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,WhereClause,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,StringType,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,SelectClause,1,prerequisite,example
+DataSelection14,SELECT-FROM-WHERE,WhereClause,1,prerequisite,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,EqualComparison,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,CountingNoInColumn,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,SingleTableSelection,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,SetOperation,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,LessThanComparison,1,prerequisite,question
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,SELECT-FROM-WHERE,0.38,outcome,question
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,Instance,1,prerequisite,question
+DataSelection9,SELECT-FROM-WHERE,AttributeName,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,SingleTableSelection,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,GreaterThanComparison,1,prerequisite,question
+DataSelection13,SELECT-FROM-WHERE,AndLogicalOperator,1,prerequisite,example
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,question
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,Tuple,1,prerequisite,question
+DataSelection9,SELECT-FROM-WHERE,MultipleAttributeSelection,1,prerequisite,example
+DataSelection6,SELECT-FROM-WHERE,AttributeName,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,SingleAttributeSelection,1,prerequisite,question
+DataSelection13,SELECT-FROM-WHERE,MultipleAttributeSelection,1,prerequisite,example
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,SingleTableSelection,1,prerequisite,question
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,OrLogicalOperator,1,outcome,question
+DataSelection9,SELECT-FROM-WHERE,RightWhitespaceTrim,1,prerequisite,example
+DataSelection6,SELECT-FROM-WHERE,SelectClause,1,prerequisite,example
+DataSelection13,SELECT-FROM-WHERE,WhereClause,1,prerequisite,example
+DataSelection15,SELECT-FROM-WHERE,MultipleAttributeSelection,1,prerequisite,example
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,DomainType,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,FromClause,1,prerequisite,example
+DataSelection6,SELECT-FROM-WHERE,ReferentialAction,1,prerequisite,example
+DataSelecton11,SELECT-FROM-WHERE,AndLogicalOperator,1,prerequisite,example
+DataSelection15,SELECT-FROM-WHERE,SetOperation,1,prerequisite,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,SingleQuotationCharacter,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,BracketCharacter,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,StringType,1,prerequisite,example
+DataSelection14,SELECT-FROM-WHERE,BetweenPredicate,1,outcome,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,StringType,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,RightWhitespaceTrim,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,NotLogicalOperator,1,outcome,question
+DataSelecton11,SELECT-FROM-WHERE,EqualComparison,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,FromClause,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,SingleQuotationCharacter,1,prerequisite,question
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,SingleAttributeSelection,1,prerequisite,question
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,SELECT-FROM-WHERE,0.38,outcome,question
+DataSelecton11,SELECT-FROM-WHERE,ReferentialAction,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,SelectClause,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,Tuple,1,prerequisite,question
+DataSelection14,SELECT-FROM-WHERE,SetOperation,1,prerequisite,example
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,SingleQuotationCharacter,1,prerequisite,question
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,question
+DataSelection9,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,Assertion,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,ComparisonOperation,1,outcome,question
+DataSelection13,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,example
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,WhereClause,1,prerequisite,question
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,WhereClause,1,prerequisite,question
+DataSelection9,SELECT-FROM-WHERE,SingleTableSelection,1,prerequisite,example
+DataSelection6,SELECT-FROM-WHERE,NumericType,1,prerequisite,example
+DataSelection13,SELECT-FROM-WHERE,CommaCharacter,1,prerequisite,example
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,SELECT-FROM-WHERE,0.38,outcome,question
+DataSelection15,SELECT-FROM-WHERE,FromClause,1,prerequisite,example
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,SingleTableSelection,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,AttributeName,1,prerequisite,example
+DataSelection6,SELECT-FROM-WHERE,SingleTableSelection,1,prerequisite,example
+DataSelection13,SELECT-FROM-WHERE,ReferentialAction,1,prerequisite,example
+DataSelection15,SELECT-FROM-WHERE,WhereClause,1,prerequisite,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,AttributeName,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,NumericType,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,SingleQuotationCharacter,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,example
+DataSelection14,SELECT-FROM-WHERE,FromClause,1,prerequisite,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,NumericType,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,SingleTableSelection,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,WhereClause,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,WhereClause,1,prerequisite,example
+DataSelection14,SELECT-FROM-WHERE,SingleAttributeSelection,1,prerequisite,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,AndLogicOperation,1,outcome,question
+DataSelection8,SELECT-FROM-WHERE,AggregateOperation,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,SingleAttributeSelection,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,LeftWhitespaceTrim,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,NumericType,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,SelectStatement,1,prerequisite,question
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,AttributeName,1,prerequisite,question
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,SingleQuotationCharacter,1,prerequisite,question
+DataSelection9,SELECT-FROM-WHERE,NotEqualComparison,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,SetOperation,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,WhereClause,1,prerequisite,question
+DataSelection13,SELECT-FROM-WHERE,SingleQuotationCharacter,1,prerequisite,example
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,Tuple,1,prerequisite,question
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,StringType,1,prerequisite,question
+DataSelection9,SELECT-FROM-WHERE,SelectClause,1,prerequisite,example
+DataSelection6,SELECT-FROM-WHERE,FromClause,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,DomainType,1,prerequisite,question
+DataSelection13,SELECT-FROM-WHERE,StringType,1,prerequisite,example
+SELECT-FROM-WHERE_question2,SELECT-FROM-WHERE,MultipleAttributeSelection,1,prerequisite,question
+DataSelection15,SELECT-FROM-WHERE,DateTimeType,1,outcome,example
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,EqualComparison,1,prerequisite,question
+DataSelection9,SELECT-FROM-WHERE,MultipleTableSelection,1,prerequisite,example
+DataSelection6,SELECT-FROM-WHERE,WhereClause,1,prerequisite,example
+DataSelection13,SELECT-FROM-WHERE,EqualComparison,1,prerequisite,example
+DataSelection15,SELECT-FROM-WHERE,BetweenPredicate,1,outcome,example
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,SELECT-FROM-WHERE,0.38,outcome,question
+DataSelection8,SELECT-FROM-WHERE,LessThanComparison,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,AttributeName,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,AttributeName,1,prerequisite,example
+DataSelection15,SELECT-FROM-WHERE,NotLogicOperation,1,outcome,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,FromClause,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,SelectClause,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,Tuple,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,GreaterThanComparison,1,prerequisite,example
+DataSelection14,SELECT-FROM-WHERE,SelectClause,1,prerequisite,example
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,WhereClause,1,prerequisite,question
+DataSelection8,SELECT-FROM-WHERE,NullValueIgnorance,1,prerequisite,example
+SELECT-FROM-WHERE_question5,SELECT-FROM-WHERE,NotEqualComparison,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,SingleTableSelection,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,AllAttributeSelection,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,FromClause,1,prerequisite,question
+SELECT-FROM-WHERE_question3,SELECT-FROM-WHERE,DomainType,1,prerequisite,question
+SELECT-FROM-WHERE_question4,SELECT-FROM-WHERE,AttributeName,1,prerequisite,question
+DataSelecton11,SELECT-FROM-WHERE,FixedLengthCharacterString,1,prerequisite,example
+DataSelection7,SELECT-FROM-WHERE,WhereClause,1,prerequisite,example
+SELECT-FROM-WHERE_question1,SELECT-FROM-WHERE,StringType,1,prerequisite,question
+DataSelection14,SELECT-FROM-WHERE,NotLogicOperation,1,outcome,example
+Pattern_Matching_question3,Pattern Matching,"Pattern Matching",0.38,outcome,question
+Pattern_Matching_question5,Pattern Matching,DomainType,1,prerequisite,question
+Pattern_Matching_question1,Pattern Matching,DomainType,1,prerequisite,question
+DataSelection17,Pattern Matching,SingleQuotationCharacter,1,prerequisite,example
+Pattern_Matching_question2,Pattern Matching,LikePredicate,1,outcome,question
+Pattern_Matching_question4,Pattern Matching,FromClause,1,prerequisite,question
+DataSelection17,Pattern Matching,PercentCharacter,1,outcome,example
+Pattern_Matching_question2,Pattern Matching,SubstringMatching,1,outcome,question
+Pattern_Matching_question4,Pattern Matching,WhereClause,1,prerequisite,question
+DataSelection17,Pattern Matching,SetOperation,1,prerequisite,example
+Pattern_Matching_question2,Pattern Matching,"Pattern Matching",0.38,outcome,question
+Pattern_Matching_question4,Pattern Matching,SingleAttributeSelection,1,prerequisite,question
+Pattern_Matching_question5,Pattern Matching,FromClause,1,prerequisite,question
+Pattern_Matching_question1,Pattern Matching,LikePredicate,1,outcome,question
+Pattern_Matching_question3,Pattern Matching,FromClause,1,prerequisite,question
+Pattern_Matching_question5,Pattern Matching,WhereClause,1,prerequisite,question
+Pattern_Matching_question3,Pattern Matching,PercentCharacter,1,outcome,question
+Pattern_Matching_question3,Pattern Matching,MultipleAttributeSelection,1,prerequisite,question
+Pattern_Matching_question5,Pattern Matching,SingleTableSelection,1,prerequisite,question
+Pattern_Matching_question1,Pattern Matching,SingleTableSelection,1,prerequisite,question
+Pattern_Matching_question2,Pattern Matching,FromClause,1,prerequisite,question
+Pattern_Matching_question4,Pattern Matching,AttributeName,1,prerequisite,question
+DataSelection17,Pattern Matching,LikePredicate,1,outcome,example
+Pattern_Matching_question2,Pattern Matching,WhereClause,1,prerequisite,question
+Pattern_Matching_question4,Pattern Matching,StringType,1,prerequisite,question
+DataSelection17,Pattern Matching,SingleAttributeSelection,1,prerequisite,example
+Pattern_Matching_question2,Pattern Matching,SingleAttributeSelection,1,prerequisite,question
+Pattern_Matching_question4,Pattern Matching,AndLogicOperation,1,prerequisite,question
+Pattern_Matching_question5,Pattern Matching,AttributeName,1,prerequisite,question
+Pattern_Matching_question1,Pattern Matching,FromClause,1,prerequisite,question
+Pattern_Matching_question3,Pattern Matching,AttributeName,1,prerequisite,question
+Pattern_Matching_question5,Pattern Matching,StringType,1,prerequisite,question
+Pattern_Matching_question1,Pattern Matching,WhereClause,1,prerequisite,question
+Pattern_Matching_question3,Pattern Matching,LikePredicate,1,outcome,question
+Pattern_Matching_question3,Pattern Matching,StringPatternMatching,1,outcome,question
+Pattern_Matching_question5,Pattern Matching,StringPatternMatching,1,outcome,question
+Pattern_Matching_question2,Pattern Matching,AttributeName,1,prerequisite,question
+Pattern_Matching_question5,Pattern Matching,"Pattern Matching",0.38,outcome,question
+Pattern_Matching_question1,Pattern Matching,"Pattern Matching",0.38,outcome,question
+DataSelection17,Pattern Matching,FromClause,1,prerequisite,example
+Pattern_Matching_question2,Pattern Matching,StringType,1,prerequisite,question
+Pattern_Matching_question4,Pattern Matching,SelectStatement,1,prerequisite,question
+DataSelection17,Pattern Matching,SelectClause,1,prerequisite,example
+Pattern_Matching_question2,Pattern Matching,StringPatternMatching,1,outcome,question
+Pattern_Matching_question4,Pattern Matching,SubstringMatching,1,outcome,question
+DataSelection17,Pattern Matching,GreaterThanOrEqualToComparison,1,outcome,example
+Pattern_Matching_question1,Pattern Matching,AttributeName,1,prerequisite,question
+Pattern_Matching_question4,Pattern Matching,DomainType,1,prerequisite,question
+Pattern_Matching_question5,Pattern Matching,SelectStatement,1,prerequisite,question
+Pattern_Matching_question1,Pattern Matching,StringType,1,prerequisite,question
+Pattern_Matching_question3,Pattern Matching,SelectStatement,1,prerequisite,question
+Pattern_Matching_question3,Pattern Matching,WhereClause,1,prerequisite,question
+Pattern_Matching_question5,Pattern Matching,OrLogicalOperator,1,prerequisite,question
+Pattern_Matching_question3,Pattern Matching,DomainType,1,prerequisite,question
+Pattern_Matching_question5,Pattern Matching,MultipleAttributeSelection,1,prerequisite,question
+Pattern_Matching_question1,Pattern Matching,AllAttributeSelection,1,prerequisite,question
+Pattern_Matching_question2,Pattern Matching,SelectStatement,1,prerequisite,question
+Pattern_Matching_question4,Pattern Matching,SingleQuotationCharacter,1,prerequisite,question
+DataSelection17,Pattern Matching,StringType,1,prerequisite,example
+Pattern_Matching_question2,Pattern Matching,SingleAttributeSelection,1,prerequisite,question
+Pattern_Matching_question4,Pattern Matching,PercentCharacter,1,outcome,question
+DataSelection17,Pattern Matching,SingleTableSelection,1,prerequisite,example
+Pattern_Matching_question2,Pattern Matching,DomainType,1,prerequisite,question
+Pattern_Matching_question4,Pattern Matching,SingleTableSelection,1,prerequisite,question
+Pattern_Matching_question5,Pattern Matching,SingleQuotationCharacter,1,prerequisite,question
+Pattern_Matching_question1,Pattern Matching,SelectStatement,1,prerequisite,question
+Pattern_Matching_question3,Pattern Matching,SingleQuotationCharacter,1,prerequisite,question
+Pattern_Matching_question5,Pattern Matching,PercentCharacter,1,outcome,question
+Pattern_Matching_question1,Pattern Matching,SubstringMatching,1,outcome,question
+Pattern_Matching_question3,Pattern Matching,StringType,1,prerequisite,question
+Pattern_Matching_question3,Pattern Matching,SingleTableSelection,1,prerequisite,question
+Pattern_Matching_question5,Pattern Matching,OrLogicOperation,1,prerequisite,question
+Pattern_Matching_question1,Pattern Matching,StringPatternMatching,1,outcome,question
+Pattern_Matching_question2,Pattern Matching,SingleQuotationCharacter,1,prerequisite,question
+Pattern_Matching_question4,Pattern Matching,AndLogicalOperator,1,prerequisite,question
+DataSelection17,Pattern Matching,SelectStatement,1,prerequisite,example
+Pattern_Matching_question2,Pattern Matching,PercentCharacter,1,outcome,question
+Pattern_Matching_question4,Pattern Matching,LikePredicate,1,outcome,question
+DataSelection17,Pattern Matching,WhereClause,1,prerequisite,example
+Pattern_Matching_question2,Pattern Matching,SingleTableSelection,1,prerequisite,question
+Pattern_Matching_question4,Pattern Matching,StringPatternMatching,1,outcome,question
+DataSelection17,Pattern Matching,RightWhitespaceTrim,1,prerequisite,example
+Pattern_Matching_question1,Pattern Matching,SingleQuotationCharacter,1,prerequisite,question
+Pattern_Matching_question4,Pattern Matching,"Pattern Matching",0.38,outcome,question
+Pattern_Matching_question5,Pattern Matching,LikePredicate,1,outcome,question
+Pattern_Matching_question1,Pattern Matching,PercentCharacter,1,outcome,question
+Pattern_Matching_question3,Pattern Matching,MultipleAttributeSelection,1,prerequisite,question
+Pattern_Matching_question3,Pattern Matching,SubstringMatching,1,outcome,question
+Pattern_Matching_question5,Pattern Matching,SubstringMatching,1,outcome,question
+Multiple_Table_question2,Multiple Table Queries,EqualComparison,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,MultipleAttributeSelection,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,AttributeName,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,FromClause,1,prerequisite,question
+Multiple_Table_question2,Multiple Table Queries,MultipleTableSelection,1,prerequisite,question
+Multiple_Table_question3,Multiple Table Queries,AttributeName,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,DotCharacter,1,prerequisite,question
+DataSelection16,Multiple Table Queries,MultipleTableSelection,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,AndLogicalOperator,1,prerequisite,question
+Multiple_Table_question3,Multiple Table Queries,StringType,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,AndLogicOperation,1,prerequisite,question
+DataSelection16,Multiple Table Queries,TableAlias,1,prerequisite,example
+Multiple_Table_question3,Multiple Table Queries,EqualComparison,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,IntegrityConstraint,1,prerequisite,question
+DataSelection10,Multiple Table Queries,SingleQuotationCharacter,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,EquiWhereJoin,1,prerequisite,question
+Multiple_Table_question3,Multiple Table Queries,SingleAttributeSelection,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,SelectStatement,1,prerequisite,question
+DataSelection10,Multiple Table Queries,SelectClause,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,TableAlias,1,prerequisite,question
+Multiple_Table_question2,Multiple Table Queries,FromClause,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,WhereClause,1,prerequisite,question
+DataSelection10,Multiple Table Queries,TableAlias,1,prerequisite,example
+Multiple_Table_question2,Multiple Table Queries,DotCharacter,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,TableAlias,1,prerequisite,question
+DataSelection10,Multiple Table Queries,FixedLengthCharacterString,1,prerequisite,example
+Multiple_Table_question2,Multiple Table Queries,AndLogicOperation,1,prerequisite,question
+Multiple_Table_question1,Multiple Table Queries,IntegrityConstraint,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,"Multiple Table Queries",0.38,outcome,question
+Multiple_Table_question5,Multiple Table Queries,EquiWhereJoin,1,prerequisite,question
+DataSelection16,Multiple Table Queries,EquiWhereJoin,1,prerequisite,example
+Multiple_Table_question2,Multiple Table Queries,IntegrityConstraint,1,prerequisite,question
+Multiple_Table_question3,Multiple Table Queries,Column,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,SingleTableSelection,1,prerequisite,question
+DataSelection16,Multiple Table Queries,AsClause,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,SelectStatement,1,prerequisite,question
+Multiple_Table_question3,Multiple Table Queries,EqualComparison,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,MultipleAttributeSelection,1,prerequisite,question
+DataSelection10,Multiple Table Queries,AndLogicalOperator,1,prerequisite,example
+Multiple_Table_question3,Multiple Table Queries,MultipleTableSelection,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,AttributeName,1,prerequisite,question
+DataSelection10,Multiple Table Queries,EquiWhereJoin,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,SingleTableSelection,1,prerequisite,question
+Multiple_Table_question2,Multiple Table Queries,AndLogicalOperator,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,StringType,1,prerequisite,question
+DataSelection10,Multiple Table Queries,EqualComparison,1,prerequisite,example
+Multiple_Table_question2,Multiple Table Queries,EquiWhereJoin,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,EqualComparison,1,prerequisite,question
+DataSelection10,Multiple Table Queries,CountingNoInColumn,1,prerequisite,example
+Multiple_Table_question2,Multiple Table Queries,SingleTableSelection,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,SingleAttributeSelection,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,SelectStatement,1,prerequisite,question
+DataSelection16,Multiple Table Queries,FromClause,1,prerequisite,example
+Multiple_Table_question2,Multiple Table Queries,MultipleAttributeSelection,1,prerequisite,question
+Multiple_Table_question3,Multiple Table Queries,FromClause,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,WhereClause,1,prerequisite,question
+DataSelection16,Multiple Table Queries,CommaCharacter,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,AttributeName,1,prerequisite,question
+Multiple_Table_question3,Multiple Table Queries,DotCharacter,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,TableAlias,1,prerequisite,question
+DataSelection16,Multiple Table Queries,UnionOfTwoTupleSets,1,prerequisite,example
+Multiple_Table_question3,Multiple Table Queries,AndLogicOperation,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,"Multiple Table Queries",0.38,outcome,question
+DataSelection10,Multiple Table Queries,FromClause,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,DotCharacter,1,prerequisite,question
+Multiple_Table_question3,Multiple Table Queries,IntegrityConstraint,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,Column,1,prerequisite,question
+DataSelection10,Multiple Table Queries,DotCharacter,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,MultipleTableSelection,1,prerequisite,question
+Multiple_Table_question2,Multiple Table Queries,SelectStatement,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,EqualComparison,1,prerequisite,question
+DataSelection10,Multiple Table Queries,SetOperation,1,prerequisite,example
+Multiple_Table_question2,Multiple Table Queries,WhereClause,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,MultipleTableSelection,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,AndLogicalOperator,1,prerequisite,question
+Multiple_Table_question2,Multiple Table Queries,TableAlias,1,prerequisite,question
+Multiple_Table_question1,Multiple Table Queries,"Multiple Table Queries",0.38,outcome,question
+Multiple_Table_question3,Multiple Table Queries,AndLogicalOperator,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,StringType,1,prerequisite,question
+DataSelection16,Multiple Table Queries,MultipleAttributeSelection,1,prerequisite,example
+Multiple_Table_question2,Multiple Table Queries,"Multiple Table Queries",0.38,outcome,question
+Multiple_Table_question3,Multiple Table Queries,EquiWhereJoin,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,EqualComparison,1,prerequisite,question
+DataSelection16,Multiple Table Queries,WhereClause,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,Column,1,prerequisite,question
+Multiple_Table_question3,Multiple Table Queries,SingleTableSelection,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,SingleAttributeSelection,1,prerequisite,question
+DataSelection10,Multiple Table Queries,AttributeName,1,prerequisite,example
+Multiple_Table_question3,Multiple Table Queries,MultipleAttributeSelection,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,FromClause,1,prerequisite,question
+DataSelection10,Multiple Table Queries,MultipleAttributeSelection,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,EqualComparison,1,prerequisite,question
+Multiple_Table_question2,Multiple Table Queries,AttributeName,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,DotCharacter,1,prerequisite,question
+DataSelection10,Multiple Table Queries,SingleTableSelection,1,prerequisite,example
+Multiple_Table_question2,Multiple Table Queries,StringType,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,AndLogicOperation,1,prerequisite,question
+DataSelection10,Multiple Table Queries,ReferentialAction,1,prerequisite,example
+Multiple_Table_question2,Multiple Table Queries,EqualComparison,1,prerequisite,question
+Multiple_Table_question1,Multiple Table Queries,SingleAttributeSelection,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,IntegrityConstraint,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,Column,1,prerequisite,question
+DataSelection16,Multiple Table Queries,SelectStatement,1,prerequisite,example
+Multiple_Table_question2,Multiple Table Queries,SingleAttributeSelection,1,prerequisite,question
+Multiple_Table_question3,Multiple Table Queries,SelectStatement,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,EqualComparison,1,prerequisite,question
+DataSelection16,Multiple Table Queries,SelectClause,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,FromClause,1,prerequisite,question
+Multiple_Table_question3,Multiple Table Queries,WhereClause,1,prerequisite,question
+Multiple_Table_question5,Multiple Table Queries,MultipleTableSelection,1,prerequisite,question
+DataSelection16,Multiple Table Queries,CountingRows,1,prerequisite,example
+Multiple_Table_question3,Multiple Table Queries,TableAlias,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,AndLogicalOperator,1,prerequisite,question
+DataSelection10,Multiple Table Queries,SelectStatement,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,WhereClause,1,prerequisite,question
+Multiple_Table_question3,Multiple Table Queries,"Multiple Table Queries",0.38,outcome,question
+Multiple_Table_question4,Multiple Table Queries,EquiWhereJoin,1,prerequisite,question
+DataSelection10,Multiple Table Queries,WhereClause,1,prerequisite,example
+Multiple_Table_question1,Multiple Table Queries,MultipleAttributeSelection,1,prerequisite,question
+Multiple_Table_question2,Multiple Table Queries,Column,1,prerequisite,question
+Multiple_Table_question4,Multiple Table Queries,SingleTableSelection,1,prerequisite,question
+DataSelection10,Multiple Table Queries,NegativeSetMembership,1,outcome,example
+DataSelection18,ORDER-BY,CountingRows,1,prerequisite,example
+Order-By_question2,ORDER-BY,FromClause,1,prerequisite,question
+Order-By_question1,ORDER-BY,ORDER-BY,0.43,outcome,question
+Order-By_question4,ORDER-BY,OrderingByMultipleAttributes,1,outcome,question
+Order-By_question2,ORDER-BY,DomainType,1,prerequisite,question
+Order-By_question4,ORDER-BY,AscendingOrdering,1,outcome,question
+Order-By_question2,ORDER-BY,EqualComparison,1,prerequisite,question
+Order-By_question3,ORDER-BY,SingleQuotationCharacter,1,prerequisite,question
+Order-By_question3,ORDER-BY,Tuple,1,prerequisite,question
+Order-By_question4,ORDER-BY,MultipleAttributeSelection,1,prerequisite,question
+Order-By_question2,ORDER-BY,AttributeColumn,1,prerequisite,question
+DataSelection18,ORDER-BY,SelectStatement,1,prerequisite,example
+Order-By_question3,ORDER-BY,WhereClause,1,prerequisite,question
+Order-By_question3,ORDER-BY,OrderingBySingleAttribute,1,outcome,question
+Order-By_question1,ORDER-BY,FromClause,1,prerequisite,question
+DataSelection18,ORDER-BY,SelectClause,1,prerequisite,example
+Order-By_question3,ORDER-BY,SingleAttributeSelection,1,prerequisite,question
+Order-By_question1,ORDER-BY,DomainType,1,prerequisite,question
+DataSelection18,ORDER-BY,NegativeSetMembership,1,prerequisite,example
+Order-By_question2,ORDER-BY,OrderingBySingleAttribute,1,outcome,question
+Order-By_question1,ORDER-BY,SingleAttributeSelection,1,prerequisite,question
+Order-By_question4,ORDER-BY,AttributeName,1,prerequisite,question
+Order-By_question2,ORDER-BY,NumericType,1,prerequisite,question
+Order-By_question4,ORDER-BY,Tuple,1,prerequisite,question
+Order-By_question2,ORDER-BY,SelectClause,1,prerequisite,question
+Order-By_question2,ORDER-BY,SingleTableSelection,1,prerequisite,question
+Order-By_question3,ORDER-BY,SelectStatement,1,prerequisite,question
+Order-By_question4,ORDER-BY,AscendingOrder,1,outcome,question
+DataSelection18,ORDER-BY,DistinctClause,1,prerequisite,example
+Order-By_question3,ORDER-BY,DescendingOrdering,1,outcome,question
+Order-By_question3,ORDER-BY,AttributeName,1,prerequisite,question
+Order-By_question1,ORDER-BY,Instance,1,prerequisite,question
+DataSelection18,ORDER-BY,MultipleTableSelection,1,prerequisite,example
+Order-By_question3,ORDER-BY,EqualComparison,1,prerequisite,question
+Order-By_question1,ORDER-BY,MultipleAttributeSelection,1,prerequisite,question
+DataSelection18,ORDER-BY,SingleAttributeSelection,1,prerequisite,example
+Order-By_question2,ORDER-BY,AttributeName,1,prerequisite,question
+Order-By_question1,ORDER-BY,AscendingOrder,1,outcome,question
+DataSelection18,ORDER-BY,ReferentialAction,1,prerequisite,example
+Order-By_question2,ORDER-BY,AllAttributeSelection,1,prerequisite,question
+Order-By_question4,ORDER-BY,FromClause,1,prerequisite,question
+Order-By_question2,ORDER-BY,StringType,1,prerequisite,question
+Order-By_question4,ORDER-BY,SelectClause,1,prerequisite,question
+Order-By_question2,ORDER-BY,AscendingOrder,1,outcome,question
+Order-By_question3,ORDER-BY,FromClause,1,prerequisite,question
+Order-By_question3,ORDER-BY,DomainType,1,prerequisite,question
+Order-By_question4,ORDER-BY,AttributeColumn,1,prerequisite,question
+Order-By_question2,ORDER-BY,ORDER-BY,0.43,outcome,question
+DataSelection18,ORDER-BY,EquiWhereJoin,1,prerequisite,example
+Order-By_question3,ORDER-BY,EqualComparison,1,prerequisite,question
+Order-By_question1,ORDER-BY,AllAttributeSelection,1,prerequisite,question
+DataSelection18,ORDER-BY,AsClause,1,prerequisite,example
+Order-By_question3,ORDER-BY,AttributeColumn,1,prerequisite,question
+Order-By_question1,ORDER-BY,AscendingOrdering,1,outcome,question
+DataSelection18,ORDER-BY,TupleVariable,1,outcome,example
+Order-By_question2,ORDER-BY,SingleQuotationCharacter,1,prerequisite,question
+Order-By_question1,ORDER-BY,AttributeColumn,1,prerequisite,question
+Order-By_question4,ORDER-BY,Instance,1,prerequisite,question
+Order-By_question2,ORDER-BY,Tuple,1,prerequisite,question
+Order-By_question4,ORDER-BY,DomainType,1,prerequisite,question
+Order-By_question2,ORDER-BY,WhereClause,1,prerequisite,question
+Order-By_question3,ORDER-BY,MultipleAttributeSelection,1,prerequisite,question
+Order-By_question4,ORDER-BY,SingleTableSelection,1,prerequisite,question
+Order-By_question2,ORDER-BY,SingleAttributeSelection,1,prerequisite,question
+DataSelection18,ORDER-BY,FromClause,1,prerequisite,example
+Order-By_question3,ORDER-BY,SelectClause,1,prerequisite,question
+Order-By_question3,ORDER-BY,Instance,1,prerequisite,question
+Order-By_question1,ORDER-BY,OrderingBySingleAttribute,1,outcome,question
+DataSelection18,ORDER-BY,CommaCharacter,1,prerequisite,example
+Order-By_question3,ORDER-BY,SingleTableSelection,1,prerequisite,question
+Order-By_question1,ORDER-BY,Tuple,1,prerequisite,question
+DataSelection18,ORDER-BY,TableAlias,1,prerequisite,example
+Order-By_question2,ORDER-BY,Instance,1,prerequisite,question
+Order-By_question1,ORDER-BY,SingleTableSelection,1,prerequisite,question
+DataSelection18,ORDER-BY,IntegrityOnUpdate,1,prerequisite,example
+Order-By_question2,ORDER-BY,SelectStatement,1,prerequisite,question
+Order-By_question4,ORDER-BY,SelectStatement,1,prerequisite,question
+Order-By_question2,ORDER-BY,AscendingOrdering,1,outcome,question
+Order-By_question4,ORDER-BY,SingleAttributeSelection,1,prerequisite,question
+Order-By_question2,ORDER-BY,EqualComparison,1,prerequisite,question
+Order-By_question3,ORDER-BY,AllAttributeSelection,1,prerequisite,question
+Order-By_question3,ORDER-BY,StringType,1,prerequisite,question
+Order-By_question4,ORDER-BY,ORDER-BY,0.43,outcome,question
+Order-By_question1,ORDER-BY,AttributeName,1,prerequisite,question
+DataSelection18,ORDER-BY,AscendingOrdering,1,outcome,example
+Order-By_question3,ORDER-BY,DescendingOrder,1,outcome,question
+Order-By_question1,ORDER-BY,SelectStatement,1,prerequisite,question
+DataSelection18,ORDER-BY,WhereClause,1,prerequisite,example
+Order-By_question3,ORDER-BY,ORDER-BY,0.43,outcome,question
+Order-By_question1,ORDER-BY,SelectClause,1,prerequisite,question
+DataSelection31,Set Operations,WhereClause,1,prerequisite,example
+DataSelection19,Set Operations,SingleAttributeSelection,1,prerequisite,example
+DataSelection30,Set Operations,GreaterThanComparison,1,prerequisite,example
+Set_Operations_question1,Set Operations,SingleQuotationCharacter,1,prerequisite,question
+DataSelection30,Set Operations,EqualComparison,1,prerequisite,example
+DataSelection31,Set Operations,SubstringExtraction,1,prerequisite,example
+Set_Operations_question1,Set Operations,MultipleTableSelection,1,prerequisite,question
+DataSelection30,Set Operations,ReferentialAction,1,prerequisite,example
+DataSelection30,Set Operations,SelectStatement,1,prerequisite,example
+Set_Operations_question1,Set Operations,MultipleTableSelection,1,prerequisite,question
+DataSelection21,Set Operations,BracketCharacter,1,prerequisite,example
+DataSelection20,Set Operations,FromClause,1,prerequisite,example
+DataSelection31,Set Operations,SingleQuotationCharacter,1,prerequisite,example
+DataSelection20,Set Operations,SingleAttributeSelection,1,prerequisite,example
+DataSelection31,Set Operations,BracketCharacter,1,prerequisite,example
+DataSelection19,Set Operations,BracketCharacter,1,prerequisite,example
+DataSelection30,Set Operations,StringType,1,prerequisite,example
+DataSelection19,Set Operations,UnionOfTwoTupleSetsWithDuplicate,1,outcome,example
+DataSelection30,Set Operations,WhereClause,1,prerequisite,example
+DataSelection31,Set Operations,SingleTableSelection,1,prerequisite,example
+Set_Operations_question1,Set Operations,Column,1,prerequisite,question
+DataSelection30,Set Operations,SubstringExtraction,1,prerequisite,example
+DataSelection30,Set Operations,SingleQuotationCharacter,1,prerequisite,example
+Set_Operations_question1,Set Operations,UnionOfTwoTupleSets,1,prerequisite,question
+DataSelection21,Set Operations,SelectStatement,1,prerequisite,example
+DataSelection21,Set Operations,SingleTableSelection,1,prerequisite,example
+DataSelection20,Set Operations,BracketCharacter,1,prerequisite,example
+DataSelection31,Set Operations,StringType,1,prerequisite,example
+DataSelection19,Set Operations,FromClause,1,prerequisite,example
+DataSelection31,Set Operations,SingleAttributeSelection,1,prerequisite,example
+DataSelection19,Set Operations,SingleTableSelection,1,prerequisite,example
+DataSelection30,Set Operations,BracketCharacter,1,prerequisite,example
+Set_Operations_question1,Set Operations,FromClause,1,prerequisite,question
+DataSelection30,Set Operations,SingleTableSelection,1,prerequisite,example
+DataSelection31,Set Operations,Assertion,1,prerequisite,example
+Set_Operations_question1,Set Operations,SelectClause,1,prerequisite,question
+DataSelection30,Set Operations,VariableLengthCharaterString,1,outcome,example
+Set_Operations_question1,Set Operations,MultipleAttributeSelection,1,prerequisite,question
+DataSelection21,Set Operations,SelectClause,1,prerequisite,example
+DataSelection20,Set Operations,SelectStatement,1,prerequisite,example
+DataSelection31,Set Operations,FromClause,1,prerequisite,example
+DataSelection20,Set Operations,SingleTableSelection,1,prerequisite,example
+DataSelection31,Set Operations,SelectClause,1,prerequisite,example
+DataSelection19,Set Operations,SelectClause,1,prerequisite,example
+DataSelection30,Set Operations,AnyPredicate,1,outcome,example
+Set_Operations_question1,Set Operations,AttributeName,1,prerequisite,question
+DataSelection30,Set Operations,SingleAttributeSelection,1,prerequisite,example
+DataSelection31,Set Operations,SimpleSubquery,1,prerequisite,example
+Set_Operations_question1,Set Operations,StringType,1,prerequisite,question
+DataSelection30,Set Operations,Assertion,1,prerequisite,example
+DataSelection30,Set Operations,FromClause,1,prerequisite,example
+Set_Operations_question1,Set Operations,EqualComparison,1,prerequisite,question
+DataSelection21,Set Operations,ExceptOperation,1,outcome,example
+DataSelection21,Set Operations,SetDefaultReferentialAction,1,outcome,example
+DataSelection31,Set Operations,AllPredicate,1,outcome,example
+DataSelection20,Set Operations,SelectClause,1,prerequisite,example
+DataSelection31,Set Operations,GreaterThanComparison,1,prerequisite,example
+DataSelection19,Set Operations,SelectStatement,1,prerequisite,example
+DataSelection31,Set Operations,EqualComparison,1,prerequisite,example
+DataSelection19,Set Operations,UnionOperation,1,outcome,example
+DataSelection30,Set Operations,SelectClause,1,prerequisite,example
+Set_Operations_question1,Set Operations,SelectStatement,1,prerequisite,question
+DataSelection30,Set Operations,SimpleSubquery,1,prerequisite,example
+DataSelection31,Set Operations,Boolean,1,outcome,example
+Set_Operations_question1,Set Operations,UnionOperation,1,outcome,question
+DataSelection21,Set Operations,FromClause,1,prerequisite,example
+Set_Operations_question1,Set Operations,"Set Operations",0.55,outcome,question
+DataSelection21,Set Operations,SingleAttributeSelection,1,prerequisite,example
+DataSelection20,Set Operations,IntersectOperation,1,outcome,example
+DataSelection31,Set Operations,SelectStatement,1,prerequisite,example
+DataSelection20,Set Operations,QueryLanguage,1,outcome,example
+DataSelection23,Aggregate Functions,SelectClause,1,prerequisite,example
+Aggregate_Functions_question2,Aggregate Functions,AttributeName,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,TableAlias,1,prerequisite,question
+Aggregate_Functions_question2,Aggregate Functions,SingleTableSelection,1,prerequisite,question
+Aggregate_Functions_question4,Aggregate Functions,SumFunction,1,outcome,question
+DataSelection22,Aggregate Functions,FromClause,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,AttributeName,1,prerequisite,question
+Aggregate_Functions_question4,Aggregate Functions,StringType,1,prerequisite,question
+DataSelection22,Aggregate Functions,WhereClause,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,SelectClause,1,prerequisite,question
+Aggregate_Functions_question4,Aggregate Functions,TableAlias,1,prerequisite,question
+DataSelection22,Aggregate Functions,ReferentialAction,1,prerequisite,example
+DataSelection24,Aggregate Functions,FromClause,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,SingleTableSelection,1,prerequisite,question
+Aggregate_Functions_question3,Aggregate Functions,SingleQuotationCharacter,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,AttributeName,1,prerequisite,question
+DataSelection5,Aggregate Functions,SelectStatement,1,prerequisite,example
+DataSelection24,Aggregate Functions,SingleTableSelection,1,prerequisite,example
+Aggregate_Functions_question3,Aggregate Functions,SelectClause,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,StringType,1,prerequisite,question
+DataSelection5,Aggregate Functions,RightWhitespaceTrim,1,prerequisite,example
+DataSelection23,Aggregate Functions,SelectStatement,1,prerequisite,example
+Aggregate_Functions_question3,Aggregate Functions,SingleAttributeSelection,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,SubstringMatching,1,prerequisite,question
+Aggregate_Functions_question2,Aggregate Functions,MinFunction,1,outcome,question
+Aggregate_Functions_question5,Aggregate Functions,SingleAttributeSelection,1,prerequisite,question
+DataSelection22,Aggregate Functions,AvgFunction,1,prerequisite,example
+Aggregate_Functions_question2,Aggregate Functions,"Aggregate Functions",0.38,outcome,question
+Aggregate_Functions_question4,Aggregate Functions,FromClause,1,prerequisite,question
+DataSelection22,Aggregate Functions,StringType,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,SelectStatement,1,prerequisite,question
+Aggregate_Functions_question4,Aggregate Functions,SingleTableSelection,1,prerequisite,question
+DataSelection22,Aggregate Functions,SingleTableSelection,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,EqualComparison,1,prerequisite,question
+Aggregate_Functions_question4,Aggregate Functions,"Aggregate Functions",0.38,outcome,question
+DataSelection5,Aggregate Functions,AttributeName,1,prerequisite,example
+DataSelection24,Aggregate Functions,SelectClause,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,"Aggregate Functions",0.38,outcome,question
+Aggregate_Functions_question3,Aggregate Functions,NumericType,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,AllAttributeSelection,1,prerequisite,question
+DataSelection5,Aggregate Functions,SingleAttributeSelection,1,prerequisite,example
+DataSelection23,Aggregate Functions,FromClause,1,prerequisite,example
+Aggregate_Functions_question3,Aggregate Functions,SingleTableSelection,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,DotCharacter,1,prerequisite,question
+Aggregate_Functions_question2,Aggregate Functions,FromClause,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,SingleTableSelection,1,prerequisite,question
+DataSelection23,Aggregate Functions,SingleTableSelection,1,prerequisite,example
+Aggregate_Functions_question2,Aggregate Functions,Minimum,1,outcome,question
+Aggregate_Functions_question4,Aggregate Functions,AttributeName,1,prerequisite,question
+DataSelection22,Aggregate Functions,SelectStatement,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,SingleQuotationCharacter,1,prerequisite,question
+Aggregate_Functions_question4,Aggregate Functions,SelectClause,1,prerequisite,question
+DataSelection22,Aggregate Functions,SingleAttributeSelection,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,DotCharacter,1,prerequisite,question
+Aggregate_Functions_question4,Aggregate Functions,Summation,1,outcome,question
+DataSelection22,Aggregate Functions,Timestamp,1,prerequisite,example
+DataSelection24,Aggregate Functions,SelectStatement,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,Average,1,prerequisite,question
+Aggregate_Functions_question3,Aggregate Functions,FromClause,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,SingleQuotationCharacter,1,prerequisite,question
+DataSelection5,Aggregate Functions,NumericType,1,prerequisite,example
+DataSelection24,Aggregate Functions,IntegrityOnUpdate,1,prerequisite,example
+Aggregate_Functions_question3,Aggregate Functions,WhereClause,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,CountFunction,1,outcome,question
+DataSelection5,Aggregate Functions,Timestamp,1,prerequisite,example
+DataSelection23,Aggregate Functions,CountFunction,1,outcome,example
+Aggregate_Functions_question3,Aggregate Functions,"Aggregate Functions",0.38,outcome,question
+Aggregate_Functions_question5,Aggregate Functions,StringPatternMatching,1,prerequisite,question
+Aggregate_Functions_question2,Aggregate Functions,SelectClause,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,"Aggregate Functions",0.38,outcome,question
+DataSelection22,Aggregate Functions,SingleQuotationCharacter,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,AvgFunction,1,prerequisite,question
+Aggregate_Functions_question4,Aggregate Functions,SelectStatement,1,prerequisite,question
+DataSelection22,Aggregate Functions,SelectClause,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,StringType,1,prerequisite,question
+Aggregate_Functions_question4,Aggregate Functions,EqualComparison,1,prerequisite,question
+DataSelection22,Aggregate Functions,SetOperation,1,prerequisite,example
+DataSelection24,Aggregate Functions,DistinctClause,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,TableAlias,1,prerequisite,question
+Aggregate_Functions_question3,Aggregate Functions,AttributeName,1,prerequisite,question
+DataSelection5,Aggregate Functions,FromClause,1,prerequisite,example
+DataSelection24,Aggregate Functions,SingleAttributeSelection,1,prerequisite,example
+Aggregate_Functions_question3,Aggregate Functions,MaxFunction,1,outcome,question
+Aggregate_Functions_question5,Aggregate Functions,SelectStatement,1,prerequisite,question
+DataSelection5,Aggregate Functions,SingleTableSelection,1,prerequisite,example
+DataSelection23,Aggregate Functions,AllAttributeSelection,1,prerequisite,example
+Aggregate_Functions_question3,Aggregate Functions,Maximum,1,outcome,question
+Aggregate_Functions_question5,Aggregate Functions,EqualComparison,1,prerequisite,question
+Aggregate_Functions_question2,Aggregate Functions,SelectStatement,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,Counting,1,outcome,question
+DataSelection23,Aggregate Functions,ColumnAddition,1,outcome,example
+Aggregate_Functions_question2,Aggregate Functions,SingleAttributeSelection,1,prerequisite,question
+Aggregate_Functions_question4,Aggregate Functions,SingleQuotationCharacter,1,prerequisite,question
+DataSelection22,Aggregate Functions,NumericType,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,FromClause,1,prerequisite,question
+Aggregate_Functions_question4,Aggregate Functions,DotCharacter,1,prerequisite,question
+DataSelection22,Aggregate Functions,EqualComparison,1,prerequisite,example
+Aggregate_Functions_question1,Aggregate Functions,WhereClause,1,prerequisite,question
+Aggregate_Functions_question4,Aggregate Functions,SingleAttributeSelection,1,prerequisite,question
+DataSelection5,Aggregate Functions,AvgFunction,1,prerequisite,example
+DataSelection24,Aggregate Functions,CountFunction,1,outcome,example
+Aggregate_Functions_question1,Aggregate Functions,SingleAttributeSelection,1,prerequisite,question
+Aggregate_Functions_question3,Aggregate Functions,SelectStatement,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,FromClause,1,prerequisite,question
+DataSelection5,Aggregate Functions,SelectClause,1,prerequisite,example
+DataSelection24,Aggregate Functions,TableAlteration,1,prerequisite,example
+Aggregate_Functions_question3,Aggregate Functions,EqualComparison,1,prerequisite,question
+Aggregate_Functions_question5,Aggregate Functions,SelectClause,1,prerequisite,question
+DataSelection32,GROUP-BY and HAVING,FromClause,1,prerequisite,example
+Group-By_Having_question2,GROUP-BY and HAVING,FromClause,1,prerequisite,question
+DataSelection38,GROUP-BY and HAVING,DotCharacter,1,prerequisite,example
+DataSelection25,GROUP-BY and HAVING,NumericType,1,prerequisite,example
+DataSelection32,GROUP-BY and HAVING,SelectClause,1,prerequisite,example
+Group-By_Having_question2,GROUP-BY and HAVING,SingleTableSelection,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,ComparisonOperation,1,prerequisite,example
+Group-By_Having_question4,GROUP-BY and HAVING,HavingClause,1,outcome,question
+DataSelection38,GROUP-BY and HAVING,TableAlias,1,prerequisite,example
+DataSelection25,GROUP-BY and HAVING,Insertion,1,outcome,example
+DataSelection32,GROUP-BY and HAVING,TargetTableDeclaration,1,outcome,example
+Group-By_Having_question1,GROUP-BY and HAVING,FromClause,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,Assertion,1,prerequisite,example
+Group-By_Having_question4,GROUP-BY and HAVING,SingleTableSelection,1,prerequisite,question
+DataSelection38,GROUP-BY and HAVING,Timestamp,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,CountFunction,1,prerequisite,question
+DataSelection26,GROUP-BY and HAVING,AvgFunction,1,prerequisite,example
+Group-By_Having_question1,GROUP-BY and HAVING,SingleTableSelection,1,prerequisite,question
+DataSelection36,GROUP-BY and HAVING,SelectStatement,1,prerequisite,example
+Group-By_Having_question4,GROUP-BY and HAVING,SingleAttributeSelection,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,MultipleAttributeSelection,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,SingleAttributeSelection,1,prerequisite,question
+DataSelection26,GROUP-BY and HAVING,HavingClause,1,outcome,example
+DataSelection36,GROUP-BY and HAVING,SingleAttributeGrouping,1,outcome,example
+Group-By_Having_question3,GROUP-BY and HAVING,HavingClause,1,outcome,question
+DataSelection37,GROUP-BY and HAVING,SelectClause,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,EqualComparison,1,prerequisite,question
+DataSelection26,GROUP-BY and HAVING,TargetTableDeclaration,1,outcome,example
+DataSelection36,GROUP-BY and HAVING,NegativeSetMembership,1,prerequisite,example
+Group-By_Having_question3,GROUP-BY and HAVING,GroupBy,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,TableAlias,1,prerequisite,example
+Group-By_Having_question4,GROUP-BY and HAVING,SumFunction,1,prerequisite,question
+DataSelection32,GROUP-BY and HAVING,AllPredicate,1,prerequisite,example
+Group-By_Having_question3,GROUP-BY and HAVING,"GROUP-BY and HAVING",0.38,outcome,question
+DataSelection38,GROUP-BY and HAVING,MinFunction,1,prerequisite,example
+DataSelection25,GROUP-BY and HAVING,FromClause,1,prerequisite,example
+DataSelection32,GROUP-BY and HAVING,HavingClause,1,outcome,example
+Group-By_Having_question2,GROUP-BY and HAVING,SingleAttributeGrouping,1,outcome,question
+DataSelection38,GROUP-BY and HAVING,EqualComparison,1,prerequisite,example
+DataSelection25,GROUP-BY and HAVING,SingleAttributeGrouping,1,outcome,example
+DataSelection32,GROUP-BY and HAVING,SingleTableSelection,1,prerequisite,example
+Group-By_Having_question2,GROUP-BY and HAVING,"GROUP-BY and HAVING",0.38,outcome,question
+DataSelection37,GROUP-BY and HAVING,TargetTableDeclaration,1,outcome,example
+Group-By_Having_question4,GROUP-BY and HAVING,SelectClause,1,prerequisite,question
+DataSelection38,GROUP-BY and HAVING,Counting,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,SelectStatement,1,prerequisite,question
+DataSelection32,GROUP-BY and HAVING,Timestamp,1,prerequisite,example
+Group-By_Having_question1,GROUP-BY and HAVING,SingleAttributeGrouping,1,outcome,question
+DataSelection36,GROUP-BY and HAVING,AndLogicalOperator,1,prerequisite,example
+Group-By_Having_question4,GROUP-BY and HAVING,GreaterThanComparison,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,LessThanComparison,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,SingleAttributeGrouping,1,outcome,question
+DataSelection26,GROUP-BY and HAVING,NumericType,1,prerequisite,example
+Group-By_Having_question1,GROUP-BY and HAVING,"GROUP-BY and HAVING",0.38,outcome,question
+DataSelection36,GROUP-BY and HAVING,MultipleTableSelection,1,prerequisite,example
+Group-By_Having_question3,GROUP-BY and HAVING,FromClause,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,GreaterThanComparison,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,GroupBy,1,prerequisite,question
+DataSelection26,GROUP-BY and HAVING,SingleAttributeGrouping,1,outcome,example
+DataSelection36,GROUP-BY and HAVING,EqualComparison,1,prerequisite,example
+Group-By_Having_question3,GROUP-BY and HAVING,SingleAttributeGrouping,1,outcome,question
+DataSelection37,GROUP-BY and HAVING,WhereClause,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,CountingNoInColumn,1,prerequisite,question
+DataSelection36,GROUP-BY and HAVING,ColumnAddition,1,prerequisite,example
+Group-By_Having_question3,GROUP-BY and HAVING,Average,1,prerequisite,question
+DataSelection38,GROUP-BY and HAVING,FromClause,1,prerequisite,example
+DataSelection26,GROUP-BY and HAVING,Timestamp,1,prerequisite,example
+DataSelection32,GROUP-BY and HAVING,SelectStatement,1,prerequisite,example
+Group-By_Having_question2,GROUP-BY and HAVING,SelectStatement,1,prerequisite,question
+DataSelection38,GROUP-BY and HAVING,WhereClause,1,prerequisite,example
+DataSelection25,GROUP-BY and HAVING,MultipleAttributeSelection,1,prerequisite,example
+DataSelection32,GROUP-BY and HAVING,SingleAttributeGrouping,1,outcome,example
+Group-By_Having_question2,GROUP-BY and HAVING,Summation,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,Counting,1,prerequisite,example
+Group-By_Having_question4,GROUP-BY and HAVING,CountFunction,1,prerequisite,question
+DataSelection38,GROUP-BY and HAVING,SimpleSubquery,1,prerequisite,example
+DataSelection25,GROUP-BY and HAVING,Timestamp,1,prerequisite,example
+DataSelection32,GROUP-BY and HAVING,Insertion,1,outcome,example
+Group-By_Having_question1,GROUP-BY and HAVING,SelectStatement,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,ColumnAddition,1,prerequisite,example
+Group-By_Having_question4,GROUP-BY and HAVING,Having,1,outcome,question
+DataSelection37,GROUP-BY and HAVING,CountRowFunction,1,outcome,example
+Group-By_Having_question5,GROUP-BY and HAVING,GreaterThanComparison,1,prerequisite,question
+DataSelection26,GROUP-BY and HAVING,FromClause,1,prerequisite,example
+Group-By_Having_question1,GROUP-BY and HAVING,Average,1,prerequisite,question
+DataSelection36,GROUP-BY and HAVING,EquiWhereJoin,1,prerequisite,example
+Group-By_Having_question4,GROUP-BY and HAVING,"GROUP-BY and HAVING",0.38,outcome,question
+DataSelection37,GROUP-BY and HAVING,MinFunction,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,SingleTableSelection,1,prerequisite,question
+DataSelection26,GROUP-BY and HAVING,GreaterThanComparison,1,prerequisite,example
+DataSelection36,GROUP-BY and HAVING,DotCharacter,1,prerequisite,example
+Group-By_Having_question3,GROUP-BY and HAVING,GreaterThanComparison,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,SingleAttributeGrouping,1,outcome,example
+Group-By_Having_question5,GROUP-BY and HAVING,TableAlias,1,prerequisite,question
+DataSelection26,GROUP-BY and HAVING,Insertion,1,outcome,example
+DataSelection36,GROUP-BY and HAVING,Insertion,1,outcome,example
+Group-By_Having_question3,GROUP-BY and HAVING,GreaterThanComparison,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,SimpleSubquery,1,prerequisite,example
+Group-By_Having_question4,GROUP-BY and HAVING,FromClause,1,prerequisite,question
+DataSelection32,GROUP-BY and HAVING,AvgFunction,1,prerequisite,example
+Group-By_Having_question2,GROUP-BY and HAVING,SumFunction,1,prerequisite,question
+DataSelection38,GROUP-BY and HAVING,SelectClause,1,prerequisite,example
+DataSelection25,GROUP-BY and HAVING,SelectStatement,1,prerequisite,example
+DataSelection32,GROUP-BY and HAVING,GreaterThanOrEqualComparison,1,prerequisite,example
+Group-By_Having_question2,GROUP-BY and HAVING,GroupBy,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,SetOperation,1,prerequisite,example
+Group-By_Having_question4,GROUP-BY and HAVING,SelectStatement,1,prerequisite,question
+DataSelection38,GROUP-BY and HAVING,SingleTableSelection,1,prerequisite,example
+DataSelection25,GROUP-BY and HAVING,SingleTableSelection,1,prerequisite,example
+DataSelection32,GROUP-BY and HAVING,ComparisonOperation,1,prerequisite,example
+Group-By_Having_question1,GROUP-BY and HAVING,AvgFunction,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,Insertion,1,outcome,example
+Group-By_Having_question4,GROUP-BY and HAVING,SingleAttributeGrouping,1,outcome,question
+DataSelection38,GROUP-BY and HAVING,ReferentialAction,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,HavingClause,1,outcome,question
+DataSelection32,GROUP-BY and HAVING,Boolean,1,prerequisite,example
+Group-By_Having_question1,GROUP-BY and HAVING,GroupBy,1,prerequisite,question
+DataSelection36,GROUP-BY and HAVING,FromClause,1,prerequisite,example
+Group-By_Having_question4,GROUP-BY and HAVING,CountingNoInColumn,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,SelectStatement,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,DotCharacter,1,prerequisite,question
+DataSelection26,GROUP-BY and HAVING,MultipleAttributeSelection,1,prerequisite,example
+DataSelection36,GROUP-BY and HAVING,SelectClause,1,prerequisite,example
+Group-By_Having_question3,GROUP-BY and HAVING,SelectStatement,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,BracketCharacter,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,GreaterThanComparison,1,prerequisite,question
+DataSelection26,GROUP-BY and HAVING,SingleTableSelection,1,prerequisite,example
+DataSelection36,GROUP-BY and HAVING,TableAlias,1,prerequisite,example
+Group-By_Having_question3,GROUP-BY and HAVING,Having,1,outcome,question
+DataSelection37,GROUP-BY and HAVING,SingleTableSelection,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,"GROUP-BY and HAVING",0.38,outcome,question
+DataSelection36,GROUP-BY and HAVING,FixedLengthCharacterString,1,prerequisite,example
+Group-By_Having_question3,GROUP-BY and HAVING,SingleAttributeSelection,1,prerequisite,question
+DataSelection38,GROUP-BY and HAVING,SelectStatement,1,prerequisite,example
+DataSelection25,GROUP-BY and HAVING,AvgFunction,1,prerequisite,example
+DataSelection32,GROUP-BY and HAVING,NumericType,1,prerequisite,example
+Group-By_Having_question2,GROUP-BY and HAVING,SelectClause,1,prerequisite,question
+DataSelection38,GROUP-BY and HAVING,SingleAttributeSelection,1,prerequisite,example
+DataSelection25,GROUP-BY and HAVING,SelectClause,1,prerequisite,example
+DataSelection32,GROUP-BY and HAVING,SingleAttributeSelection,1,prerequisite,example
+Group-By_Having_question2,GROUP-BY and HAVING,SingleAttributeSelection,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,AggregateOperation,1,prerequisite,example
+Group-By_Having_question4,GROUP-BY and HAVING,GreaterThanComparison,1,prerequisite,question
+DataSelection38,GROUP-BY and HAVING,ComparisonOperation,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,FromClause,1,prerequisite,question
+DataSelection32,GROUP-BY and HAVING,DataManipulationLanguage,1,prerequisite,example
+Group-By_Having_question1,GROUP-BY and HAVING,SelectClause,1,prerequisite,question
+DataSelection36,GROUP-BY and HAVING,CountRowFunction,1,outcome,example
+Group-By_Having_question4,GROUP-BY and HAVING,GroupBy,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,FromClause,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,SelectClause,1,prerequisite,question
+DataSelection26,GROUP-BY and HAVING,SelectStatement,1,prerequisite,example
+Group-By_Having_question1,GROUP-BY and HAVING,SingleAttributeSelection,1,prerequisite,question
+DataSelection36,GROUP-BY and HAVING,MultipleAttributeSelection,1,prerequisite,example
+Group-By_Having_question3,GROUP-BY and HAVING,AvgFunction,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,HavingClause,1,outcome,example
+Group-By_Having_question5,GROUP-BY and HAVING,Having,1,outcome,question
+DataSelection26,GROUP-BY and HAVING,SelectClause,1,prerequisite,example
+DataSelection36,GROUP-BY and HAVING,WhereClause,1,prerequisite,example
+Group-By_Having_question3,GROUP-BY and HAVING,SelectClause,1,prerequisite,question
+DataSelection37,GROUP-BY and HAVING,DotCharacter,1,prerequisite,example
+Group-By_Having_question5,GROUP-BY and HAVING,MultipleTableSelection,1,prerequisite,question
+DataSelection36,GROUP-BY and HAVING,ReferentialAction,1,prerequisite,example
+Group-By_Having_question3,GROUP-BY and HAVING,SingleTableSelection,1,prerequisite,question
+DataSelection38,GROUP-BY and HAVING,AvgFunction,1,prerequisite,example
+DataSelection26,GROUP-BY and HAVING,Assertion,1,prerequisite,example
+DataSelection28,Sub-Queries,WhereClause,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,SingleAttributeSelection,1,prerequisite,question
+Sub-Queries_question2,Sub-Queries,SelectStatement,1,prerequisite,question
+Sub-Queries_question4,Sub-Queries,AllPredicate,1,prerequisite,question
+DataSelection28,Sub-Queries,SubstringExtraction,1,prerequisite,example
+Sub-Queries_question2,Sub-Queries,AllResultsInSubQueryExclusion,1,outcome,question
+DataSelection29,Sub-Queries,PredicateNegation,1,outcome,example
+Sub-Queries_question4,Sub-Queries,StringType,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,SelectStatement,1,prerequisite,question
+Sub-Queries_question1,Sub-Queries,DistinctClause,1,prerequisite,question
+DataSelection29,Sub-Queries,InPredicate,1,prerequisite,example
+Sub-Queries_question4,Sub-Queries,LessThanComparison,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,RenameClause,1,prerequisite,question
+Sub-Queries_question1,Sub-Queries,WhereClause,1,prerequisite,question
+DataSelection29,Sub-Queries,SingleTableSelection,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,SingleQuotationCharacter,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,GreaterThanComparison,1,prerequisite,question
+DataSelection28,Sub-Queries,AttributeName,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,SelectClause,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,RenamingAttribute,1,prerequisite,question
+Sub-Queries_question1,Sub-Queries,SingleAttributeSelection,1,prerequisite,question
+DataSelection28,Sub-Queries,BracketCharacter,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,EqualComparison,1,prerequisite,question
+Sub-Queries_question2,Sub-Queries,DistinctClause,1,prerequisite,question
+DataSelection28,Sub-Queries,SimpleSubquery,1,prerequisite,example
+Sub-Queries_question2,Sub-Queries,WhereClause,1,prerequisite,question
+Sub-Queries_question4,Sub-Queries,LessThanComparison,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,DerivedTable,1,outcome,question
+Sub-Queries_question2,Sub-Queries,SingleAttributeSelection,1,prerequisite,question
+DataSelection29,Sub-Queries,FromClause,1,prerequisite,example
+Sub-Queries_question4,Sub-Queries,SimpleSubquery,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,SelectClause,1,prerequisite,question
+Sub-Queries_question1,Sub-Queries,InPredicate,1,prerequisite,question
+DataSelection29,Sub-Queries,WhereClause,1,prerequisite,example
+Sub-Queries_question4,Sub-Queries,SingleAttributeSelection,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,SingleTableSelection,1,prerequisite,question
+DataSelection29,Sub-Queries,TableSelection,1,outcome,example
+Sub-Queries_question3,Sub-Queries,StringType,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,DerivedRelation,1,outcome,question
+Sub-Queries_question1,Sub-Queries,SingleTableSelection,1,prerequisite,question
+DataSelection28,Sub-Queries,SelectStatement,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,AnyResultsWithComparisonSelection,1,outcome,question
+DataSelection28,Sub-Queries,SingleAttributeSelection,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,Sub-Queries,0.38,outcome,question
+Sub-Queries_question2,Sub-Queries,InPredicate,1,prerequisite,question
+Sub-Queries_question4,Sub-Queries,SingleQuotationCharacter,1,prerequisite,question
+DataSelection28,Sub-Queries,ToUpperCase,1,prerequisite,example
+Sub-Queries_question2,Sub-Queries,SingleTableSelection,1,prerequisite,question
+DataSelection29,Sub-Queries,AttributeName,1,prerequisite,example
+Sub-Queries_question4,Sub-Queries,SelectClause,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,GroupByClause,1,outcome,question
+Sub-Queries_question1,Sub-Queries,FromClause,1,prerequisite,question
+DataSelection29,Sub-Queries,BracketCharacter,1,prerequisite,example
+Sub-Queries_question4,Sub-Queries,EqualComparison,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,AsClause,1,prerequisite,question
+DataSelection29,Sub-Queries,SimpleSubquery,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,FromClause,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,EqualComparison,1,prerequisite,question
+Sub-Queries_question1,Sub-Queries,SimpleSubquery,1,prerequisite,question
+DataSelection28,Sub-Queries,DistinctClause,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,WhereClause,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,MultipleAttributeSelection,1,prerequisite,question
+Sub-Queries_question1,Sub-Queries,Sub-Queries,0.38,outcome,question
+DataSelection28,Sub-Queries,SelectClause,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,SingleTableSelection,1,prerequisite,question
+Sub-Queries_question2,Sub-Queries,FromClause,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,Sub-Queries,0.38,outcome,question
+DataSelection28,Sub-Queries,SetOperation,1,prerequisite,example
+Sub-Queries_question2,Sub-Queries,SimpleSubquery,1,prerequisite,question
+Sub-Queries_question4,Sub-Queries,SelectStatement,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,FromClause,1,prerequisite,question
+Sub-Queries_question2,Sub-Queries,Sub-Queries,0.38,outcome,question
+DataSelection29,Sub-Queries,SelectStatement,1,prerequisite,example
+Sub-Queries_question4,Sub-Queries,AllResultsWithComparisonSelection,1,outcome,question
+Sub-Queries_question5,Sub-Queries,DotCharacter,1,prerequisite,question
+Sub-Queries_question1,Sub-Queries,SelectClause,1,prerequisite,question
+DataSelection29,Sub-Queries,SingleAttributeSelection,1,prerequisite,example
+Sub-Queries_question4,Sub-Queries,Sub-Queries,0.38,outcome,question
+Sub-Queries_question5,Sub-Queries,GroupBy,1,prerequisite,question
+DataSelection29,Sub-Queries,IntegrityOnUpdate,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,AnyPredicate,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,MultipleTableSelection,1,prerequisite,question
+Sub-Queries_question1,Sub-Queries,DuplicateHandling,1,prerequisite,question
+DataSelection28,Sub-Queries,InPredicate,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,GreaterThanComparison,1,prerequisite,question
+Sub-Queries_question2,Sub-Queries,PredicateNegation,1,outcome,question
+DataSelection28,Sub-Queries,SingleTableSelection,1,prerequisite,example
+Sub-Queries_question2,Sub-Queries,SelectClause,1,prerequisite,question
+Sub-Queries_question4,Sub-Queries,FromClause,1,prerequisite,question
+DataSelection28,Sub-Queries,IntegrityOnUpdate,1,prerequisite,example
+Sub-Queries_question2,Sub-Queries,DuplicateHandling,1,prerequisite,question
+DataSelection29,Sub-Queries,DistinctClause,1,prerequisite,example
+Sub-Queries_question4,Sub-Queries,WhereClause,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,CountFunction,1,prerequisite,question
+Sub-Queries_question1,Sub-Queries,SelectStatement,1,prerequisite,question
+DataSelection29,Sub-Queries,SelectClause,1,prerequisite,example
+Sub-Queries_question4,Sub-Queries,SingleTableSelection,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,WhereClause,1,prerequisite,question
+DataSelection29,Sub-Queries,SubstringExtraction,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,SelectStatement,1,prerequisite,question
+Sub-Queries_question5,Sub-Queries,TableAlias,1,prerequisite,question
+Sub-Queries_question1,Sub-Queries,AllResultsInSubQuerySelection,1,outcome,question
+DataSelection28,Sub-Queries,FromClause,1,prerequisite,example
+Sub-Queries_question3,Sub-Queries,SimpleSubquery,1,prerequisite,question
+DataSelection27,NULL-Values,WhereClause,1,prerequisite,example
+DataSelection27,NULL-Values,SelectStatement,1,prerequisite,example
+DataSelection27,NULL-Values,SetOperation,1,prerequisite,example
+DataSelection27,NULL-Values,IsNullPredicate,1,outcome,example
+DataSelection27,NULL-Values,SingleAttributeSelection,1,prerequisite,example
+DataSelection27,NULL-Values,SelectClause,1,prerequisite,example
+DataSelection27,NULL-Values,AllAttributeSelection,1,prerequisite,example
+DataSelection27,NULL-Values,FromClause,1,prerequisite,example
+DataSelection27,NULL-Values,SingleTableSelection,1,prerequisite,example
+DataSelection33,Derived Relations and Views,Timestamp,1,prerequisite,example
+DataSelection40,Derived Relations and Views,WhereClause,1,prerequisite,example
+DataSelection34,Derived Relations and Views,CreateViewClause,1,outcome,example
+DataSelection35,Derived Relations and Views,CreateViewStatement,1,outcome,example
+DataSelection41,Derived Relations and Views,SelectStatement,1,prerequisite,example
+DataSelection34,Derived Relations and Views,DotCharacter,1,prerequisite,example
+DataSelection35,Derived Relations and Views,CreateViewClause,1,outcome,example
+DataSelection41,Derived Relations and Views,DotCharacter,1,prerequisite,example
+DataSelection34,Derived Relations and Views,CountingRows,1,prerequisite,example
+DataSelection35,Derived Relations and Views,DotCharacter,1,prerequisite,example
+DataSelection41,Derived Relations and Views,SimpleSubquery,1,prerequisite,example
+DataSelection33,Derived Relations and Views,SelectStatement,1,prerequisite,example
+DataSelection35,Derived Relations and Views,ComparisonOperation,1,prerequisite,example
+DataSelection41,Derived Relations and Views,CandidateKey,1,outcome,example
+DataSelection33,Derived Relations and Views,SingleAttributeGrouping,1,prerequisite,example
+DataSelection34,Derived Relations and Views,SelectStatement,1,prerequisite,example
+DataSelection33,Derived Relations and Views,Assertion,1,prerequisite,example
+DataSelection40,Derived Relations and Views,StringType,1,prerequisite,example
+DataSelection40,Derived Relations and Views,SingleTableSelection,1,prerequisite,example
+DataSelection41,Derived Relations and Views,AvgFunction,1,prerequisite,example
+DataSelection34,Derived Relations and Views,CommaCharacter,1,prerequisite,example
+DataSelection35,Derived Relations and Views,EquiWhereJoin,1,prerequisite,example
+DataSelection41,Derived Relations and Views,SelectClause,1,prerequisite,example
+DataSelection34,Derived Relations and Views,SetOperation,1,prerequisite,example
+DataSelection35,Derived Relations and Views,CommaCharacter,1,prerequisite,example
+DataSelection41,Derived Relations and Views,EqualComparison,1,prerequisite,example
+DataSelection33,Derived Relations and Views,AvgFunction,1,prerequisite,example
+DataSelection35,Derived Relations and Views,UnionOperation,1,prerequisite,example
+DataSelection41,Derived Relations and Views,Counting,1,prerequisite,example
+DataSelection33,Derived Relations and Views,BracketCharacter,1,prerequisite,example
+DataSelection34,Derived Relations and Views,CreateViewStatement,1,outcome,example
+DataSelection33,Derived Relations and Views,SingleTableSelection,1,prerequisite,example
+DataSelection40,Derived Relations and Views,FromClause,1,prerequisite,example
+DataSelection40,Derived Relations and Views,SingleAttributeSelection,1,prerequisite,example
+DataSelection34,Derived Relations and Views,BracketCharacter,1,prerequisite,example
+DataSelection35,Derived Relations and Views,FromClause,1,prerequisite,example
+DataSelection41,Derived Relations and Views,MultipleAttributeSelection,1,prerequisite,example
+DataSelection34,Derived Relations and Views,AsClause,1,prerequisite,example
+DataSelection35,Derived Relations and Views,BracketCharacter,1,prerequisite,example
+DataSelection41,Derived Relations and Views,AsClause,1,prerequisite,example
+DataSelection34,Derived Relations and Views,ReferentialAction,1,prerequisite,example
+DataSelection35,Derived Relations and Views,AsClause,1,prerequisite,example
+DataSelection41,Derived Relations and Views,UnionOfTwoTupleSets,1,prerequisite,example
+DataSelection33,Derived Relations and Views,MultipleAttributeSelection,1,prerequisite,example
+DataSelection35,Derived Relations and Views,CountingRows,1,prerequisite,example
+DataSelection41,Derived Relations and Views,Timestamp,1,prerequisite,example
+DataSelection33,Derived Relations and Views,AsClause,1,prerequisite,example
+DataSelection34,Derived Relations and Views,EquiWhereJoin,1,prerequisite,example
+DataSelection33,Derived Relations and Views,CandidateKey,1,outcome,example
+DataSelection40,Derived Relations and Views,SelectClause,1,prerequisite,example
+DataSelection34,Derived Relations and Views,MultipleAttributeSelection,1,prerequisite,example
+DataSelection40,Derived Relations and Views,SetOperation,1,prerequisite,example
+DataSelection41,Derived Relations and Views,FromClause,1,prerequisite,example
+DataSelection34,Derived Relations and Views,SelectClause,1,prerequisite,example
+DataSelection35,Derived Relations and Views,MultipleAttributeSelection,1,prerequisite,example
+DataSelection41,Derived Relations and Views,SingleAttributeGrouping,1,prerequisite,example
+DataSelection34,Derived Relations and Views,ComparisonOperation,1,prerequisite,example
+DataSelection35,Derived Relations and Views,SelectClause,1,prerequisite,example
+DataSelection41,Derived Relations and Views,TableAlias,1,prerequisite,example
+DataSelection33,Derived Relations and Views,FromClause,1,prerequisite,example
+DataSelection35,Derived Relations and Views,UnionOfTwoTupleSetsWithDuplicate,1,prerequisite,example
+DataSelection41,Derived Relations and Views,ReferentialAction,1,prerequisite,example
+DataSelection33,Derived Relations and Views,SelectClause,1,prerequisite,example
+DataSelection34,Derived Relations and Views,FromClause,1,prerequisite,example
+DataSelection33,Derived Relations and Views,Insertion,1,prerequisite,example
+DataSelection40,Derived Relations and Views,SelectStatement,1,prerequisite,example
+DataSelection40,Derived Relations and Views,EqualComparison,1,prerequisite,example
+DataSelection41,Derived Relations and Views,DerivedTable,1,prerequisite,example
+DataSelection34,Derived Relations and Views,MultipleTableSelection,1,prerequisite,example
+DataSelection35,Derived Relations and Views,SelectStatement,1,prerequisite,example
+DataSelection41,Derived Relations and Views,MinFunction,1,prerequisite,example
+DataSelection34,Derived Relations and Views,WhereClause,1,prerequisite,example
+DataSelection35,Derived Relations and Views,MultipleTableSelection,1,prerequisite,example
+DataSelection41,Derived Relations and Views,WhereClause,1,prerequisite,example
+DataSelection33,Derived Relations and Views,DerivedTable,1,prerequisite,example
+DataSelection35,Derived Relations and Views,WhereClause,1,prerequisite,example
+DataSelection41,Derived Relations and Views,ComparisonOperation,1,prerequisite,example
+DataSelection33,Derived Relations and Views,GreaterThanComparison,1,prerequisite,example
+DataSelection35,Derived Relations and Views,ReferentialAction,1,prerequisite,example
+DataSelection33,Derived Relations and Views,WhereClause,1,prerequisite,example
+DataSelection40,Derived Relations and Views,SingleQuotationCharacter,1,prerequisite,example
