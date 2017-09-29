@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,8 +46,10 @@ public class GetRecommendations extends HttpServlet {
 	private String server = "http://adapt2.sis.pitt.edu";
 	private String examplesActivityServiceURL = server
 	+ "/aggregateUMServices/GetExamplesActivity";
-	private String questionsActivityServiceURL = server
-	+ "/aggregateUMServices/GetQuestionsActivity";
+	private String questionsActivityServiceURL_QJ = server
+	+ "/aggregateUMServices/GetQJActivity";
+	private String questionsActivityServiceURL_SK = server
+			+ "/aggregateUMServices/GetSKActivity";
 	private String contentKCURL = server
 	+ "/aggregateUMServices/GetContentConcepts";
 	private String conceptLevelsServiceURL = server + "/cbum/ReportManager";
@@ -89,7 +93,12 @@ public class GetRecommendations extends HttpServlet {
 		//set student data
 		//--start
 		HashMap<String, String[]> examples_activity = getUserExamplesActivity(usr, domain);
-		HashMap<String, String[]> questions_activity = getUserQuestionsActivity(usr, domain);
+		
+		/** TODO ==> this should be made more flexible later so that it could automatically call the 
+		/* right service for each content. Later, for JAVA, we need to take into the service for PCEX
+		 * 
+		 */
+		HashMap<String, String[]> questions_activity = getUserQuestionsActivity(usr, grp, domain, contentList);
 		HashMap<String, double[]> kcSummary = getConceptLevels(usr, domain, grp);		
 		//--end
 		
@@ -432,35 +441,105 @@ public class GetRecommendations extends HttpServlet {
 	}
 
 	private HashMap<String, String[]> getUserQuestionsActivity(String usr,
-			String domain) {
+			String grp, String domain, String[] contentList) {
 		HashMap<String, String[]> qActivity = null;
+		
+		String providerId = "";
 		try {
-			String url = questionsActivityServiceURL + "?usr=" + usr;
-			JSONObject json = readJsonFromUrl(url);
+			String url = "";
+			if (domain.equals("java")) {
+				url = questionsActivityServiceURL_QJ;
+				providerId = "quizjet";
+			} else if (domain.equals("sql")){
+				url = questionsActivityServiceURL_SK;
+				providerId = "sqlknot";
+			}
+		    	
+			if (providerId.equals("") == false & url.equals("") == false)
+			{
+				String serviceParamJSON = "{\n    \"user-id\" : \""+usr+"\",\n    \"group-id\" : \""+grp+"\",\n    \"domain\" : \""+domain+"\",\n    \"content-list-by-provider\" : [  \n";
+	    		serviceParamJSON += "        {\"provider-id\" : \""+ providerId +"\", \"content-list\" : ["+contentList+"]},\n";
+	    	
+	    		serviceParamJSON = serviceParamJSON.substring(0,serviceParamJSON.length()-2);
+	    		serviceParamJSON += "\n    ]\n}";	
+				
+			
+				JSONObject json = callService(url,serviceParamJSON);
 
-			if (json.has("error")) {
-				System.out
-				.println("Error:[" + json.getString("errorMsg") + "]");
-			} else {
-				qActivity = new HashMap<String, String[]>();
-				JSONArray activity = json.getJSONArray("activity");
+				if (json.has("error")) {
+					System.out
+					.println("Error:[" + json.getString("errorMsg") + "]");
+				} else {
+					qActivity = new HashMap<String, String[]>();
+					JSONArray activity = json.getJSONArray("activity");
 
-				for (int i = 0; i < activity.length(); i++) {
-					JSONObject jsonobj = activity.getJSONObject(i);
-					String[] act = new String[3];
-					act[0] = jsonobj.getString("content_name");
-					act[1] = jsonobj.getDouble("nattempts") + "";
-					act[2] = jsonobj.getDouble("nsuccesses") + "";
-					qActivity.put(act[0], act);
-					// System.out.println(jsonobj.getString("name"));
+					for (int i = 0; i < activity.length(); i++) {
+						JSONObject jsonobj = activity.getJSONObject(i);
+						String[] act = new String[3];
+						act[0] = jsonobj.getString("content_name");
+						act[1] = jsonobj.getDouble("nattempts") + "";
+						act[2] = jsonobj.getDouble("nsuccesses") + "";
+						qActivity.put(act[0], act);
+						// System.out.println(jsonobj.getString("name"));
+					}
 				}
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return qActivity;
 	}
 
+	
+
+    private static JSONObject callService(String url, String json){
+    	InputStream in = null;
+    	JSONObject jsonResponse = null;
+		// A JSON object is created to pass the required parameter to the recommendation service implemented by GetRecommendations.java
+		try {
+			HttpClient client = new HttpClient();
+            PostMethod method = new PostMethod(url);
+            method.setRequestBody(json);
+            method.addRequestHeader("Content-type", "application/json");
+            //System.out.println("Calling service "+url);
+            int statusCode = client.executeMethod(method);
+
+            if (statusCode != -1) {
+            	
+                in = method.getResponseBodyAsStream();
+                jsonResponse =  readJsonFromStream(in);
+                in.close();
+            }else{
+            	
+            }
+		}catch(Exception e){}
+		return jsonResponse;
+    }
+    
+    public static JSONObject readJsonFromStream(InputStream is)  throws Exception{
+		JSONObject json = null;
+		try {
+			BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+			String jsonText = readAll(rd);
+			json = new JSONObject(jsonText);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return json;
+	}
+    
+	
+	private static String readAll(Reader rd) throws IOException {
+		StringBuilder sb = new StringBuilder();
+		int cp;
+		while ((cp = rd.read()) != -1) {
+			sb.append((char) cp);
+		}
+		return sb.toString();
+	}
+	
+	///////////////////Maybe delete TODO
 	private static JSONObject readJsonFromUrl(String url) throws IOException,
 	JSONException {
 		InputStream is = new URL(url).openStream();
@@ -474,15 +553,6 @@ public class GetRecommendations extends HttpServlet {
 			is.close();
 		}
 		return json;
-	}
-	
-	private static String readAll(Reader rd) throws IOException {
-		StringBuilder sb = new StringBuilder();
-		int cp;
-		while ((cp = rd.read()) != -1) {
-			sb.append((char) cp);
-		}
-		return sb.toString();
 	}
 
 	//	public static void main(String[] args) {

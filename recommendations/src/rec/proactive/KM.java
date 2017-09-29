@@ -199,8 +199,8 @@ public class KM {
 			if (rank > proactive_threshold) 
 			{
 				if (!(isExample && (progress == 1.0))) {   //ignore example contents with progress 1
-					if (progress == 1) {
-						rankMap.put(content, 0.8 * rank);	
+					if (progress == 1.0) {
+						rankMap.put(content, 0.7 * rank);	
 				    }
 					else{
 						rankMap.put(content, rank);		
