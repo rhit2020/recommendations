@@ -116,13 +116,9 @@ public class KM {
 		   Progress for questions is 1 when at least 1 attempt is correct. 
 		   For examples is number of different lines displayed / total number of commented lines of the example.
 		 */
-
-
+		
 		double progress = 0.0;
 
-		//for questions
-		double attempt = 0.0;
-		double success = 0.0;
 		// for examples
 		double distinctLines = 0.0;
 		double totalLines = 0.0;
@@ -131,17 +127,12 @@ public class KM {
 			if (questions_activity.containsKey(content_name))
 			{
 				String[] questionInfo = questions_activity.get(content_name);
-				attempt = 0.0;
-				success = 0.0;
+				progress = 0.0;
 				try
 				{
-					attempt = Double.parseDouble(questionInfo[1]); //[1] nattempts
-					success = Double.parseDouble(questionInfo[2]);//[2] nsuccess
-				}catch(Exception e){ attempt=0;success = 0.0; }
-				if (success > 0)
-					progress = 1;
-				else
-					progress = 0;
+					progress = Double.parseDouble(questionInfo[2]);//[2] progress
+				}catch(Exception e){ progress = 0.0; }
+				
 			}
 			else if (examples_activity.containsKey(content_name))
 			{
@@ -196,17 +187,15 @@ public class KM {
 			}
 			rank = (pre*prerequisiteKnowledgeRatio + outcome*impactRatio)/(pre+outcome); // rank is between 0 and 1 for each content
 
-			if (rank > proactive_threshold) 
-			{
-				if (!(isExample && (progress == 1.0))) {   //ignore example contents with progress 1
-					if (progress == 1.0) {
-						rankMap.put(content, 0.7 * rank);	
-				    }
-					else{
-						rankMap.put(content, rank);		
-					}
+			if (!(isExample && (progress == 1.0))) {   //ignore example contents with progress 1
+				if (progress == 1.0) {
+					rankMap.put(content, 0.5 * rank);	
+			    }
+				else{
+					rankMap.put(content, rank);		
 				}
 			}
+			
 		}
 		sortedRankMap.putAll(rankMap); //sorted map
 		int count2 = proactive_max;  
@@ -214,6 +203,8 @@ public class KM {
 		for (Entry<String, Double> e: sortedRankMap.entrySet())        
 		{
 			if (count2 == 0)
+				break;
+			if (e.getValue() == 0.0)// at some point we should stop, when the highest value is 0.
 				break;
 			ArrayList<String> list = new ArrayList<String>();
 			list.add(e.getKey());

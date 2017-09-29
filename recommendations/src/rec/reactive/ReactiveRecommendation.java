@@ -161,8 +161,8 @@ public class ReactiveRecommendation {
 				for (String a : activityList) {
 					if (questions_activity.containsKey(a)) {
 						String[] x = questions_activity.get(a);
-						totalAtt += Double.parseDouble(x[1]); // x[1] = nattempt
-						nsuccess += Double.parseDouble(x[2]); // x[2] = nsuccess
+						totalAtt += Double.parseDouble(x[1]); // x[1] = attempts
+						nsuccess += (Double.parseDouble(x[3]) * totalAtt); // x[3] = success-rate
 						hasAttempt = true;
 					}
 				}

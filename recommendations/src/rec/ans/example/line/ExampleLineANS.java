@@ -246,8 +246,10 @@ public class ExampleLineANS {
 		{
 			for (String q : questions_activity.keySet())
 				if (topicContentMap.get(t).contains(q))
-					if (Double.parseDouble(questions_activity.get(q)[2])<
-							Double.parseDouble(questions_activity.get(q)[1])) //failure i.e., nsuccess < nattempts
+					// ; // questions_activity.get(q)[3] = success-rate
+					if (  (Double.parseDouble(questions_activity.get(q)[3]) * Double.parseDouble(questions_activity.get(q)[1]))
+							 <
+						   Double.parseDouble(questions_activity.get(q)[1])) //failure i.e., nsuccess < nattempts
 						if (failedQues.contains(q)==false)
 							failedQues.add(q);
 		}		

@@ -454,16 +454,24 @@ public class GetRecommendations extends HttpServlet {
 				url = questionsActivityServiceURL_SK;
 				providerId = "sqlknot";
 			}
-		    	
+		    
 			if (providerId.equals("") == false & url.equals("") == false)
 			{
+				
+				String contentStr = "";
+				for (String str : contentList)
+				{
+					contentStr += "\"" + str + "\",";
+				}
+				if (contentStr.length() > 0)
+					contentStr = contentStr.substring(0, contentStr.length()-1);
+				
 				String serviceParamJSON = "{\n    \"user-id\" : \""+usr+"\",\n    \"group-id\" : \""+grp+"\",\n    \"domain\" : \""+domain+"\",\n    \"content-list-by-provider\" : [  \n";
-	    		serviceParamJSON += "        {\"provider-id\" : \""+ providerId +"\", \"content-list\" : ["+contentList+"]},\n";
+	    		serviceParamJSON += "        {\"provider-id\" : \""+ providerId +"\", \"content-list\" : ["+contentStr+"]},\n";
 	    	
 	    		serviceParamJSON = serviceParamJSON.substring(0,serviceParamJSON.length()-2);
 	    		serviceParamJSON += "\n    ]\n}";	
 				
-			
 				JSONObject json = callService(url,serviceParamJSON);
 
 				if (json.has("error")) {
@@ -471,14 +479,15 @@ public class GetRecommendations extends HttpServlet {
 					.println("Error:[" + json.getString("errorMsg") + "]");
 				} else {
 					qActivity = new HashMap<String, String[]>();
-					JSONArray activity = json.getJSONArray("activity");
+					JSONArray activity = json.getJSONArray("content-list");
 
 					for (int i = 0; i < activity.length(); i++) {
 						JSONObject jsonobj = activity.getJSONObject(i);
-						String[] act = new String[3];
-						act[0] = jsonobj.getString("content_name");
-						act[1] = jsonobj.getDouble("nattempts") + "";
-						act[2] = jsonobj.getDouble("nsuccesses") + "";
+						String[] act = new String[4];
+						act[0] = jsonobj.getString("content-id");
+						act[1] = jsonobj.getDouble("attempts") + "";
+						act[2] = jsonobj.getDouble("progress") + "";
+						act[3] = jsonobj.getDouble("success-rate") + "";
 						qActivity.put(act[0], act);
 						// System.out.println(jsonobj.getString("name"));
 					}
@@ -539,7 +548,6 @@ public class GetRecommendations extends HttpServlet {
 		return sb.toString();
 	}
 	
-	///////////////////Maybe delete TODO
 	private static JSONObject readJsonFromUrl(String url) throws IOException,
 	JSONException {
 		InputStream is = new URL(url).openStream();
@@ -555,62 +563,5 @@ public class GetRecommendations extends HttpServlet {
 		return json;
 	}
 
-	//	public static void main(String[] args) {
-	//		GetRecommendations gr = new GetRecommendations();
-	//		int course = 13;
-	//		FASTDBInterface fastDB = new FASTDBInterface("jdbc:mysql://localhost/fast", "student", "student");
-	//		fastDB.openConnection();
-	//		boolean verbose = true;
-	//		gr.numberForFASTHistoryUpdate = 1;
-	//		API fastAPI = new API(true, false, false, true, 2, 2, 1, false, true, verbose, fastDB);
-	//		fastAPI.getParametersFromFile(getServletContext().getRealPath(aggregate_cm.relative_resource_path+"/Parameters_FAST_11131.csv"), 0, 1, 7, 4, 8, 6, 10, 12);
-	//
-	//			sequencingList = optimize4allqs( "dguerra",  "java", course, "ASUFall2015b", "decisions1_v2", contentList, proactive_method,  proactive_threshold, proactive_max, fastAPI);
-	//		
-	//		fastDB.closeConnection();
-	//
-	//	}
-	
-	//	private String[] readContents(String realPath) {
-	//		ArrayList<String> contentList = new ArrayList<String>();
-	//		BufferedReader br = null;
-	//		String line = "";
-	//		String cvsSplitBy = ",";
-	//		boolean isHeader = false; //currently the file has no header
-	//		try {
-	//			br = new BufferedReader(new FileReader(realPath));
-	//			String[] clmn;
-	//			String content;			
-	//			while ((line = br.readLine()) != null) {
-	//				if (isHeader)
-	//				{
-	//					isHeader = false;
-	//					continue;
-	//				}
-	//				clmn = line.split(cvsSplitBy);
-	//				content = clmn[1];				
-	//				if (contentList.contains(content) == false)
-	//				{
-	//					contentList.add(content);
-	//				}
-	//			}
-	//		} catch (FileNotFoundException e) {
-	//			e.printStackTrace();
-	//		} catch (IOException e) {
-	//			e.printStackTrace();
-	//		} finally {
-	//			if (br != null) {
-	//				try {
-	//					br.close();
-	//				} catch (IOException e) {
-	//					e.printStackTrace();
-	//				}
-	//			}
-	//		}
-	//		int count = contentList.size();		
-	//		System.out.println("contents:"+count);
-	//		return contentList.toArray(new String[contentList.size()]);
-	//	
-	//	}
 
 }
