@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- default values for db connection -->
+	<dbstring>jdbc:mysql://localhost:3307/aggregate</dbstring>
+	<dbuser>root</dbuser>
+	<dbpass></dbpass>
+    <relative-resources-path>resources</relative-resources-path>
+</configuration>

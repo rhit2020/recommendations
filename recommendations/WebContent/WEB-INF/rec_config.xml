@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- default values for db connection -->
+	<rec_dbstring>jdbc:mysql://localhost:3307/rec</rec_dbstring>
+	<rec_dbuser>root</rec_dbuser>
+	<rec_dbpass></rec_dbpass>
+    <!-- default values for params in reactive recommendation -->
+    <reactive_max>3</reactive_max>
+    <reactive_method>CSSIM</reactive_method>
+    <reactive_threshold>0.5</reactive_threshold>
+    <!-- default values for params in proactive recommendation -->
+    <proactive_max>3</proactive_max>
+    <proactive_method>km</proactive_method>
+    <proactive_threshold>0.7</proactive_threshold>
+    <!-- params for personalized reactive recommendation -->
+    <example_count_personalized_approach>10</example_count_personalized_approach>
+    <rec_interpolation_alpha>0.5</rec_interpolation_alpha>
+    <relative-resources-path>/resources/</relative-resources-path>
+    <rec_line_threshold>0.1</rec_line_threshold>
+    <rec_line_max>0.2</rec_line_max>
+    <relative-ans-path>/ans/</relative-ans-path>
+    
+    
+</configuration>

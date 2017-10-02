@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- default values for db connection -->
+	<dbstring>jdbc:mysql://localhost:3307/um2</dbstring>
+	<dbuser>root</dbuser>
+	<dbpass></dbpass>
+	<fastdbstring>jdbc:mysql://localhost:3307/fast</fastdbstring>
+	<!-- appIDs in UM2 -->
+	<webex>3</webex>
+	<sqlnot>23</sqlnot>
+	<quizjet>25</quizjet>
+	<animated_examples>35</animated_examples>
+	<relative-resources-path>/resources/</relative-resources-path>
+</configuration>
