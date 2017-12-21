@@ -185,7 +185,12 @@ public class KM {
 				pre = count[0];
 				outcome = count[1];
 			}
-			rank = (pre*prerequisiteKnowledgeRatio + outcome*impactRatio)/(pre+outcome); // rank is between 0 and 1 for each content
+			if (pre+outcome == 0)
+			{
+				rank = 0;
+			}else {
+				rank = (pre*prerequisiteKnowledgeRatio + outcome*impactRatio)/(pre+outcome); // rank is between 0 and 1 for each content				
+			}
 
 			if (!(isExample && (progress == 1.0))) {   //ignore example contents with progress 1
 				if (progress == 1.0) {

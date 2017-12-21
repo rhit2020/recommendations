@@ -23,7 +23,9 @@ public class ValueComparator_StringDouble implements Comparator<String> {
 		if (base.get(a) > base.get(b))
 			return -1;
 		else if (base.get(a) == base.get(b)) {
-			if (conceptMap.get(a).size() <= conceptMap.get(b).size())
+			if (conceptMap.get(a) == null || conceptMap.get(b) == null)
+				return -1;
+			else if (conceptMap.get(a).size() <= conceptMap.get(b).size())
 				return -1;
 			else
 				return 1;
