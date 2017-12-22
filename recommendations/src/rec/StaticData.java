@@ -34,41 +34,36 @@ public class StaticData {
 	private StaticData() {
 		// Exists only to defeat instantiation.
 	}
-
-	public static StaticData getInstance(String domain, String grp, String[] contentList,
-		  String javaConceptFile, String sqlConceptFile, String topicContentFile, 
-		  String lineConceptFile,String annotatedLinesFile, String exampleTypeFile,String titleRdfFile,String topicOrderFile,
-		  String contentKCURL) {
+	
+	public static StaticData getInstance(String domain, String group_id, String[] contentList, String realpath) {		
 		if (instance == null) {
 			instance = new StaticData();
-			setupData(domain,grp,contentList,javaConceptFile,sqlConceptFile, topicContentFile, 
-					lineConceptFile,annotatedLinesFile,exampleTypeFile, titleRdfFile,topicOrderFile,contentKCURL);
+			setupData(domain,group_id,contentList,realpath);
 		}
 		return instance;
 	}
-
-	private static void setupData(String domain, String grp, String[] contentList,
-			String javaConceptFile, String sqlConceptFile, String topicContentFile, 
-			String lineConceptFile,String annotatedLinesFile,String exampleTypeFile,String titleRdfFile, String topicOrderFile, String contentKCURL) {
+	
+	
+	private static void setupData(String domain, String grp, String[] contentList, String realpath) {
 		//read topic contents
-		readTopicContent(topicContentFile);
+		readTopicContent(realpath+"/topic_content_ae.csv");
 		//read contentKC
 		if (domain.equals("java"))
-			kcByContent = readContentKC(javaConceptFile);
+			kcByContent = readContentKC(realpath+"/adjusted_direction_automatic_indexing.txt");
 		else if (domain.equals("sql"))
-			kcByContent = readContentKC(sqlConceptFile);
+			kcByContent = readContentKC(realpath+"/adjusted_direction_automatic_indexing_sql.txt");
 		else
-			kcByContent = getContentKCs(domain,contentList,contentKCURL); //content_name, arraylist of [concept_name, weight, direction]
+			kcByContent = getContentKCs(domain,contentList,"http://adapt2.sis.pitt.edu/aggregateUMServices/GetContentConcepts"); //content_name, arraylist of [concept_name, weight, direction]
 		//read line concepts
-		readLineConcepts(lineConceptFile);
+		readLineConcepts(realpath+"/line_concept_java.csv");
 		//read annotated lines
-		readAnnotatedLines(annotatedLinesFile);
+		readAnnotatedLines(realpath+"/annotated_line_index.csv");
 		//read example type
-		readExampleType(exampleTypeFile);
+		readExampleType(realpath+"/example_type.csv");
 		//read title rdf
-		readTitleRdf(titleRdfFile);
+		readTitleRdf(realpath+"/title_rdfid.csv");
 		//read topic order
-		readTopicOrder(topicOrderFile);
+		readTopicOrder(realpath+"/topic_order.csv");
 	}
 
 	private static void readAnnotatedLines(String path) {
@@ -475,6 +470,7 @@ public class StaticData {
 		return kcByContent;
 	}
 	
+
 	public HashMap<String, HashMap<Integer, ArrayList<String>>> getExampleLineKC() {
 		return exampleLineKC;
 	}
@@ -499,6 +495,5 @@ public class StaticData {
 	public Map<String, String> getTitleRdfMap() {
 		return titleRdfMap;
 	}
-
 	
 }

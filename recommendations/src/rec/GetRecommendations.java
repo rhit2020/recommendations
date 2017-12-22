@@ -1,35 +1,13 @@
 package rec;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.Reader;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import rec.ans.example.line.ExampleLineANS;
 import rec.proactive.Optimize4allqs.Optimize4allqs;
@@ -43,19 +21,6 @@ import rec.reactive.ReactiveRecommendation;
 @WebServlet("/GetRecommendations")
 public class GetRecommendations extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String server = "http://adapt2.sis.pitt.edu";
-	private String examplesActivityServiceURL = server
-	+ "/aggregateUMServices/GetExamplesActivity";
-	private String questionsActivityServiceURL_QJ = server
-	+ "/aggregateUMServices/GetQJActivity";
-	private String questionsActivityServiceURL_SK = server
-			+ "/aggregateUMServices/GetSKActivity";
-	private String contentKCURL = server
-	+ "/aggregateUMServices/GetContentConcepts";
-	private String conceptLevelsServiceURL = server + "/cbum/ReportManager";
-
-	// knowledge components (concepts) and the level of knowledge of the user in each of them
-	HashMap<String, ArrayList<String[]>> kcByContent; // for each content there is an array list of kc (concepts) with id, weight (double) and direction (prerequisite/outcome)
 
 	private RecConfigManager rec_cm;
 	private AggregateConfigManager aggregate_cm;
@@ -87,41 +52,7 @@ public class GetRecommendations extends HttpServlet {
 		String[] contentList = null;
 		if (request.getParameter("contents")!=null)
 			contentList = request.getParameter("contents").split(","); //contents are separated by ,
-		// String[] contentList = readContents( getServletContext().getRealPath(rec_cm.relative_resource_path+"/topic_content.csv")); //TODO remove
-		//--end
-		
-		//set student data
-		//--start
-		HashMap<String, String[]> examples_activity = getUserExamplesActivity(usr, domain);
-		
-		/** TODO ==> this should be made more flexible later so that it could automatically call the 
-		/* right service for each content. Later, for JAVA, we need to take into the service for PCEX
-		 * 
-		 */
-		HashMap<String, String[]> questions_activity = getUserQuestionsActivity(usr, grp, domain, contentList);
-		HashMap<String, double[]> kcSummary = getConceptLevels(usr, domain, grp);		
-		//--end
-		
-		//set the static content-concept data
-		//--start
-		StaticData static_data = StaticData.getInstance(domain, grp,contentList,
-				getServletContext().getRealPath(rec_cm.relative_resource_path+"/adjusted_direction_automatic_indexing.txt"),
-				getServletContext().getRealPath(rec_cm.relative_resource_path+"/adjusted_direction_automatic_indexing_sql.txt"),
-				getServletContext().getRealPath(rec_cm.relative_resource_path+"/topic_content_ae.csv"),
-				getServletContext().getRealPath(rec_cm.relative_resource_path+"/line_concept_java.csv"),
-				getServletContext().getRealPath(rec_cm.relative_resource_path+"/annotated_line_index.csv"),
-				getServletContext().getRealPath(rec_cm.relative_resource_path+"/example_type.csv"),
-				getServletContext().getRealPath(rec_cm.relative_resource_path+"/title_rdfid.csv"),
-				getServletContext().getRealPath(rec_cm.relative_resource_path+"/topic_order.csv"),
-				contentKCURL);
-		kcByContent = static_data.getKcByContent();
-		HashMap<String, HashMap<Integer, ArrayList<String>>> exampleLineKC = static_data.getExampleLineKC();
-		Map<String,List<String>> topicContentMap = static_data.getTopicContentMap();
-		Map<String,List<Integer>> annotatedLineIndex = static_data.getAnnotatedLines();
-		Map<String,String> exampleTypeList = static_data.getExampleType();
-		Map<String,String> titleRdfMap = static_data.getTitleRdfMap();
-		Map<Integer, String>  topicOrderMap = static_data.getTopicOrder();
-		//--end
+		//--end		
 			
 		String seq_id =  ""+System.nanoTime();
 		response.setContentType("application/json");
@@ -158,19 +89,20 @@ public class GetRecommendations extends HttpServlet {
 			}
 			String[] methods = new String[]{reactive_method}; //TODO array is created for flexibility, maybe in future we need to send recommendations by multiple method
 			int method_selected = 0; 
-    		//(b) get recommendations from the requested reactive method
+    		
+			
+			//(b) get recommendations from the requested reactive method
 			if (lastContentProvider.equals("quizjet") | lastContentProvider.equals("sqlknot"))
 			{
-				try{
+				try {
 					double res = Double.parseDouble(lastContentResult);
-//					if (res == 0)
-//					{
-						recList = ReactiveRecommendation.generateReactiveRecommendations(seq_id, usr, grp, cid, 
-								sid, lastContentId, lastContentResult, reactive_max, methods, method_selected,examples_activity,
-								questions_activity,contentList,kcByContent,reactive_threshold,
-								rec_cm.rec_interpolation_alpha,rec_cm.example_count_personalized_approach,
-								rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass);	
-//					}
+				    if (res == 0){
+							recList = ReactiveRecommendation.generateReactiveRecommendations(seq_id, usr, grp, domain, cid, sid,
+							lastContentId, lastContentResult, reactive_max, methods, method_selected,
+						    contentList, reactive_threshold,
+							rec_cm.rec_interpolation_alpha, rec_cm.example_count_personalized_approach,
+							rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,getServletContext().getRealPath(rec_cm.relative_resource_path));
+				    }
 				}catch(Exception e){}	
 			}   
         }
@@ -194,18 +126,19 @@ public class GetRecommendations extends HttpServlet {
     		String  proactive_method = rec_cm.proactive_method;
     		if (request.getParameter("proactive_method") != null)
     			proactive_method = request.getParameter("proactive_method");
-    		double proactive_threshold = rec_cm.proactive_threshold; //TODO should ask server to send 0 to service
-    		//	    if (request.getParameter("proactive_threshold") != null)
-    		//	    {
-    		//	    	 try {
-    		//	    		 proactive_threshold = Double.parseDouble(request.getParameter("proactive_threshold"));	 	  
-    		//	 	    }catch(NumberFormatException e){
-    		//	 	    	proactive_threshold = rec_cm.proactive_threshold;
-    		//	 	    }
-    		//	    }
+    		double proactive_threshold = rec_cm.proactive_threshold; 
 
     		//(b) get recommendations from the requested proactive method
-    		if (proactive_method.toLowerCase().equals("optimize4allqs")) {
+    		if (proactive_method.toLowerCase().equals("bn_general")) {
+    			//TODO 
+    			//step 1: call std_model, pass it the evidence, get response and update
+    			//        item posterior probs, store it in a hashMao
+    			//		  maybe I need example_map, question_map		  
+    			
+    			//step 2: call sequenceRank pass it params, pass the result to 
+    			//        sequencingList
+    		}
+    		else if (proactive_method.toLowerCase().equals("optimize4allqs")) {
     			sequencingList = Optimize4allqs.calculateSequenceRank(usr, grp, cid, domain, lastContentId,
     					lastContentResult, lastContentProvider, contentList,
     					proactive_max, proactive_method, proactive_threshold,
@@ -229,8 +162,7 @@ public class GetRecommendations extends HttpServlet {
 
     		}
     		else{
-    			sequencingList = KM.calculateSequenceRank(
-    					kcByContent,kcSummary,examples_activity,questions_activity,proactive_method,proactive_threshold,proactive_max,contentList);    	
+    			sequencingList = KM.calculateSequenceRank(usr, grp, domain,proactive_method,proactive_threshold,proactive_max,contentList,getServletContext().getRealPath(rec_cm.relative_resource_path));    	
     		}    
         }
 		
@@ -240,26 +172,23 @@ public class GetRecommendations extends HttpServlet {
 		if (lineRecOn != null)
 			if (lineRecOn.equals("true"))
 			{
+				String example = request.getParameter("example");
 				//(a) get parameters of line recommendation from the request
 				double line_max = rec_cm.line_max;
-				double line_threshold = rec_cm.line_threshold;
-				String example = request.getParameter("example");
+				double line_threshold = rec_cm.line_threshold;		
+
 				//(b) get recommendations for lines
 				if (example != null) //generate ANS for only the given example
 				{
-					ansLineJSON = ExampleLineANS.generateLineANSforExample(example,kcByContent,exampleLineKC,
-							examples_activity,questions_activity,kcSummary,
-							topicContentMap,line_max,line_threshold,annotatedLineIndex,usr,grp,
-							getServletContext().getRealPath(rec_cm.relative_ans_path),
-							exampleTypeList,titleRdfMap,topicOrderMap,false);
+					ansLineJSON = ExampleLineANS.generateLineANSforExample(example,usr,grp,domain,
+							getServletContext().getRealPath(rec_cm.relative_ans_path),false,
+							line_max,line_threshold,contentList,getServletContext().getRealPath(rec_cm.relative_resource_path));
 				}
 				else{ //generate ANS for all examples
-					ExampleLineANS.generateLineANSforAllExamples(kcByContent,exampleLineKC,
-						examples_activity,questions_activity,kcSummary,
-						topicContentMap,line_max,line_threshold,annotatedLineIndex,usr,grp,
-						getServletContext().getRealPath(rec_cm.relative_ans_path),
-						exampleTypeList,titleRdfMap,topicOrderMap,true);
-				}						
+					ExampleLineANS.generateLineANSforAllExamples(usr,grp,domain,
+						getServletContext().getRealPath(rec_cm.relative_ans_path),true,line_max,line_threshold,
+						contentList,getServletContext().getRealPath(rec_cm.relative_resource_path));
+				}				
 			}
 		
 		//Step 4: generate output for the request
@@ -282,9 +211,6 @@ public class GetRecommendations extends HttpServlet {
 		
 		//destroy objects
 		rec_cm = null; 	aggregate_cm = null; um2_cm = null;
-		examples_activity.clear(); examples_activity = null;
-		questions_activity.clear(); questions_activity = null;
-		kcSummary.clear();kcSummary = null;
 	}
 
 	private String getProactiveJSON(ArrayList<ArrayList<String>> recList, String seq_id) {
@@ -319,249 +245,4 @@ public class GetRecommendations extends HttpServlet {
 		json += "\n  }";
 		return json;
 	}
-
-	// CALLING A UM SERVICE: //GET THE LEVELS OF KNOWLEDGE OF THE USER IN CONCEPTS
-	// FROM USER MODEL USING THE USER MODEL INTERFACE
-	public HashMap<String, double[]> getConceptLevels(String usr, String domain,
-			String grp) {
-		HashMap<String, double[]> user_concept_knowledge_levels = new HashMap<String, double[]>();
-		try {
-			URL url = null;
-			if (domain.equalsIgnoreCase("java")) {
-				url = new URL(conceptLevelsServiceURL
-						+ "?typ=con&dir=out&frm=xml&app=25&dom=java_ontology"
-						+ "&usr=" + URLEncoder.encode(usr, "UTF-8") + "&grp="
-						+ URLEncoder.encode(grp, "UTF-8"));
-
-			}
-
-			if (domain.equalsIgnoreCase("sql")) {
-				url = new URL(conceptLevelsServiceURL
-						+ "?typ=con&dir=out&frm=xml&app=23&dom=sql_ontology"
-						+ "&usr=" + URLEncoder.encode(usr, "UTF-8") + "&grp="
-						+ URLEncoder.encode(grp, "UTF-8"));
-
-			}
-			if (url != null)
-				user_concept_knowledge_levels = processUserKnowledgeReport(url);
-			// System.out.println(url.toString());
-		} catch (Exception e) {
-			user_concept_knowledge_levels = null;
-			e.printStackTrace();
-		}
-		return user_concept_knowledge_levels;
-
-	}
-	
-	private static HashMap<String, double[]> processUserKnowledgeReport(URL url) {
-
-		HashMap<String, double[]> userKnowledgeMap = new HashMap<String, double[]>();
-		try {
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-			.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(url.openStream());
-			doc.getDocumentElement().normalize();
-
-			NodeList nList = doc.getElementsByTagName("concept");
-
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-
-				Node nNode = nList.item(temp);
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-					Element eElement = (Element) nNode;
-					NodeList cogLevels = eElement
-					.getElementsByTagName("cog_level");
-					for (int i = 0; i < cogLevels.getLength(); i++) {
-						Node cogLevelNode = cogLevels.item(i);
-						if (cogLevelNode.getNodeType() == Node.ELEMENT_NODE) {
-							Element cogLevel = (Element) cogLevelNode;
-							if (getTagValue("name", cogLevel).trim().equals(
-							"application")) {
-								// System.out.println(getTagValue("name",
-								// eElement));
-								double[] levels = new double[1];
-								levels[0] = Double.parseDouble(getTagValue("value",cogLevel).trim());
-								userKnowledgeMap.put(
-										getTagValue("name", eElement),
-										levels);
-							}
-						}
-					}
-				}
-			}
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-			return null;
-		}
-		return userKnowledgeMap;
-	}
-
-	private static String getTagValue(String sTag, Element eElement) {
-		NodeList nlList = eElement.getElementsByTagName(sTag).item(0)
-		.getChildNodes();
-		Node nValue = (Node) nlList.item(0);
-		return nValue.getNodeValue();
-	}
-	
-	// CALLING A UM SERVICE
-	private HashMap<String, String[]> getUserExamplesActivity(String usr,
-			String domain) {
-		HashMap<String, String[]> eActivity = null;
-		try {
-			String url = examplesActivityServiceURL + "?usr=" + usr;
-			JSONObject json = readJsonFromUrl(url);
-
-			if (json.has("error")) {
-				System.out.println("Error:[" + json.getString("errorMsg") + "]");
-			} else {
-				eActivity = new HashMap<String, String[]>();
-				JSONArray activity = json.getJSONArray("activity");
-				for (int i = 0; i < activity.length(); i++) {
-					JSONObject jsonobj = activity.getJSONObject(i);
-					String[] act = new String[5];
-					act[0] = jsonobj.getString("content_name");
-					act[1] = jsonobj.getDouble("nactions") + "";
-					act[2] = jsonobj.getDouble("distinctactions") + "";
-					act[3] = jsonobj.getDouble("totallines") + "";
-					act[4] = jsonobj.getJSONArray("clicked") + "";
-     				act[4] = act[4].replaceAll("\\[", "");
-					act[4] = act[4].replaceAll("\\]", "");
-					eActivity.put(act[0], act);
-					// System.out.println(jsonobj.getString("name"));
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return eActivity;
-	}
-
-	private HashMap<String, String[]> getUserQuestionsActivity(String usr,
-			String grp, String domain, String[] contentList) {
-		HashMap<String, String[]> qActivity = null;
-		
-		String providerId = "";
-		try {
-			String url = "";
-			if (domain.equals("java")) {
-				url = questionsActivityServiceURL_QJ;
-				providerId = "quizjet";
-			} else if (domain.equals("sql")){
-				url = questionsActivityServiceURL_SK;
-				providerId = "sqlknot";
-			}
-		    
-			if (providerId.equals("") == false & url.equals("") == false)
-			{
-				
-				String contentStr = "";
-				for (String str : contentList)
-				{
-					contentStr += "\"" + str + "\",";
-				}
-				if (contentStr.length() > 0)
-					contentStr = contentStr.substring(0, contentStr.length()-1);
-				
-				String serviceParamJSON = "{\n    \"user-id\" : \""+usr+"\",\n    \"group-id\" : \""+grp+"\",\n    \"domain\" : \""+domain+"\",\n    \"content-list-by-provider\" : [  \n";
-	    		serviceParamJSON += "        {\"provider-id\" : \""+ providerId +"\", \"content-list\" : ["+contentStr+"]},\n";
-	    	
-	    		serviceParamJSON = serviceParamJSON.substring(0,serviceParamJSON.length()-2);
-	    		serviceParamJSON += "\n    ]\n}";	
-				
-				JSONObject json = callService(url,serviceParamJSON);
-
-				if (json.has("error")) {
-					System.out
-					.println("Error:[" + json.getString("errorMsg") + "]");
-				} else {
-					qActivity = new HashMap<String, String[]>();
-					JSONArray activity = json.getJSONArray("content-list");
-
-					for (int i = 0; i < activity.length(); i++) {
-						JSONObject jsonobj = activity.getJSONObject(i);
-						String[] act = new String[4];
-						act[0] = jsonobj.getString("content-id");
-						act[1] = jsonobj.getDouble("attempts") + "";
-						act[2] = jsonobj.getDouble("progress") + "";
-						act[3] = jsonobj.getDouble("success-rate") + "";
-						qActivity.put(act[0], act);
-						// System.out.println(jsonobj.getString("name"));
-					}
-				}
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return qActivity;
-	}
-
-	
-
-    private static JSONObject callService(String url, String json){
-    	InputStream in = null;
-    	JSONObject jsonResponse = null;
-		// A JSON object is created to pass the required parameter to the recommendation service implemented by GetRecommendations.java
-		try {
-			HttpClient client = new HttpClient();
-            PostMethod method = new PostMethod(url);
-            method.setRequestBody(json);
-            method.addRequestHeader("Content-type", "application/json");
-            //System.out.println("Calling service "+url);
-            int statusCode = client.executeMethod(method);
-
-            if (statusCode != -1) {
-            	
-                in = method.getResponseBodyAsStream();
-                jsonResponse =  readJsonFromStream(in);
-                in.close();
-            }else{
-            	
-            }
-		}catch(Exception e){}
-		return jsonResponse;
-    }
-    
-    public static JSONObject readJsonFromStream(InputStream is)  throws Exception{
-		JSONObject json = null;
-		try {
-			BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-			String jsonText = readAll(rd);
-			json = new JSONObject(jsonText);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return json;
-	}
-    
-	
-	private static String readAll(Reader rd) throws IOException {
-		StringBuilder sb = new StringBuilder();
-		int cp;
-		while ((cp = rd.read()) != -1) {
-			sb.append((char) cp);
-		}
-		return sb.toString();
-	}
-	
-	private static JSONObject readJsonFromUrl(String url) throws IOException,
-	JSONException {
-		InputStream is = new URL(url).openStream();
-		JSONObject json = null;
-		try {
-			BufferedReader rd = new BufferedReader(new InputStreamReader(is,
-					Charset.forName("UTF-8")));
-			String jsonText = readAll(rd);
-			json = new JSONObject(jsonText);
-		} finally {
-			is.close();
-		}
-		return json;
-	}
-
-
 }

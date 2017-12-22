@@ -17,4 +17,24 @@
     <servlet-name>rec.GetRecommendations</servlet-name>
     <url-pattern>/GetRecommendations</url-pattern>
   </servlet-mapping>
+  
+  
+    <servlet>
+    <servlet-name>rec.GetUserActivity</servlet-name>
+    <servlet-class>rec.GetUserActivity</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>rec.GetUserActivity</servlet-name>
+    <url-pattern>/GetUserActivity</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>rec.GetKCSummary</servlet-name>
+    <servlet-class>rec.GetKCSummary</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>rec.GetKCSummary</servlet-name>
+    <url-pattern>/GetKCSummary</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
 import java.util.Map.Entry;
 
+import rec.GetUserActivity;
+import rec.StaticData;
 import rec.ValueComparator_StringDouble;
 
 
@@ -49,19 +52,24 @@ public class ReactiveRecommendation {
 	 * 3) similarity value
 	 * 4) approach of recommendation
 	 */
+	
 	public static ArrayList<ArrayList<String>> generateReactiveRecommendations(
-			String seq_id, String user_id, String group_id, String course_id, 
+			String seq_id, String user_id, String group_id, String domain, String course_id, 
 			String session_id, String last_content_id, String last_content_res, int n, 
-			String[] methods, int method_selected,
-			HashMap<String,String[]> examples_activity,
-			HashMap<String,String[]> questions_activity,String[] contentList, HashMap<String, ArrayList<String[]>> kcByContent, 
+			String[] methods, int method_selected,String[] contentList, 
 			double reactive_threshold, double alpha, int example_count_personalized_approach,
-			String rec_dbstring, String rec_dbuser, String rec_dbpass){
+			String rec_dbstring, String rec_dbuser, String rec_dbpass, String realpath){
 
 		ArrayList<ArrayList<String>> recommendation_list = new ArrayList<ArrayList<String>>();
 		//check if last_content_id and last_content_res are null, return an empty list
 		if((last_content_res == null) | (last_content_id == null))
 			return recommendation_list;
+		
+		//Getting static data
+		StaticData static_data = StaticData.getInstance(domain, group_id,contentList, realpath);
+		HashMap<String, ArrayList<String[]>> kcByContent = static_data.getKcByContent();
+		
+		HashMap<String, String[]> questions_activity = GetUserActivity.getUserQuestionsActivity(user_id, group_id, domain,contentList);
 		
 		openDBConnections(rec_dbstring, rec_dbuser, rec_dbpass);
 		
@@ -94,7 +102,8 @@ public class ReactiveRecommendation {
 		}
 		
 		closeDBConnections();
-		
+		questions_activity.clear(); questions_activity = null;
+
 		return recommendation_list;
 	}
 	

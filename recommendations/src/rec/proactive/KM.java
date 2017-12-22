@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 
+import rec.GetKCSummary;
+import rec.GetUserActivity;
+import rec.StaticData;
 import rec.ValueComparator_StringDouble;
 
 public class KM {
@@ -17,11 +20,18 @@ public class KM {
 	 *          Notes: the elements of the main list are sorted descendingly according to the rank
 	 */
 	public static ArrayList<ArrayList<String>> calculateSequenceRank(
-			HashMap<String, ArrayList<String[]>> content_concepts,
-			Map<String, double[]> user_concept_knowledge_levels,
-			HashMap<String, String[]> examples_activity,
-			HashMap<String, String[]> questions_activity, String approach, double proactive_threshold, 
-			int proactive_max, String[] contentList) {
+			String user_id, String group_id, String domain,
+			String approach, double proactive_threshold, 
+			int proactive_max, String[] contentList, String realpath) {
+
+		//Getting static data
+		StaticData static_data = StaticData.getInstance(domain, group_id,contentList, realpath);
+		HashMap<String, ArrayList<String[]>> content_concepts = static_data.getKcByContent();
+
+	
+		HashMap<String, String[]> examples_activity = GetUserActivity.getUserExamplesActivity(user_id, domain); 			
+		HashMap<String, String[]> questions_activity = GetUserActivity.getUserQuestionsActivity(user_id, group_id, domain,contentList);
+		HashMap<String, double[]> user_concept_knowledge_levels = GetKCSummary.getConceptLevels(user_id, domain, group_id);		
 
 		HashMap<String,Double> contentPrerequisiteKnowledgeMap = new HashMap<String,Double>();
 		HashMap<String,Double> contentImpactMap = new HashMap<String,Double>();

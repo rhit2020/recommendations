@@ -11,38 +11,32 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 
+import rec.GetKCSummary;
+import rec.GetUserActivity;
+import rec.StaticData;
 import rec.ValueComparator_IntegerDouble;
 
 
 public class ExampleLineANS {
+	
+		
+	public static void generateLineANSforAllExamples(String usr,String grp,
+			String domain,String ans_path,boolean storeANSData, double line_max, double line_threshold, String[] contentList,String realpath) {
+		
+		//Getting static data
+		StaticData static_data = StaticData.getInstance(domain, grp,contentList, realpath);
+		Map<String,List<Integer>> annotatedLineIndex = static_data.getAnnotatedLines();
 
-	public static void generateLineANSforAllExamples(
-			HashMap<String, ArrayList<String[]>> kcByContent,
-			HashMap<String, HashMap<Integer, ArrayList<String>>> exampleLineKC,
-			HashMap<String, String[]> examples_activity,
-			HashMap<String, String[]> questions_activity,
-			HashMap<String, double[]> kcSummary, Map<String, List<String>> topicContentMap,
-			double line_max, double line_threshold, Map<String, List<Integer>> annotatedLineIndex,String usr,String grp,
-			String ans_path, Map<String, String> exampleTypeList,Map<String, String> titleRdfMap, Map<Integer, String> topicOrderMap, boolean storeANSData) {
 		for (String example : annotatedLineIndex.keySet())
 		{
-			generateLineANSforExample(example,kcByContent,
-					exampleLineKC,
-					examples_activity,
-					questions_activity,
-					kcSummary, topicContentMap,
-					line_max, line_threshold, annotatedLineIndex, usr, grp,
-					 ans_path, exampleTypeList,titleRdfMap,topicOrderMap,storeANSData);
+			generateLineANSforExample(example, usr, grp,domain,
+					 ans_path, storeANSData, line_max, line_threshold, contentList,realpath);
 		}
 	}
-	
-	public static String generateLineANSforExample(String example, HashMap<String, ArrayList<String[]>> kcByContent,
-			HashMap<String, HashMap<Integer, ArrayList<String>>> exampleLineKC,
-			HashMap<String, String[]> examples_activity, HashMap<String, String[]> questions_activity, 
-			HashMap<String, double[]> kcSummary, Map<String, List<String>> topicContentMap,
-			double line_max, double line_threshold, Map<String, List<Integer>> annotatedLineIndex,
-			String usr, String grp, String ans_path, Map<String, String> exampleTypeList, 
-			Map<String, String> titleRdfMap, Map<Integer, String> topicOrderMap, boolean storeANSData){
+				
+	public static String generateLineANSforExample(String example, 
+			String usr, String grp, String domain, String ans_path, boolean storeANSData, double line_max, double line_threshold,
+			String[] contentList,String realpath){
 		
 		String[] lans=null;
 		double avgk = 0.0, gain = 0.0;
@@ -55,6 +49,21 @@ public class ExampleLineANS {
 		TreeMap<Integer,Double> sortedRankMap=null;
 		List<Integer> recs =null;
 
+		//Getting static data
+		StaticData static_data = StaticData.getInstance(domain, grp,contentList, realpath);
+		HashMap<String, ArrayList<String[]>> kcByContent = static_data.getKcByContent();
+		HashMap<String, HashMap<Integer, ArrayList<String>>> exampleLineKC = static_data.getExampleLineKC();
+		Map<String,List<String>> topicContentMap = static_data.getTopicContentMap();
+		Map<String,List<Integer>> annotatedLineIndex = static_data.getAnnotatedLines();
+		Map<String,String> exampleTypeList = static_data.getExampleType();
+		Map<String,String> titleRdfMap = static_data.getTitleRdfMap();
+		Map<Integer, String>  topicOrderMap = static_data.getTopicOrder();
+        //
+		HashMap<String, String[]> examples_activity = GetUserActivity.getUserExamplesActivity(usr, domain); 			
+		HashMap<String, String[]> questions_activity = GetUserActivity.getUserQuestionsActivity(usr, grp, domain,contentList);
+		HashMap<String, double[]> kcSummary = GetKCSummary.getConceptLevels(usr, domain, grp);				
+		//
+		
 		if (getTopic(example,topicContentMap) != null)
 			failedQuesInTopics = getFailedQuestionsInAndAfterTopic(getTopic(example,topicContentMap),questions_activity,topicContentMap,topicOrderMap);
 		else
@@ -167,6 +176,11 @@ public class ExampleLineANS {
 		if (recs != null){
 			recs.clear();recs =null;
 		}
+		
+		examples_activity.clear(); examples_activity = null;
+		questions_activity.clear(); questions_activity = null;
+		kcSummary.clear();kcSummary = null;
+		
 		return ansJSON;
 
 	}
