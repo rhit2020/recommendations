@@ -55,7 +55,7 @@ public class GetUserActivity extends HttpServlet {
 	
 	// CALLING A UM SERVICE
 		public static HashMap<String, String[]> getUserExamplesActivity(String usr,String domain) {
-			HashMap<String, String[]> eActivity = null;
+			HashMap<String, String[]> eActivity = new HashMap<String, String[]>();
 			try {
 				String url = examplesActivityServiceURL + "?usr=" + usr;
 				JSONObject json = readJsonFromUrl(url);
@@ -87,7 +87,7 @@ public class GetUserActivity extends HttpServlet {
 
 		public static HashMap<String, String[]> getUserQuestionsActivity(String usr,
 				String grp, String domain, String[] contentList) {
-			HashMap<String, String[]> qActivity = null;
+			HashMap<String, String[]> qActivity = new HashMap<String, String[]>();
 			
 			String providerId = "";
 			try {
