@@ -55,12 +55,9 @@ public class RecConfigManager {
 				relative_resource_path = doc.getElementsByTagName("relative-resources-path").item(0)
 						.getTextContent().trim().toLowerCase();
 				// set database connection parameters
-				rec_dbstring = doc.getElementsByTagName("rec_dbstring").item(0)
-						.getTextContent().trim().toLowerCase();
-				rec_dbuser = doc.getElementsByTagName("rec_dbuser").item(0)
-						.getTextContent().trim().toLowerCase();
-				rec_dbpass = doc.getElementsByTagName("rec_dbpass").item(0)
-						.getTextContent().trim().toLowerCase();
+				rec_dbstring = doc.getElementsByTagName("rec_dbstring").item(0).getTextContent().trim();
+				rec_dbuser = doc.getElementsByTagName("rec_dbuser").item(0).getTextContent().trim();
+				rec_dbpass = doc.getElementsByTagName("rec_dbpass").item(0).getTextContent().trim();
 				// set params in reactive recommendation
 				try {
 					reactive_max = Integer.parseInt(doc

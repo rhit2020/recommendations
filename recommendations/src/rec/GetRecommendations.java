@@ -132,7 +132,7 @@ public class GetRecommendations extends HttpServlet {
     	//(a) get parameters of reactive recommendation from the request
 		String reactive_rec_on = request.getParameter("reactiveRecOn");
 		if (reactive_rec_on == null)
-			reactive_rec_on = "true";
+			reactive_rec_on = "true";		
 		if (reactive_rec_on.equals("true"))
         {
 			int reactive_max = rec_cm.reactive_max;
@@ -162,15 +162,15 @@ public class GetRecommendations extends HttpServlet {
 			if (lastContentProvider.equals("quizjet") | lastContentProvider.equals("sqlknot"))
 			{
 				try{
-					int res = Integer.parseInt(lastContentResult);
-					if (res == 0)
-					{
+					double res = Double.parseDouble(lastContentResult);
+//					if (res == 0)
+//					{
 						recList = ReactiveRecommendation.generateReactiveRecommendations(seq_id, usr, grp, cid, 
 								sid, lastContentId, lastContentResult, reactive_max, methods, method_selected,examples_activity,
 								questions_activity,contentList,kcByContent,reactive_threshold,
 								rec_cm.rec_interpolation_alpha,rec_cm.example_count_personalized_approach,
 								rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass);	
-					}
+//					}
 				}catch(Exception e){}	
 			}   
         }

@@ -124,7 +124,7 @@ public class KM {
 		double totalLines = 0.0;
 		for (String content_name : contentList)
 		{
-			if (questions_activity.containsKey(content_name))
+			if (questions_activity != null && questions_activity.containsKey(content_name))
 			{
 				String[] questionInfo = questions_activity.get(content_name);
 				progress = 0.0;
@@ -134,7 +134,7 @@ public class KM {
 				}catch(Exception e){ progress = 0.0; }
 				
 			}
-			else if (examples_activity.containsKey(content_name))
+			else if (examples_activity != null && examples_activity.containsKey(content_name))
 			{
 				String[] exampleInfo = examples_activity.get(content_name);
 				distinctLines = 0.0;
