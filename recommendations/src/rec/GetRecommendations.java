@@ -2,6 +2,9 @@ package rec;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import rec.ans.example.line.ExampleLineANS;
 import rec.proactive.Optimize4allqs.Optimize4allqs;
+import rec.proactive.bng.BNG;
 import rec.proactive.KM;
 import rec.reactive.ReactiveRecommendation;
 
@@ -52,6 +56,8 @@ public class GetRecommendations extends HttpServlet {
 		String[] contentList = null;
 		if (request.getParameter("contents")!=null)
 			contentList = request.getParameter("contents").split(","); //contents are separated by ,
+		String topicContentTxt = request.getParameter("topicContents");
+		Map<String, List<String>> topicContents = getTopicContentMap(topicContentTxt);
 		//--end		
 			
 		String seq_id =  ""+System.nanoTime();
@@ -129,14 +135,12 @@ public class GetRecommendations extends HttpServlet {
     		double proactive_threshold = rec_cm.proactive_threshold; 
 
     		//(b) get recommendations from the requested proactive method
-    		if (proactive_method.toLowerCase().equals("bn_general")) {
-    			//TODO 
-    			//step 1: call std_model, pass it the evidence, get response and update
-    			//        item posterior probs, store it in a hashMao
-    			//		  maybe I need example_map, question_map		  
-    			
-    			//step 2: call sequenceRank pass it params, pass the result to 
-    			//        sequencingList
+    		if (proactive_method.toLowerCase().equals("bng")) {
+    			sequencingList = BNG.calculateSequenceRank(usr, grp, domain,
+    					rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,
+    					um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass,
+    					contentList, lastContentId, 
+    					Double.parseDouble(lastContentResult),proactive_max,topicContents);    	
     		}
     		else if (proactive_method.toLowerCase().equals("optimize4allqs")) {
     			sequencingList = Optimize4allqs.calculateSequenceRank(usr, grp, cid, domain, lastContentId,
@@ -211,6 +215,26 @@ public class GetRecommendations extends HttpServlet {
 		
 		//destroy objects
 		rec_cm = null; 	aggregate_cm = null; um2_cm = null;
+	}
+
+	/*
+	 * Sample format of topic contents is:
+	 * T1:a,b,c|T2:d,e,f|T3:h,g,i
+	 */
+	private Map<String, List<String>> getTopicContentMap(String topicContentTxt) {
+		Map<String, List<String>> topicContents = null;
+		if (topicContentTxt != null && topicContentTxt.isEmpty() == false ) {
+			topicContents = new HashMap<String, List<String>>();
+			ArrayList<String> list;
+			for (String tc : topicContentTxt.split("|")) {
+				String[] tmp = tc.split(":");
+				list = new ArrayList<String>();
+				for (String c : tmp[1].split(",")) 
+					list.add(c);
+				topicContents.put(tmp[0], list);
+			}
+		}
+		return topicContents;
 	}
 
 	private String getProactiveJSON(ArrayList<ArrayList<String>> recList, String seq_id) {

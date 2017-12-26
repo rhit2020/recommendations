@@ -22,8 +22,6 @@ import org.w3c.dom.NodeList;
 public class GetKCSummary extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String server = "http://adapt2.sis.pitt.edu";
-	private String contentKCURL = server
-	+ "/aggregateUMServices/GetContentConcepts";
 	private static String conceptLevelsServiceURL = server + "/cbum/ReportManager";
 
        

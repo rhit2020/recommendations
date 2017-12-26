@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!-- default values for db connection -->
-	<rec_dbstring>jdbc:mysql://localhost:3307/rec</rec_dbstring>
+	<rec_dbstring>jdbc:mysql://localhost:3306/rec</rec_dbstring>
 	<rec_dbuser>root</rec_dbuser>
-	<rec_dbpass></rec_dbpass>
+	<rec_dbpass>roya6711</rec_dbpass>
     <!-- default values for params in reactive recommendation -->
     <reactive_max>3</reactive_max>
     <reactive_method>CSSIM</reactive_method>

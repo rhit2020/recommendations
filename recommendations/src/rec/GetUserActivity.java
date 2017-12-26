@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 
@@ -18,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -27,13 +25,19 @@ import org.json.JSONObject;
 @WebServlet("/GetUserActivity")
 public class GetUserActivity extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static String server = "http://adapt2.sis.pitt.edu";
-	private static String examplesActivityServiceURL = server
+	public static String server = "http://adapt2.sis.pitt.edu";
+	public static String examplesActivityServiceURL = server
 	+ "/aggregateUMServices/GetExamplesActivity";
-	private static String questionsActivityServiceURL_QJ = server
+	public static String questionsActivityServiceURL_QJ = server
 	+ "/aggregateUMServices/GetQJActivity";
-	private static String questionsActivityServiceURL_SK = server
+	public static String questionsActivityServiceURL_SK = server
 			+ "/aggregateUMServices/GetSKActivity";
+	public static String pcrsActivityServiceURL = server
+			+ "/aggregateUMServices/GetPCRSActivity";
+	public static String pcexChallengeActivityURL = server
+			+ "/aggregateUMServices/GetPCEXChallengeActivity";
+	public static String pcexExampleActivityURL = server
+			+ "/aggregateUMServices/GetPCEXExampleActivity";
 
     public GetUserActivity() {
         super();
@@ -57,13 +61,14 @@ public class GetUserActivity extends HttpServlet {
 		public static HashMap<String, String[]> getUserExamplesActivity(String usr,String domain) {
 			HashMap<String, String[]> eActivity = new HashMap<String, String[]>();
 			try {
-				String url = examplesActivityServiceURL + "?usr=" + usr;
-				JSONObject json = readJsonFromUrl(url);
+				String url = examplesActivityServiceURL;
+				
+				String serviceParamJSON = "{\n    \"usr\" : \""+usr+"\"\n}";
+	    		JSONObject json = callService(url,serviceParamJSON);
 
 				if (json.has("error")) {
 					System.out.println("Error:[" + json.getString("errorMsg") + "]");
 				} else {
-					eActivity = new HashMap<String, String[]>();
 					JSONArray activity = json.getJSONArray("activity");
 					for (int i = 0; i < activity.length(); i++) {
 						JSONObject jsonobj = activity.getJSONObject(i);
@@ -84,22 +89,28 @@ public class GetUserActivity extends HttpServlet {
 			}
 			return eActivity;
 		}
-
+		
 		public static HashMap<String, String[]> getUserQuestionsActivity(String usr,
 				String grp, String domain, String[] contentList) {
+			String providerId = "";
+			String url = "";
+			if (domain.equals("java")) {
+				url = questionsActivityServiceURL_QJ;
+				providerId = "quizjet";
+			} else if (domain.equals("sql")) {
+				url = questionsActivityServiceURL_SK;
+				providerId = "sqlknot";
+			}
+			return getUserActivityReport(usr, grp, domain, contentList, providerId, url);
+		}
+
+		public static HashMap<String, String[]> getUserActivityReport(String usr,
+				String grp, String domain, String[] contentList, 
+				String providerId, String url) {
 			HashMap<String, String[]> qActivity = new HashMap<String, String[]>();
 			
-			String providerId = "";
 			try {
-				String url = "";
-				if (domain.equals("java")) {
-					url = questionsActivityServiceURL_QJ;
-					providerId = "quizjet";
-				} else if (domain.equals("sql")){
-					url = questionsActivityServiceURL_SK;
-					providerId = "sqlknot";
-				}
-			    
+				
 				if (providerId.equals("") == false & url.equals("") == false)
 				{
 					
@@ -123,7 +134,6 @@ public class GetUserActivity extends HttpServlet {
 						System.out
 						.println("Error:[" + json.getString("errorMsg") + "]");
 					} else {
-						qActivity = new HashMap<String, String[]>();
 						JSONArray activity = json.getJSONArray("content-list");
 
 						for (int i = 0; i < activity.length(); i++) {
@@ -193,19 +203,4 @@ public class GetUserActivity extends HttpServlet {
 			return sb.toString();
 		}
 		
-		private static JSONObject readJsonFromUrl(String url) throws IOException,
-		JSONException {
-			InputStream is = new URL(url).openStream();
-			JSONObject json = null;
-			try {
-				BufferedReader rd = new BufferedReader(new InputStreamReader(is,
-						Charset.forName("UTF-8")));
-				String jsonText = readAll(rd);
-				json = new JSONObject(jsonText);
-			} finally {
-				is.close();
-			}
-			return json;
-		}
-
 }
