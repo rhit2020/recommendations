@@ -1,17 +1,18 @@
 package rec.proactive.bng;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 public class BNGStaticData {
 
 	private static BNGStaticData instance = null;
-	private static List<String> challengeList = new ArrayList<String>();
-	private static List<String> codingList = new ArrayList<String>();
-	private static List<String> exampleList = new ArrayList<String>();
-	private static Map<String, List<String>> exampleKCs = new HashMap<String, List<String>>();
+	private static HashSet<String> challengeList = new HashSet<String>();
+	private static HashSet<String> codingList = new HashSet<String>();
+	private static HashSet<String> exampleList = new HashSet<String>();
+	private static Map<String, List<String>> itemKCs = new HashMap<String, List<String>>();
+	private static Map<String, HashSet<String>> setChallenges = new HashMap<String, HashSet<String>>();
 
 	private BNGStaticData() {
 		// Exists only to defeat instantiation.
@@ -47,27 +48,38 @@ public class BNGStaticData {
 		exampleList = bngDB.getExampleList(contentList);
 		bngDB.closeConnection();
 
-		// get kcs in examples
+		// get kcs in items
 		bngDB = new BNGDB(rec_dbstring, rec_dbuser, rec_dbpass);
 		bngDB.openConnection();
-		exampleKCs = bngDB.getExampleKcs(contentList);
+		itemKCs = bngDB.getItemKcs(contentList);
 		bngDB.closeConnection();
+		
+		// get set challenges
+		bngDB = new BNGDB(um2_dbstring, um2_dbuser, um2_dbpass);
+		bngDB.openConnection();
+		setChallenges = bngDB.getSetChallenges(contentList);
+		bngDB.closeConnection();
+		
 	}
 
-	public List<String> getCodingList() {
+	public HashSet<String> getCodingList() {
 		return codingList;
 	}
 
-	public List<String> getChallengeList() {
+	public HashSet<String> getChallengeList() {
 		return challengeList;
 	}
 
-	public List<String> getExampleList() {
+	public HashSet<String> getExampleList() {
 		return exampleList;
 	}
 
-	public Map<String, List<String>> getExampleKcs() {
-		return exampleKCs;
+	public Map<String, List<String>> getItemKcs() {
+		return itemKCs;
+	}
+
+	public Map<String, HashSet<String>> getSetChallenges() {
+		return setChallenges;
 	}
 
 }

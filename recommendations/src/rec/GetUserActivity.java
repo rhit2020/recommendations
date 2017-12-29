@@ -143,6 +143,7 @@ public class GetUserActivity extends HttpServlet {
 							act[1] = jsonobj.getDouble("attempts") + "";
 							act[2] = jsonobj.getDouble("progress") + "";
 							act[3] = jsonobj.getDouble("success-rate") + "";
+							System.out.println(act[0]+"   "+ act[2]);
 							qActivity.put(act[0], act);
 							// System.out.println(jsonobj.getString("name"));
 						}

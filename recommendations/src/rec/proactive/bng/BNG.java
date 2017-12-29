@@ -1,173 +1,322 @@
 package rec.proactive.bng;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Map.Entry;
-
-import rec.GetUserActivity;
 
 public class BNG {
 
 	public static ArrayList<ArrayList<String>> calculateSequenceRank(String user_id, String group_id, String domain,
 			String rec_dbstring, String rec_dbuser, String rec_dbpass, String um2_dbstring, String um2_dbuser,
 			String um2_dbpas, String[] contentList, String lastAct, double lastActRes, int proactive_max,
-			Map<String, List<String>> topicContents) {
+			Map<String, List<String>> topicContents, Map<String, Double> usrContentProgress) {
+		
+//		System.out.println("-----------------------------------------------");
+//		long startTime = System.currentTimeMillis();
+//		double second = (System.currentTimeMillis()-startTime) / 1000.0;
+//		System.out.println("start of bng:" + second + " (sec)");
 
+		
 		// STATIC DATA
 		BNGStaticData static_data = BNGStaticData.getInstance(rec_dbstring, rec_dbuser, rec_dbpass, um2_dbstring,
 				um2_dbuser, um2_dbpas, contentList);
-		List<String> codingList = static_data.getCodingList();
-		List<String> challengeList = static_data.getChallengeList();
-		List<String> exampleList = static_data.getExampleList();
-		Map<String, List<String>> exampleKCs = static_data.getExampleKcs();
+		HashSet<String> codingList = static_data.getCodingList();
+		HashSet<String> challengeList = static_data.getChallengeList();
+		HashSet<String> exampleList = static_data.getExampleList();
+		Map<String, List<String>> itemKCs = static_data.getItemKcs();
+		Map<String, HashSet<String>> setChallenges = static_data.getSetChallenges();
+
+//		second = (System.currentTimeMillis()-startTime) / 1000.0;
+//		System.out.println("got static data:" + second + " (sec)");
 
 		// DYNAMIC DATA
-		// Get progress data on coding/challenges/examples (all in one map)
-		HashMap<String, String[]> userActivityMap = GetUserActivity.getUserActivityReport(user_id, group_id, domain,
-				contentList, "pcrs", GetUserActivity.pcrsActivityServiceURL);
-		userActivityMap.putAll(GetUserActivity.getUserActivityReport(user_id, group_id, domain, contentList, "pcex_ch",
-				GetUserActivity.pcexChallengeActivityURL));
-		userActivityMap.putAll(GetUserActivity.getUserActivityReport(user_id, group_id, domain, contentList, "pcex",
-				GetUserActivity.pcexExampleActivityURL));
-		// Get student model estimates on items and kcs
 		HashMap<String, Double> itemKCEstimates = GetBNKCSummary.getItemKCEstimates(user_id, group_id, lastAct,
 				lastActRes, contentList);
+
+//		second = (System.currentTimeMillis()-startTime) / 1000.0;
+//		System.out.println("got summary user activity data:" + second + " (sec)");
 
 		// LOGIC
 		double threshold = 0.7;
 		double masteryThreshold = 0.95;
-		Map<String, double[]> rankMap = new HashMap<String, double[]>();
 		ArrayList<ArrayList<String>> sequenceList = new ArrayList<ArrayList<String>>();
 
 		// Get recommendations for each topic
+//		System.out.println("******************");
 		for (String topic : topicContents.keySet()) {
-			getTopicRecommendation(proactive_max, codingList, challengeList, exampleList, exampleKCs, userActivityMap,
-					itemKCEstimates, threshold, masteryThreshold, rankMap, sequenceList, topicContents.get(topic));
+//			System.out.println("***Topic: "+topic);
+			getTopicRecommendation(proactive_max, codingList, challengeList, exampleList, itemKCs,
+					usrContentProgress, itemKCEstimates, threshold, masteryThreshold, sequenceList,
+					topicContents.get(topic), lastAct, setChallenges);
 
 		}
+//		System.out.println("******************");
+
+//		second = (System.currentTimeMillis()-startTime) / 1000.0;
+//		System.out.println("Total time [got complete recs]:" + second + " (sec)");
+//		System.out.println("-----------------------------------------------");
+
+		itemKCEstimates.clear(); itemKCEstimates = null;
+		
 		return sequenceList;
 	}
 
-	private static void getTopicRecommendation(int proactive_max, List<String> codingList, List<String> challengeList,
-			List<String> exampleList, Map<String, List<String>> exampleKCs, HashMap<String, String[]> userActivityMap,
+	private static void getTopicRecommendation(int proactive_max, HashSet<String> codingList, HashSet<String> challengeList,
+			HashSet<String> exampleList, Map<String, List<String>> itemKCs, Map<String, Double> usrContentProgress,
 			HashMap<String, Double> itemKCEstimates, double threshold, double masteryThreshold,
-			Map<String, double[]> rankMap, ArrayList<ArrayList<String>> sequenceList, List<String> topicContents) {
-		Map<String, double[]> exRankMapEqAboveT;
-		Map<String, double[]> exRankMapBelowT;
-		TreeMap<String, double[]> exSortedMapAboveT;
-		TreeMap<String, double[]> exSortedMapBelowT;
+			ArrayList<ArrayList<String>> sequenceList, List<String> topicContents,
+			String lastAct, Map<String, HashSet<String>> setChallenges) {
+
+		Map<String, double[]> coRankMap = new HashMap<String, double[]>();
+		Map<String, double[]> chRankMap = new HashMap<String, double[]>();
+		Map<String, double[]> exRankMap = new HashMap<String, double[]>();
+		Map<String, double[]> coSortedMap = null;
+		Map<String, double[]> chSortedMap = null;
+		TreeMap<String, double[]> exSortedMap = null;
 		double estimate, progress;
 		double[] values;
 
-		for (String item : codingList) {
-			if (topicContents.contains(item)) {
+		for (String item : topicContents) {
+			if (codingList.contains(item)) {
 				estimate = itemKCEstimates.get(item);
-				progress = Double.parseDouble(userActivityMap.get(item)[2]);
-				if (isEligibleToRecommend(estimate, progress, threshold, masteryThreshold)) {
-					values = new double[2];
-					values[0] = estimate;
-					values[1] = progress;
-					rankMap.put(item, values);
-				}
-			}
-		}
-		if (rankMap.size() < proactive_max) {
-			for (String item : challengeList) {
-				if (topicContents.contains(item)) {
-					estimate = itemKCEstimates.get(item);
-					progress = Double.parseDouble(userActivityMap.get(item)[2]);
-					if (isEligibleToRecommend(estimate, progress, threshold, masteryThreshold)) {
-						values = new double[2];
-						values[0] = estimate;
-						values[1] = progress;
-						rankMap.put(item, values);
-					}
-				}
-			}
-		}
-		if (rankMap.size() < proactive_max) {
-			exRankMapEqAboveT = new HashMap<String, double[]>();
-			exRankMapBelowT = new HashMap<String, double[]>();
-			for (String item : exampleList) {
-				if (topicContents.contains(item)) {
-					estimate = getAveragePLearn(item, exampleKCs.get(item), itemKCEstimates);
-					progress = Double.parseDouble(userActivityMap.get(item)[2]);
+				progress = usrContentProgress.get(item) == null ? 0 : usrContentProgress.get(item);
+				if (isEligibleToRecommend(estimate, progress, masteryThreshold)) {
 					values = new double[3];
 					values[0] = estimate;
 					values[1] = progress;
-					if (estimate < masteryThreshold && progress < 1) {
-						if (estimate >= threshold) {
-							exRankMapEqAboveT.put(item, values);
-						} else {
-							values[2] = exampleKCs.get(item).size();
-							exRankMapBelowT.put(item, values);
-						}
-					}
+					values[2] = (itemKCs.get(item) == null ? 0 : itemKCs.get(item).size());
+					coRankMap.put(item, values);
 				}
 			}
-
-			if (exRankMapEqAboveT != null && exRankMapBelowT != null) {
-				// Sort the examples above threshold based on probabilities
-				// ascendingly
-				exSortedMapAboveT = new TreeMap<String, double[]>(
-						new ValueComparatorItemEstimatesProgressAsc(exRankMapEqAboveT));
-				exSortedMapAboveT.putAll(exRankMapEqAboveT);
-
-				// Sort the examples below threshold based on probabilities
-				// descendingly
-				exSortedMapBelowT = new TreeMap<String, double[]>(
-						new ValueComparatorItemEstimatesKCNumDesc(exRankMapBelowT));
-				exSortedMapBelowT.putAll(exRankMapBelowT);
-
-				// add examples to rank map, first check examples above
-				// threshold,
-				// if map size did not reach to the proactive_max, then move to
-				// examples below threshold
-				int count = proactive_max - rankMap.size();
-				for (Entry<String, double[]> e : exSortedMapAboveT.entrySet()) {
-					if (count == 0)
-						break;
-					rankMap.put(e.getKey(), new double[] { e.getValue()[0], e.getValue()[1] });
-					count--;
+		}
+		
+		for (String item : topicContents) {
+			if (challengeList.contains(item)) {
+				estimate = itemKCEstimates.get(item);
+				progress = usrContentProgress.get(item) == null ? 0 : usrContentProgress.get(item);
+				if (isEligibleToRecommend(estimate, progress, masteryThreshold)) {
+					values = new double[3];
+					values[0] = estimate;
+					values[1] = progress;
+					values[2] = (itemKCs.get(item) == null ? 0 : itemKCs.get(item).size());
+					chRankMap.put(item, values);
 				}
-				count = proactive_max - rankMap.size();
-				if (count > 0) {
-					for (Entry<String, double[]> e : exSortedMapBelowT.entrySet()) {
-						if (count == 0)
-							break;
-						rankMap.put(e.getKey(), new double[] { e.getValue()[0], e.getValue()[1] });
-						count--;
-					}
+			}
+		}
+		
+		for (String item : topicContents) {
+			if (exampleList.contains(item)) {
+				estimate = getAveragePLearn(item, itemKCs.get(item), itemKCEstimates);
+				progress = usrContentProgress.get(item) == null ? 0 : usrContentProgress.get(item);
+				values = new double[3];
+				values[0] = estimate;
+				values[1] = progress;
+				values[2] = (itemKCs.get(item) == null ? 0 : itemKCs.get(item).size());
+				if (isEligibleToRecommend(estimate, progress, masteryThreshold)) {
+					exRankMap.put(item, values);							
 				}
 			}
 		}
 
-		// Sort the items based on probabilities descendingly, if equal
-		// probabilities, lower progress first
-		TreeMap<String, double[]> sortedRankMap = new TreeMap<String, double[]>(
-				new ValueComparatorItemEstimatesProgressDesc(rankMap));
-		sortedRankMap.putAll(rankMap); // sorted map
+		// Sort the coding based on probabilities descendingly, if equal
+		// probabilities, less concept first [because progress of the items in coRankMap are all 0]
+		coSortedMap = new TreeMap<String, double[]>(
+				new ValueComparatorItemEstimatesProgressKCNumDesc(coRankMap));
+		coSortedMap.putAll(coRankMap); // sorted map
 
-		// create list of recommended items
-		int count = proactive_max;
-		for (Entry<String, double[]> e : sortedRankMap.entrySet()) {
-			if (count == 0)
-				break;
-			ArrayList<String> list = new ArrayList<String>();
-			list.add(e.getKey());
-			list.add("" + e.getValue()[0]);
-			list.add("bng");
-			sequenceList.add(list);
-			count--;
-		}
+//		System.out.println("==>coRankMap:  "+ printMap(coRankMap));
+//		System.out.println("==>coSortedMap:  "+ printMap(coSortedMap));
+
+
+		// Sort the challenges based on probabilities descendingly, if equal
+		// probabilities, less concept first [because progress of the items in chRankMap all 0]
+		chSortedMap = new TreeMap<String, double[]>(
+				new ValueComparatorItemEstimatesProgressKCNumDesc(chRankMap));
+		chSortedMap.putAll(chRankMap); // sorted map
+
+//		System.out.println("==>chRankMap:  "+ printMap(chRankMap));
+//		System.out.println("==>chSortedMap:  "+ printMap(chSortedMap));
+	
+
+		// Sort the examples based on probabilities descendingly, if equal
+		// probabilities, less progress comes first [if progress are also same, the one with lower kcs comes first]
+		exSortedMap = new TreeMap<String, double[]>(
+				new ValueComparatorItemEstimatesProgressKCNumDesc(exRankMap));
+		exSortedMap.putAll(exRankMap);
+
+//		System.out.println("==>exRankMap:  "+ printMap(exRankMap));
+//		System.out.println("==>exSortedMap:  "+ printMap(exSortedMap));
+		
+
+		addItemsToRecList(proactive_max, sequenceList, coRankMap, chRankMap,
+				coSortedMap, chSortedMap, exSortedMap, lastAct, threshold, masteryThreshold,
+				exampleList, itemKCEstimates, setChallenges);
+		
+		coRankMap.clear(); coRankMap = null; 
+		chRankMap.clear(); chRankMap = null;
+		exRankMap.clear(); exRankMap = null;
+		coSortedMap.clear(); coSortedMap = null;
+		chSortedMap.clear(); chSortedMap = null;
+		exSortedMap.clear(); exSortedMap = null;
 	}
 
-	private static boolean isEligibleToRecommend(double estimate, double progress, double threshold,
+	private static void addItemsToRecList(int proactive_max, ArrayList<ArrayList<String>> sequenceList,
+			Map<String, double[]> coRankMap, Map<String, double[]> chRankMap, Map<String, double[]> coSortedMap,
+			Map<String, double[]> chSortedMap, TreeMap<String, double[]> exSortedMap, 
+			String lastAct, double threshold, double masteryThreshold, HashSet<String> exampleList, 
+			HashMap<String, Double> itemKCEstimates, Map<String, HashSet<String>> setChallenges) {
+		
+		int addedToRecList = 0; //we need it to keep track of number of items that we add to sequencing list
+		HashSet<String> addedChallenges = new HashSet<String>(); //keep track of added challenges
+		HashSet<String> addedCodings = new HashSet<String>(); //keep track of added codings
+		
+		//check the numbers of items we want to recommend
+		if (exampleList.contains(lastAct)) {
+			//if last activity was example, add to reclist a challenge related to that example 
+			//the challenge will be the first in the reclist
+			HashSet<String> chLst= setChallenges.get(lastAct);
+			for (Entry<String, double[]> e : chSortedMap.entrySet()) {
+				if (chLst.contains(e.getKey()))
+				{
+					ArrayList<String> list = new ArrayList<String>();
+					list.add(e.getKey());
+					list.add(getScore(addedToRecList));
+					list.add("bng");
+					sequenceList.add(list);
+//					System.out.println("~~~added to reclist: "+e.getKey());
+					addedChallenges.add(e.getKey());
+					addedToRecList++;
+					break; //we need only one challenge
+				}
+			}
+		}
+		
+		//Add eligible codings to the reclist, if any
+		double estimate;
+		for (Entry<String, double[]> e : coSortedMap.entrySet()) {
+			if (addedToRecList == proactive_max)
+				break;
+			estimate = e.getValue()[0];
+			if (estimate >= threshold) { //add only if the items is above estimate
+				ArrayList<String> list = new ArrayList<String>();
+				list.add(e.getKey());
+				list.add(getScore(addedToRecList));
+				list.add("bng");
+				sequenceList.add(list);
+//				System.out.println("~~~added to reclist: "+e.getKey());
+				addedCodings.add(e.getKey());
+				addedToRecList++;
+			}
+		}
+		
+		
+		//Add eligible challenges to the reclist, if any
+		if ( addedToRecList < proactive_max ) {
+			for (Entry<String, double[]> e : chSortedMap.entrySet()) {
+				if (addedToRecList == proactive_max)
+					break;
+				estimate = e.getValue()[0];
+				if (estimate >= threshold && addedChallenges.contains(e.getKey()) == false) {  //add only if the items is above estimate and not added in the previous step
+					ArrayList<String> list = new ArrayList<String>();
+					list.add(e.getKey());
+					list.add(getScore(addedToRecList));
+					list.add("bng");
+					sequenceList.add(list);
+//					System.out.println("~~~added to reclist: "+e.getKey());
+					addedChallenges.add(e.getKey());
+					addedToRecList++;
+				}
+			}
+		}
+		
+		//Add eligible examples to the reclist, if any
+		if ( addedToRecList < proactive_max ) {
+			//first check examples above threshold
+			for (Entry<String, double[]> e : exSortedMap.entrySet()) {
+				if (addedToRecList == proactive_max)
+					break;
+				ArrayList<String> list = new ArrayList<String>();
+				list.add(e.getKey());
+				list.add(getScore(addedToRecList));
+				list.add("bng");
+				sequenceList.add(list);
+//				System.out.println("~~~added to reclist: "+e.getKey());
+				addedToRecList++;
+			}	
+		}
+		
+		//Check if size of reclist has reached the number of items that we need to recommend
+		if (addedToRecList < proactive_max) {
+			//start by picking from challenges
+			for (Entry<String, double[]> e : chSortedMap.entrySet()) {
+				if (addedToRecList == proactive_max)
+					break;
+				if (addedChallenges.contains(e.getKey()) == false) {
+					estimate = e.getValue()[0]; //we don't filter by the estimate in the last round
+					ArrayList<String> list = new ArrayList<String>();
+					list.add(e.getKey());
+					list.add(getScore(addedToRecList));
+					list.add("bng");
+					sequenceList.add(list);
+//					System.out.println("~~~added to reclist: "+e.getKey());
+					addedToRecList++;
+				}
+			}
+		}
+		//Check if size of reclist has reached the number of items that we need to recommend
+		if (addedToRecList < proactive_max) {
+			//after challenges, we move to codings
+			for (Entry<String, double[]> e : coSortedMap.entrySet()) {
+				if (addedToRecList == proactive_max)
+					break;
+				if (addedCodings.contains(e.getKey()) == false) {
+					estimate = e.getValue()[0]; //we don't filter by the estimate in the last round
+					ArrayList<String> list = new ArrayList<String>();
+					list.add(e.getKey());
+					list.add(getScore(addedToRecList));
+					list.add("bng");
+					sequenceList.add(list);
+//					System.out.println("~~~added to reclist: "+e.getKey());
+					addedToRecList++;
+				}
+			}
+			
+			addedCodings.clear(); addedCodings = null;
+			addedChallenges.clear(); addedChallenges = null;
+		}
+	}
+		
+	/*
+	 * This method assigns score to recommended items in a topic based on the order
+	 * that we want add them to the rec list (this is different that using estimates)
+	 * returns 1 for the 1st item, 0.7 for the 2nd items, 0.3 for the 3rd items
+	 */
+	
+	private static String getScore(int addedToRecList) {
+		if (addedToRecList == 0)
+			return "1";
+		else if (addedToRecList == 1)
+			return "0.7";
+		else 
+			return "0.3";
+	}
+
+	private static String printMap(Map<String,double[]> map) {
+		String s = "";
+		for (Entry<String, double[]>  e : map.entrySet()){
+			s+= (s.isEmpty()? "{" : ",") + e.getKey()+"=["+Arrays.toString(e.getValue())+"],";
+		}
+		return (s.isEmpty()? "{}" : s+"}");		
+	}
+	
+	private static boolean isEligibleToRecommend(double estimate, double progress,
 			double masteryThreshold) {
-		return (estimate >= threshold && estimate < masteryThreshold && progress < 1);
+		return ( estimate < masteryThreshold && progress < 1);
 	}
 
 	private static double getAveragePLearn(String item, List<String> kcList, HashMap<String, Double> itemKCEstimates) {
@@ -177,5 +326,5 @@ public class BNG {
 		}
 		return (kcList.size() > 0 ? pLearnSum / kcList.size() : 0);
 	}
-
+	
 }

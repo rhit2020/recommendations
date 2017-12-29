@@ -58,6 +58,8 @@ public class GetRecommendations extends HttpServlet {
 			contentList = request.getParameter("contents").split(","); //contents are separated by ,
 		String topicContentTxt = request.getParameter("topicContents");
 		Map<String, List<String>> topicContents = getTopicContentMap(topicContentTxt);
+		String userContentProgressTxt = request.getParameter("userContentProgress");
+		Map<String, Double> usrContentProgress = getContentProgress(userContentProgressTxt);
 		//--end		
 			
 		String seq_id =  ""+System.nanoTime();
@@ -140,7 +142,7 @@ public class GetRecommendations extends HttpServlet {
     					rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,
     					um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass,
     					contentList, lastContentId, 
-    					Double.parseDouble(lastContentResult),proactive_max,topicContents);    	
+    					Double.parseDouble(lastContentResult),proactive_max,topicContents, usrContentProgress);    	
     		}
     		else if (proactive_method.toLowerCase().equals("optimize4allqs")) {
     			sequencingList = Optimize4allqs.calculateSequenceRank(usr, grp, cid, domain, lastContentId,
@@ -215,6 +217,33 @@ public class GetRecommendations extends HttpServlet {
 		
 		//destroy objects
 		rec_cm = null; 	aggregate_cm = null; um2_cm = null;
+	
+		//destroy data structures for dynamic data
+		contentList = null;
+		topicContents.clear(); topicContents = null;
+		usrContentProgress.clear(); usrContentProgress = null;
+	}
+
+	/*
+	 * Sample format of user Content Progress is:
+	 * act1,1;act2,0
+	 */
+	private Map<String, Double> getContentProgress(String userContentProgressTxt) {
+		Map<String, Double> contentProgress = null;
+		if (userContentProgressTxt != null && userContentProgressTxt.isEmpty() == false ) {
+			contentProgress = new HashMap<String, Double>();
+			double progress;
+			for (String cp : userContentProgressTxt.split(";")) {
+				String[] tmp = cp.split(",");
+				try {
+					progress = Double.parseDouble(tmp[1]);
+				}catch (Exception e){
+					progress = 0;
+				}
+				contentProgress.put(tmp[0], progress);
+			}
+		}
+		return contentProgress;
 	}
 
 	/*
@@ -226,7 +255,7 @@ public class GetRecommendations extends HttpServlet {
 		if (topicContentTxt != null && topicContentTxt.isEmpty() == false ) {
 			topicContents = new HashMap<String, List<String>>();
 			ArrayList<String> list;
-			for (String tc : topicContentTxt.split("|")) {
+			for (String tc : topicContentTxt.split("\\|")) {
 				String[] tmp = tc.split(":");
 				list = new ArrayList<String>();
 				for (String c : tmp[1].split(",")) 

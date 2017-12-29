@@ -3,6 +3,7 @@ package rec.proactive.bng;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public class BNGDB extends DBInterface {
 		verbose = false;
 	}
 
-	public Map<String, List<String>> getExampleKcs(String[] contentList) {
+	public Map<String, List<String>> getItemKcs(String[] contentList) {
 
 		try {
 			String availableContentText = "";
@@ -32,27 +33,28 @@ public class BNGDB extends DBInterface {
 			stmt = conn.createStatement(); // create a statement
 
 			Map<String, List<String>> exkcMap = new HashMap<String, List<String>>();
-
-			String query = " SELECT distinct content_name, concept " + " FROM ent_content_concepts "
-					+ " and content_name in (" + availableContentText + ");";
-
+ 
+			
+			String query = " SELECT content_name, concept  FROM rec.ent_content_concepts " +
+					" where content_name in (" + availableContentText + ");" ; 
+					
 			if (verbose) {
 				System.out.println(query);
 			}
 			rs = stmt.executeQuery(query);
 
-			String example, concept;
+			String content, concept;
 			List<String> kcList;
 			while (rs.next()) {
-				example = rs.getString("content_name");
+				content = rs.getString("content_name");
 				concept = rs.getString("concept");
-				kcList = exkcMap.get(example);
+				kcList = exkcMap.get(content);
 				if (kcList != null) {
 					kcList.add(concept);
 				} else {
 					kcList = new ArrayList<String>();
 					kcList.add(concept);
-					exkcMap.put(example, kcList);
+					exkcMap.put(content, kcList);
 				}
 			}
 			this.releaseStatement(stmt, rs);
@@ -68,7 +70,7 @@ public class BNGDB extends DBInterface {
 		}
 	}
 
-	public List<String> getCodingList(String[] contentList) {
+	public HashSet<String> getCodingList(String[] contentList) {
 		try {
 			String availableContentText = "";
 			for (String s : contentList) {
@@ -81,10 +83,10 @@ public class BNGDB extends DBInterface {
 
 			stmt = conn.createStatement(); // create a statement
 
-			List<String> activityList = new ArrayList<String>();
+			HashSet<String> activityList = new HashSet<String>();
 
 			String query = " SELECT distinct activity from um2.ent_activity " + " where appid = 44 "
-					+ " and content_name in (" + availableContentText + ");";
+					+ " and activity in (" + availableContentText + ");";
 
 			if (verbose) {
 				System.out.println(query);
@@ -106,7 +108,7 @@ public class BNGDB extends DBInterface {
 		}
 	}
 
-	public List<String> getChallengeList(String[] contentList) {
+	public HashSet<String> getChallengeList(String[] contentList) {
 
 		try {
 			String availableContentText = "";
@@ -120,10 +122,10 @@ public class BNGDB extends DBInterface {
 
 			stmt = conn.createStatement(); // create a statement
 
-			List<String> activityList = new ArrayList<String>();
+			HashSet<String> activityList = new HashSet<String>();
 
 			String query = " SELECT distinct activity from um2.ent_activity " + " where appid = 47 "
-					+ " and content_name in (" + availableContentText + ");";
+					+ " and activity in (" + availableContentText + ");";
 
 			if (verbose) {
 				System.out.println(query);
@@ -145,7 +147,8 @@ public class BNGDB extends DBInterface {
 		}
 	}
 
-	public List<String> getExampleList(String[] contentList) {
+	//Note: The examples are referred by their set names in Mastery Grids
+	public HashSet<String> getExampleList(String[] contentList) {
 
 		try {
 			String availableContentText = "";
@@ -159,11 +162,11 @@ public class BNGDB extends DBInterface {
 
 			stmt = conn.createStatement(); // create a statement
 
-			List<String> activityList = new ArrayList<String>();
+			HashSet<String> activityList = new HashSet<String>();
 
-			String query = " SELECT distinct activity from um2.ent_activity "
-					+ " where appid = 46 and description = 'PCEX Example' " + " and content_name in ("
-					+ availableContentText + ");";
+			String query = "select A1.activity from ent_activity A1, ent_activity A2, rel_pcex_set_component PC"
+					+ " where A1.activityid = PC.parentactivityid and A2.activityid = PC.childactivityid"
+					+ " and A1.appid = 45 and A2.appid = 46  " + " and A1.activity in (" + availableContentText + ");";
 
 			if (verbose) {
 				System.out.println(query);
@@ -183,6 +186,58 @@ public class BNGDB extends DBInterface {
 		} finally {
 			this.releaseStatement(stmt, rs);
 		}
+	}
+
+	public Map<String, HashSet<String>> getSetChallenges(String[] contentList) {
+		
+		try {
+			String availableContentText = "";
+			for (String s : contentList) {
+				availableContentText += "'" + s + "',";
+			}
+			availableContentText = availableContentText.substring(0, availableContentText.length() - 1); // ignore
+																											// the
+																											// last
+																											// comma
+
+			stmt = conn.createStatement(); // create a statement
+
+			Map<String,HashSet<String>> setChList = new HashMap<String, HashSet<String>>();
+
+			String query = "select A1.activity as set_name, A2.activity as ch_name from ent_activity A1, ent_activity A2, rel_pcex_set_component PC"
+					+ " where A1.activityid = PC.parentactivityid and A2.activityid = PC.childactivityid"
+					+ " and A1.appid = 45 and A2.appid = 47  " + " and A1.activity in (" + availableContentText + ");";
+
+			if (verbose) {
+				System.out.println(query);
+			}
+			rs = stmt.executeQuery(query);
+			String set_name, ch_name;
+			HashSet<String> chList;
+			while (rs.next()) {
+				set_name = rs.getString("set_name");
+				ch_name = rs.getString("ch_name");
+				chList = setChList.get(set_name);
+				if (chList != null)
+					chList.add(ch_name);
+				else {
+					chList = new HashSet<String>();
+					chList.add(ch_name);
+					setChList.put(set_name, chList);
+				}
+			}
+			this.releaseStatement(stmt, rs);
+			return setChList;
+		} catch (SQLException ex) {
+			this.releaseStatement(stmt, rs);
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+			return null;
+		} finally {
+			this.releaseStatement(stmt, rs);
+		}
+	
 	}
 
 }
