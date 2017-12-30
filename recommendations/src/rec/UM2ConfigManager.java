@@ -45,21 +45,21 @@ public class UM2ConfigManager {
 						.getTextContent().trim().toLowerCase();
 				// set database connection parameters
 				dbstring = doc.getElementsByTagName("dbstring").item(0)
-						.getTextContent().trim().toLowerCase();
+						.getTextContent().trim();
 				dbuser = doc.getElementsByTagName("dbuser").item(0)
-						.getTextContent().trim().toLowerCase();
+						.getTextContent().trim();
 				dbpass = doc.getElementsByTagName("dbpass").item(0)
-						.getTextContent().trim().toLowerCase();
+						.getTextContent().trim();
 				fastdbstring = doc.getElementsByTagName("fastdbstring").item(0)
-				.getTextContent().trim().toLowerCase();
+				.getTextContent().trim();
 				webex_appID = doc.getElementsByTagName("webex").item(0)
-				.getTextContent().trim().toLowerCase();
+				.getTextContent().trim();
 				sqlnot_appID = doc.getElementsByTagName("sqlnot").item(0)
-				.getTextContent().trim().toLowerCase();
+				.getTextContent().trim();
 				animated_examples_appID = doc.getElementsByTagName("animated_examples").item(0)
-				.getTextContent().trim().toLowerCase();
+				.getTextContent().trim();
 				quizjet_appID = doc.getElementsByTagName("quizjet").item(0)
-				.getTextContent().trim().toLowerCase();
+				.getTextContent().trim();
 				
 			}
         } catch (Exception e) {
