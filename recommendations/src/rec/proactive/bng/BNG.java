@@ -14,7 +14,9 @@ public class BNG {
 	public static ArrayList<ArrayList<String>> calculateSequenceRank(String user_id, String group_id, String domain,
 			String rec_dbstring, String rec_dbuser, String rec_dbpass, String um2_dbstring, String um2_dbuser,
 			String um2_dbpas, String[] contentList, String lastAct, double lastActRes, int proactive_max,
-			Map<String, List<String>> topicContents, Map<String, Double> usrContentProgress) {
+			Map<String, List<String>> topicContents,
+			Map<String, Double> usrContentProgress,
+			HashMap<String, Double> itemKCEstimates) {
 		
 //		System.out.println("-----------------------------------------------");
 //		long startTime = System.currentTimeMillis();
@@ -33,13 +35,6 @@ public class BNG {
 
 //		second = (System.currentTimeMillis()-startTime) / 1000.0;
 //		System.out.println("got static data:" + second + " (sec)");
-
-		// DYNAMIC DATA
-		HashMap<String, Double> itemKCEstimates = GetBNKCSummary.getItemKCEstimates(user_id, group_id, lastAct,
-				lastActRes, contentList);
-
-//		second = (System.currentTimeMillis()-startTime) / 1000.0;
-//		System.out.println("got summary user activity data:" + second + " (sec)");
 
 		// LOGIC
 		double threshold = 0.7;
@@ -60,8 +55,6 @@ public class BNG {
 //		second = (System.currentTimeMillis()-startTime) / 1000.0;
 //		System.out.println("Total time [got complete recs]:" + second + " (sec)");
 //		System.out.println("-----------------------------------------------");
-
-		itemKCEstimates.clear(); itemKCEstimates = null;
 		
 		return sequenceList;
 	}

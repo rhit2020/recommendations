@@ -35,7 +35,7 @@ public class BNGDB extends DBInterface {
 			Map<String, List<String>> exkcMap = new HashMap<String, List<String>>();
  
 			
-			String query = " SELECT content_name, concept  FROM rec.ent_content_concepts " +
+			String query = " SELECT content_name, concept  FROM rec.ent_content_concepts_reduced " +
 					" where content_name in (" + availableContentText + ");" ; 
 					
 			if (verbose) {

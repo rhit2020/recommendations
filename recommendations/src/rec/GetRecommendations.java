@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import rec.ans.example.line.ExampleLineANS;
 import rec.proactive.Optimize4allqs.Optimize4allqs;
 import rec.proactive.bng.BNG;
+import rec.proactive.bng.GetBNKCSummary;
 import rec.proactive.KM;
 import rec.reactive.ReactiveRecommendation;
+import rec.reactive.pgsc.PGSC;
 
 
 /**
@@ -66,8 +68,70 @@ public class GetRecommendations extends HttpServlet {
 		response.setContentType("application/json");
 		ArrayList<ArrayList<String>> recList = new ArrayList<ArrayList<String>>();
 		ArrayList<ArrayList<String>> sequencingList = new ArrayList<ArrayList<String>>();
-			
-		//Step 1: generate reactive recommendation
+					
+		HashMap<String, Double> itemKCEstimates = null; // knowledge estimates, filled when proactive method is bng
+		
+		//Step 1: generate proactive recommendation
+		String proactive_rec_on = request.getParameter("proactiveRecOn");
+		if (proactive_rec_on == null)
+			proactive_rec_on = "true";
+        if (proactive_rec_on.equals("true"))
+        {
+        	//(a) get parameters of proactive recommendation from the request
+        	int proactive_max = rec_cm.proactive_max;
+    		if (request.getParameter("proactive_max") != null)
+    		{
+    			try {
+    				proactive_max = Integer.parseInt(request.getParameter("proactive_max"));	 
+    			}catch(NumberFormatException e){
+    				proactive_max = rec_cm.proactive_max;
+    			}
+    		}
+    		String  proactive_method = rec_cm.proactive_method;
+    		if (request.getParameter("proactive_method") != null)
+    			proactive_method = request.getParameter("proactive_method");
+    		double proactive_threshold = rec_cm.proactive_threshold; 
+
+    		//(b) get recommendations from the requested proactive method
+    		if (proactive_method.toLowerCase().equals("bng")) {
+    			itemKCEstimates = GetBNKCSummary.getItemKCEstimates(usr, grp, lastContentId,
+    					Double.parseDouble(lastContentResult), contentList);
+    			sequencingList = BNG.calculateSequenceRank(usr, grp, domain,
+    					rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,
+    					um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass,
+    					contentList, lastContentId, 
+    					Double.parseDouble(lastContentResult),proactive_max,
+    					topicContents, usrContentProgress,itemKCEstimates);    	
+    		}
+    		else if (proactive_method.toLowerCase().equals("optimize4allqs")) {
+    			sequencingList = Optimize4allqs.calculateSequenceRank(usr, grp, cid, domain, lastContentId,
+    					lastContentResult, lastContentProvider, contentList,
+    					proactive_max, proactive_method, proactive_threshold,
+    					sequencingList,aggregate_cm.dbstring, aggregate_cm.dbuser, aggregate_cm.dbpass,
+    					um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass,
+    					um2_cm.fastdbstring,
+    			        this.getServletContext().getRealPath(aggregate_cm.relative_resource_path+"/Parameters_FAST_11131.csv"),
+    			        this.getServletContext().getRealPath(rec_cm.relative_resource_path+"/ASUFall2015b_group_topic_contents_aggreagte.csv"),
+    			        this.getServletContext().getRealPath(rec_cm.relative_resource_path+"/ASUFall2015b_topic_order.csv"), "optimize4allqs");
+
+    		}else if (proactive_method.toLowerCase().equals("optimize4allqswithprobabilities")) {
+    			sequencingList = Optimize4allqs.calculateSequenceRank(usr, grp, cid, domain, lastContentId,
+    					lastContentResult, lastContentProvider, contentList,
+    					proactive_max, proactive_method, proactive_threshold,
+    					sequencingList,aggregate_cm.dbstring, aggregate_cm.dbuser, aggregate_cm.dbpass,
+    					um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass,
+    					um2_cm.fastdbstring,
+    			        this.getServletContext().getRealPath(aggregate_cm.relative_resource_path+"/Parameters_FAST_11131.csv"),
+    			        this.getServletContext().getRealPath(rec_cm.relative_resource_path+"/ASUFall2015b_group_topic_contents_aggreagte.csv"),
+    			        this.getServletContext().getRealPath(rec_cm.relative_resource_path+"/ASUFall2015b_topic_order.csv"), "optimize4allqswithprobabilities");
+
+    		}
+    		else{
+    			sequencingList = KM.calculateSequenceRank(usr, grp, domain,proactive_method,proactive_threshold,proactive_max,contentList,getServletContext().getRealPath(rec_cm.relative_resource_path));    	
+    		}    
+        }
+        
+		//Step 2: generate reactive recommendation
     	//(a) get parameters of reactive recommendation from the request
 		String reactive_rec_on = request.getParameter("reactiveRecOn");
 		if (reactive_rec_on == null)
@@ -100,76 +164,34 @@ public class GetRecommendations extends HttpServlet {
     		
 			
 			//(b) get recommendations from the requested reactive method
-			if (lastContentProvider.equals("quizjet") | lastContentProvider.equals("sqlknot"))
+			if (lastContentProvider.equals("quizjet") || lastContentProvider.equals("sqlknot") ||
+				lastContentProvider.equals("pcrs") || lastContentProvider.equals("pcex_ch"))
 			{
 				try {
 					double res = Double.parseDouble(lastContentResult);
 				    if (res == 0){
+				    	if (reactive_method.toLowerCase().equals("pgsc")) {
+				    		if ( itemKCEstimates == null) 
+				    			itemKCEstimates = GetBNKCSummary.getItemKCEstimates(usr, grp, lastContentId,
+				    					Double.parseDouble(lastContentResult), contentList);
+				    		recList = PGSC.generateReactiveRecommendations(
+				    				seq_id, usr, grp, cid, sid, lastContentId, lastContentResult,
+				    				reactive_max, contentList, itemKCEstimates,
+				    				reactive_threshold, topicContents,
+				    				rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,
+				    				um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass);
+				    		
+				    	}else {
 							recList = ReactiveRecommendation.generateReactiveRecommendations(seq_id, usr, grp, domain, cid, sid,
 							lastContentId, lastContentResult, reactive_max, methods, method_selected,
 						    contentList, reactive_threshold,
 							rec_cm.rec_interpolation_alpha, rec_cm.example_count_personalized_approach,
-							rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,getServletContext().getRealPath(rec_cm.relative_resource_path));
+							rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,
+							getServletContext().getRealPath(rec_cm.relative_resource_path));
+				    	}
 				    }
 				}catch(Exception e){}	
 			}   
-        }
-		
-		//Step 2: generate proactive recommendation
-		String proactive_rec_on = request.getParameter("proactiveRecOn");
-		if (proactive_rec_on == null)
-			proactive_rec_on = "true";
-        if (proactive_rec_on.equals("true"))
-        {
-        	//(a) get parameters of proactive recommendation from the request
-        	int proactive_max = rec_cm.proactive_max;
-    		if (request.getParameter("proactive_max") != null)
-    		{
-    			try {
-    				proactive_max = Integer.parseInt(request.getParameter("proactive_max"));	 
-    			}catch(NumberFormatException e){
-    				proactive_max = rec_cm.proactive_max;
-    			}
-    		}
-    		String  proactive_method = rec_cm.proactive_method;
-    		if (request.getParameter("proactive_method") != null)
-    			proactive_method = request.getParameter("proactive_method");
-    		double proactive_threshold = rec_cm.proactive_threshold; 
-
-    		//(b) get recommendations from the requested proactive method
-    		if (proactive_method.toLowerCase().equals("bng")) {
-    			sequencingList = BNG.calculateSequenceRank(usr, grp, domain,
-    					rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,
-    					um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass,
-    					contentList, lastContentId, 
-    					Double.parseDouble(lastContentResult),proactive_max,topicContents, usrContentProgress);    	
-    		}
-    		else if (proactive_method.toLowerCase().equals("optimize4allqs")) {
-    			sequencingList = Optimize4allqs.calculateSequenceRank(usr, grp, cid, domain, lastContentId,
-    					lastContentResult, lastContentProvider, contentList,
-    					proactive_max, proactive_method, proactive_threshold,
-    					sequencingList,aggregate_cm.dbstring, aggregate_cm.dbuser, aggregate_cm.dbpass,
-    					um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass,
-    					um2_cm.fastdbstring,
-    			        this.getServletContext().getRealPath(aggregate_cm.relative_resource_path+"/Parameters_FAST_11131.csv"),
-    			        this.getServletContext().getRealPath(rec_cm.relative_resource_path+"/ASUFall2015b_group_topic_contents_aggreagte.csv"),
-    			        this.getServletContext().getRealPath(rec_cm.relative_resource_path+"/ASUFall2015b_topic_order.csv"), "optimize4allqs");
-
-    		}else if (proactive_method.toLowerCase().equals("optimize4allqswithprobabilities")) {
-    			sequencingList = Optimize4allqs.calculateSequenceRank(usr, grp, cid, domain, lastContentId,
-    					lastContentResult, lastContentProvider, contentList,
-    					proactive_max, proactive_method, proactive_threshold,
-    					sequencingList,aggregate_cm.dbstring, aggregate_cm.dbuser, aggregate_cm.dbpass,
-    					um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass,
-    					um2_cm.fastdbstring,
-    			        this.getServletContext().getRealPath(aggregate_cm.relative_resource_path+"/Parameters_FAST_11131.csv"),
-    			        this.getServletContext().getRealPath(rec_cm.relative_resource_path+"/ASUFall2015b_group_topic_contents_aggreagte.csv"),
-    			        this.getServletContext().getRealPath(rec_cm.relative_resource_path+"/ASUFall2015b_topic_order.csv"), "optimize4allqswithprobabilities");
-
-    		}
-    		else{
-    			sequencingList = KM.calculateSequenceRank(usr, grp, domain,proactive_method,proactive_threshold,proactive_max,contentList,getServletContext().getRealPath(rec_cm.relative_resource_path));    	
-    		}    
         }
 		
 		//Step 3: generate line ANS data
@@ -217,7 +239,8 @@ public class GetRecommendations extends HttpServlet {
 		
 		//destroy objects
 		rec_cm = null; 	aggregate_cm = null; um2_cm = null;
-	
+		itemKCEstimates.clear(); itemKCEstimates = null;
+
 		//destroy data structures for dynamic data
 		contentList = null;
 		topicContents.clear(); topicContents = null;
