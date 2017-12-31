@@ -37,7 +37,7 @@ public class PGSC {
 		HashMap<String, Double> rankMap = calculateSim(last_content_id, itemKCEstimates,topicContents);
 		SortedMap<String,Double> sortedExampleMap = 
 				new TreeMap<String,Double>(
-				new ValueComparatorItemEstimates(rankMap,data.getItemKCSize()));
+				new ValueComparatorItemEstimatesKCNumDesc(rankMap,data.getItemKCSize()));
 		sortedExampleMap.putAll(rankMap);
 		
 		ArrayList<ArrayList<String>> recommendation_list = new ArrayList<ArrayList<String>>();
@@ -69,6 +69,7 @@ public class PGSC {
 		qConceptWeight = data.getTFIDF(q);
 		//subtrees in question
 		qtree = data.getContentSubtree().get(q);
+		
 		HashSet<String> qTopicSet = getTopicSet(q, topicContents); //topic(s) of the question
 		for (String e : eList) {
 			sim = 0.0;
@@ -81,11 +82,6 @@ public class PGSC {
 			rankMap.put(e, sim);
 		}	
 		
-		//clear data structure that are not needed anymore
-		qConceptWeight.clear(); qConceptWeight = null;
-		eConceptWeight.clear(); eConceptWeight = null;
-		qtree.clear(); qtree = null;
-		etree.clear(); etree = null;
 		return rankMap;		
 	}	
 	

@@ -3,12 +3,12 @@ package rec.reactive.pgsc;
 import java.util.Comparator;
 import java.util.Map;
 
-public class ValueComparatorItemEstimates implements Comparator<String> {
+public class ValueComparatorItemEstimatesKCNumDesc implements Comparator<String> {
 
 	Map<String, Double> est;
 	Map<String, Integer> kcs;
 
-	public ValueComparatorItemEstimates(Map<String, Double> est, Map<String, Integer> map) {
+	public ValueComparatorItemEstimatesKCNumDesc(Map<String, Double> est, Map<String, Integer> map) {
 		this.est = est;
 		this.kcs = map;
 	}
