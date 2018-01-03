@@ -12,38 +12,39 @@ import java.util.Map.Entry;
 
 public class Data {
 	
-	private static Map<String,Map<String,Double>> contentConceptMap = null; //keys are contents, values are the map with concept as key and weight as value
-	private static Map<String,List<Integer>> startEndLineMap = null; //keys are contents, values: list[0]:start line; list[1]:end line
-	private static Map<String,Map<Integer,List<Integer>>> blockEndLineMap = null; //keys are contents, values: a map with key:start line and list of end lines of the concept in that start line
-	private static Map<String,Map<Integer,Map<Integer,List<String>>>> adjacentConceptMap = null; //keys are contents, values: a map with key:start line and a map as value(key:end line, value, List of concepts in that start and end line)
-	private static DecimalFormat df;	
+	private Map<String,Map<String,Double>> contentConceptMap = null; //keys are contents, values are the map with concept as key and weight as value
+	private Map<String,List<Integer>> startEndLineMap = null; //keys are contents, values: list[0]:start line; list[1]:end line
+	private Map<String,Map<Integer,List<Integer>>> blockEndLineMap = null; //keys are contents, values: a map with key:start line and list of end lines of the concept in that start line
+	private Map<String,Map<Integer,Map<Integer,List<String>>>> adjacentConceptMap = null; //keys are contents, values: a map with key:start line and a map as value(key:end line, value, List of concepts in that start and end line)
+	private DecimalFormat df;	
     //maps for using in the evaluation process
-	private static Map<String,HashSet<String>> topicOutcomesMap;
-	private static List<String> exampleList;
-	private static Map<String, Integer> itemKCSize = new HashMap<String, Integer>();
+	private Map<String,HashSet<String>> topicOutcomesMap;
+	private List<String> exampleList;
+	private Map<String, Integer> itemKCSize = new HashMap<String, Integer>();
 
-	private static Map<String, List<List<String>>> contentSubtree;
+	private Map<String, List<List<String>>> contentSubtree;
 	
 
 	private static Data data = null;
 	
-	private Data() {
-		// Exists only to defeat instantiation.
-		//it can only be accessed in the class
+	private Data(String[] contents, String course_id, 
+			  String rec_dbstring, String rec_dbuser, String rec_dbpass,
+			  String um2_dbstring, String um2_dbuser, String um2_dbpass) {
+		setup(contents, course_id, rec_dbstring, rec_dbuser, rec_dbpass,
+				  um2_dbstring, um2_dbuser, um2_dbpass);
     }
 	
 	public static Data getInstance(String[] contents, String course_id, 
 								  String rec_dbstring, String rec_dbuser, String rec_dbpass,
 								  String um2_dbstring, String um2_dbuser, String um2_dbpass) {
 		if(data == null) {
-			data = new Data();
-			setup(contents, course_id, rec_dbstring, rec_dbuser, rec_dbpass,
-				  um2_dbstring, um2_dbuser, um2_dbpass);
+			data = new Data(contents, course_id, rec_dbstring, rec_dbuser, rec_dbpass,
+					  um2_dbstring, um2_dbuser, um2_dbpass);
 	    }
 		return data;
 	}
 	
-	public static void setup(String[] contents, String course_id, String rec_dbstring,
+	public void setup(String[] contents, String course_id, String rec_dbstring,
 						     String rec_dbuser, String rec_dbpass,
 						     String um2_dbstring, String um2_dbuser, String um2_dbpass) {
 		PGSCDB pgscDB;
@@ -100,7 +101,7 @@ public class Data {
 	}
 
 
-	private static void fillContentSubtrees(String[] contents) {
+	private void fillContentSubtrees(String[] contents) {
 		
 		contentSubtree = new HashMap<String, List<List<String>>>();
 		for (String c : contents) {
@@ -108,7 +109,7 @@ public class Data {
 		}
 	}
 	
-	private static List<List<String>> getSubtrees(String content) {
+	private List<List<String>> getSubtrees(String content) {
 		List<List<String>> subtreeList = new ArrayList<List<String>>();
 		List<Integer> lines = getStartEndLine(content);
 		if(lines == null)
@@ -144,13 +145,13 @@ public class Data {
 		return subtreeList;
 	}	
 
-	private static boolean updateSubtreeList(List<String> subtree, List<List<String>> subtreeList) {
+	private boolean updateSubtreeList(List<String> subtree, List<List<String>> subtreeList) {
 		if (subtree.isEmpty() == false && subtreeList.contains(subtree) == false)
 			return true;
 		return false;		
 	}
 	
-	private static class SortByName implements Comparator<String> {
+	private class SortByName implements Comparator<String> {
 	    public int compare(String s1, String s2) {
 	        return s1.compareTo(s2);
 	    }
@@ -246,7 +247,7 @@ public class Data {
 	}	
 
 
-	public static List<String> getAdjacentConcept(String content, int sline,int eline) {
+	public List<String> getAdjacentConcept(String content, int sline,int eline) {
 		List<String> conceptList = new ArrayList<String>();
 		Map<Integer,Map<Integer,List<String>>> map = adjacentConceptMap.get(content);
 		if (map == null) {
@@ -275,7 +276,7 @@ public class Data {
 		return conceptList;	
 	}
 
-	public static List<String> getConceptsInSameLine(String content, int sline) {
+	public List<String> getConceptsInSameLine(String content, int sline) {
 		List<String> conceptList = new ArrayList<String>();
 		Map<Integer,Map<Integer,List<String>>> map = adjacentConceptMap.get(content);	
 		if (map == null)
@@ -298,12 +299,12 @@ public class Data {
 		return conceptList;		
 	}
 	
-	public static List<Integer> getStartEndLine(String content) {
+	public List<Integer> getStartEndLine(String content) {
 		List<Integer> lines = startEndLineMap.get(content);
 		return lines;
 	}
     
-	public static List<Integer> getEndLineBlock(String content, int sline) {
+	public List<Integer> getEndLineBlock(String content, int sline) {
         List<Integer> endLines = new ArrayList<Integer>();
 		Map<Integer,List<Integer>> map = blockEndLineMap.get(content);
 		

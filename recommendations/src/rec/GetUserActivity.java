@@ -25,19 +25,13 @@ import org.json.JSONObject;
 @WebServlet("/GetUserActivity")
 public class GetUserActivity extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static String server = "http://adapt2.sis.pitt.edu";
-	public static String examplesActivityServiceURL = server
+	public final static String server = "http://adapt2.sis.pitt.edu";
+	public final static String examplesActivityServiceURL = server
 	+ "/aggregateUMServices/GetExamplesActivity";
-	public static String questionsActivityServiceURL_QJ = server
+	public final static String questionsActivityServiceURL_QJ = server
 	+ "/aggregateUMServices/GetQJActivity";
-	public static String questionsActivityServiceURL_SK = server
+	public final static String questionsActivityServiceURL_SK = server
 			+ "/aggregateUMServices/GetSKActivity";
-	public static String pcrsActivityServiceURL = server
-			+ "/aggregateUMServices/GetPCRSActivity";
-	public static String pcexChallengeActivityURL = server
-			+ "/aggregateUMServices/GetPCEXChallengeActivity";
-	public static String pcexExampleActivityURL = server
-			+ "/aggregateUMServices/GetPCEXExampleActivity";
 
     public GetUserActivity() {
         super();
@@ -58,7 +52,7 @@ public class GetUserActivity extends HttpServlet {
 	}
 	
 	// CALLING A UM SERVICE
-		public static HashMap<String, String[]> getUserExamplesActivity(String usr,String domain) {
+		public static  HashMap<String, String[]> getUserExamplesActivity(String usr,String domain) {
 			HashMap<String, String[]> eActivity = new HashMap<String, String[]>();
 			try {
 				String url = examplesActivityServiceURL;

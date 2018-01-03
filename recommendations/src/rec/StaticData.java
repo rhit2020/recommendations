@@ -23,28 +23,27 @@ public class StaticData {
 
 
 	private static StaticData instance = null;
-	private static HashMap<String, ArrayList<String[]>> kcByContent;	// for each content there is an array list of kc (concepts) with id, weight (double) and direction (prerequisite/outcome)
-	private static HashMap<String, HashMap<Integer, ArrayList<String>>> exampleLineKC; //<example,<line,<list<concept>>>>
-	private static Map<String,List<String>> topicContentMap; //<topic,list<content>>
-	private static Map<String,List<Integer>> annotatedLines; //<example,list<annotated line indexs>>
-	private static Map<String,String> exampleType; //<example,type>>
-	private static Map<String,String> titleRdfMap; //Map<title,rdf>
-	private static Map<Integer,String> topicOrderMap;
+	private HashMap<String, ArrayList<String[]>> kcByContent;	// for each content there is an array list of kc (concepts) with id, weight (double) and direction (prerequisite/outcome)
+	private HashMap<String, HashMap<Integer, ArrayList<String>>> exampleLineKC; //<example,<line,<list<concept>>>>
+	private Map<String,List<String>> topicContentMap; //<topic,list<content>>
+	private Map<String,List<Integer>> annotatedLines; //<example,list<annotated line indexs>>
+	private Map<String,String> exampleType; //<example,type>>
+	private Map<String,String> titleRdfMap; //Map<title,rdf>
+	private Map<Integer,String> topicOrderMap;
 
-	private StaticData() {
-		// Exists only to defeat instantiation.
+	private StaticData(String domain, String group_id, String[] contentList, String realpath) {
+		setupData(domain,group_id,contentList,realpath);
 	}
 	
 	public static StaticData getInstance(String domain, String group_id, String[] contentList, String realpath) {		
 		if (instance == null) {
-			instance = new StaticData();
-			setupData(domain,group_id,contentList,realpath);
+			instance = new StaticData(domain,group_id,contentList,realpath);
 		}
 		return instance;
 	}
 	
 	
-	private static void setupData(String domain, String grp, String[] contentList, String realpath) {
+	private void setupData(String domain, String grp, String[] contentList, String realpath) {
 		//read topic contents
 		readTopicContent(realpath+"/topic_content_ae.csv");
 		//read contentKC
@@ -66,7 +65,7 @@ public class StaticData {
 		readTopicOrder(realpath+"/topic_order.csv");
 	}
 
-	private static void readAnnotatedLines(String path) {
+	private void readAnnotatedLines(String path) {
 		annotatedLines = new HashMap<String,List<Integer>>(); 
 		BufferedReader br = null;
 		String line = "";
@@ -241,7 +240,7 @@ public class StaticData {
 		return sb.toString();
 	}
 
-	private static void readTopicContent(String path) {
+	private void readTopicContent(String path) {
 		topicContentMap = new HashMap<String,List<String>>(); 
 		BufferedReader br = null;
 		String line = "";
@@ -290,7 +289,7 @@ public class StaticData {
 			}		
 	}
 
-	private static void readExampleType(String path) {
+	private void readExampleType(String path) {
 		exampleType = new HashMap<String,String>(); 
 		BufferedReader br = null;
 		String line = "";
@@ -323,7 +322,7 @@ public class StaticData {
 			}		
 	}
 	
-	private static void readLineConcepts(String path) {
+	private void readLineConcepts(String path) {
 		exampleLineKC = new HashMap<String, HashMap<Integer, ArrayList<String>>>(); 
 		BufferedReader br = null;
 		String line = "";
@@ -392,7 +391,7 @@ public class StaticData {
 
 	}
 
-	private static void readTitleRdf(String path) {
+	private void readTitleRdf(String path) {
 		titleRdfMap = new HashMap<String,String>();
 		BufferedReader br = null;
 		String line = "";
@@ -429,7 +428,7 @@ public class StaticData {
 		}		
 	}
 	
-	private static void readTopicOrder(String path) {
+	private void readTopicOrder(String path) {
 		topicOrderMap = new HashMap<Integer,String>(); 
 		BufferedReader br = null;
 		String line = "";
