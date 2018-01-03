@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class GetBNKCSummary {
 
 	public static String server = "http://adapt2.sis.pitt.edu";
-	public static String bnServiceURL = server + "/bn_general/GetStudentModel";
+	public static String bnServiceURL = server + "/bn_general/StudentModelCache";
 
 	public static HashMap<String, Double> getItemKCEstimates(String usr, String grp, String lastAct, double lastActRes,
 			String[] contentList) {
