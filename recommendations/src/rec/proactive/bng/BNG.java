@@ -1,7 +1,6 @@
 package rec.proactive.bng;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -13,7 +12,7 @@ public class BNG {
 
 	public static ArrayList<ArrayList<String>> calculateSequenceRank(String user_id, String group_id, String domain,
 			String rec_dbstring, String rec_dbuser, String rec_dbpass, String um2_dbstring, String um2_dbuser,
-			String um2_dbpas, String[] contentList, String lastAct, double lastActRes, int proactive_max,
+			String um2_dbpass, String[] contentList, String lastAct, double lastActRes, int proactive_max,
 			Map<String, List<String>> topicContents,
 			Map<String, Double> usrContentProgress,
 			HashMap<String, Double> itemKCEstimates) {
@@ -26,7 +25,7 @@ public class BNG {
 		
 		// STATIC DATA
 		BNGStaticData static_data = BNGStaticData.getInstance(rec_dbstring, rec_dbuser, rec_dbpass, um2_dbstring,
-				um2_dbuser, um2_dbpas, contentList);
+				um2_dbuser, um2_dbpass, contentList);
 		HashSet<String> codingList = static_data.getCodingList();
 		HashSet<String> challengeList = static_data.getChallengeList();
 		HashSet<String> exampleList = static_data.getExampleList();
@@ -299,13 +298,13 @@ public class BNG {
 			return "0.3";
 	}
 
-	private static String printMap(Map<String,double[]> map) {
-		String s = "";
-		for (Entry<String, double[]>  e : map.entrySet()){
-			s+= (s.isEmpty()? "{" : ",") + e.getKey()+"=["+Arrays.toString(e.getValue())+"],";
-		}
-		return (s.isEmpty()? "{}" : s+"}");		
-	}
+//	private static String printMap(Map<String,double[]> map) {
+//		String s = "";
+//		for (Entry<String, double[]>  e : map.entrySet()){
+//			s+= (s.isEmpty()? "{" : ",") + e.getKey()+"=["+Arrays.toString(e.getValue())+"],";
+//		}
+//		return (s.isEmpty()? "{}" : s+"}");		
+//	}
 	
 	private static boolean isEligibleToRecommend(double estimate, double progress,
 			double masteryThreshold) {

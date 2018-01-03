@@ -16,6 +16,7 @@ import rec.ans.example.line.ExampleLineANS;
 import rec.proactive.Optimize4allqs.Optimize4allqs;
 import rec.proactive.bng.BNG;
 import rec.proactive.bng.GetBNKCSummary;
+import rec.proactive.random.Random;
 import rec.proactive.KM;
 import rec.reactive.ReactiveRecommendation;
 import rec.reactive.pgsc.PGSC;
@@ -102,6 +103,9 @@ public class GetRecommendations extends HttpServlet {
     					contentList, lastContentId, 
     					Double.parseDouble(lastContentResult),proactive_max,
     					topicContents, usrContentProgress,itemKCEstimates);    	
+    		}
+    		else if (proactive_method.toLowerCase().equals("random")) {
+    			sequencingList = Random.calculateSequenceRank(topicContents, proactive_max);    	
     		}
     		else if (proactive_method.toLowerCase().equals("optimize4allqs")) {
     			sequencingList = Optimize4allqs.calculateSequenceRank(usr, grp, cid, domain, lastContentId,
