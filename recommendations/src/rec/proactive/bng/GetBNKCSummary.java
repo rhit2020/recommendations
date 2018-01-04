@@ -19,7 +19,7 @@ public class GetBNKCSummary {
 	public static final String server = "http://adapt2.sis.pitt.edu";
 	public static final String bnServiceURL = server + "/bn_general/StudentModelCache";
 
-	public static HashMap<String, Double> getItemKCEstimates(String usr, String grp, String lastAct, double lastActRes,
+	public static HashMap<String, Double> getItemKCEstimates(String usr, String grp, String lastAct, String lastActRes,
 			String[] contentList) {
 
 		HashMap<String, Double> itemKCEstimates = new HashMap<String, Double>();
@@ -29,6 +29,7 @@ public class GetBNKCSummary {
 			//JSONObject json = new JSONObject(str);
 			
 			JSONObject json = callService(bnServiceURL, usr, grp, lastAct, lastActRes, contentList);
+
 			if (json.has("error")) {
 				System.out.println("Error:[" + json.getString("errorMsg") + "]");
 			} else {
@@ -49,7 +50,7 @@ public class GetBNKCSummary {
 		return itemKCEstimates;
 	}
 
-	private static JSONObject callService(String url, String usr, String grp, String lastAct, double lastActRes,
+	private static JSONObject callService(String url, String usr, String grp, String lastAct, String lastActRes,
 			String[] contentList) {
 		InputStream in = null;
 		JSONObject jsonResponse = null;
@@ -61,10 +62,8 @@ public class GetBNKCSummary {
 			method.addParameter("usr", URLEncoder.encode(usr, "UTF-8"));
 			method.addParameter("grp", URLEncoder.encode(grp, "UTF-8"));
 			method.addParameter("lastContentId", URLEncoder.encode(lastAct, "UTF-8"));
-			method.addParameter("lastContentResult", URLEncoder.encode(Double.toString(lastActRes), "UTF-8"));
+			method.addParameter("lastContentResult", URLEncoder.encode(lastActRes, "UTF-8"));
 			method.addParameter("contents", getContents(contentList));
-
-			// System.out.println("Calling service "+url);
 			int statusCode = client.executeMethod(method);
 
 			if (statusCode != -1) {

@@ -32,6 +32,12 @@ public class GetUserActivity extends HttpServlet {
 	+ "/aggregateUMServices/GetQJActivity";
 	public final static String questionsActivityServiceURL_SK = server
 			+ "/aggregateUMServices/GetSKActivity";
+	public static String pcrsActivityServiceURL = server
+			+ "/aggregateUMServices/GetPCRSActivity";
+	public static String pcexChallengeActivityURL = server
+			+ "/aggregateUMServices/GetPCEXChallengeActivity";
+	public static String pcexExampleActivityURL = server
+			+ "/aggregateUMServices/GetPCEXExampleActivity";
 
     public GetUserActivity() {
         super();
@@ -123,7 +129,6 @@ public class GetUserActivity extends HttpServlet {
 		    		serviceParamJSON += "\n    ]\n}";	
 					
 					JSONObject json = callService(url,serviceParamJSON);
-
 					if (json.has("error")) {
 						System.out
 						.println("Error:[" + json.getString("errorMsg") + "]");
@@ -137,7 +142,6 @@ public class GetUserActivity extends HttpServlet {
 							act[1] = jsonobj.getDouble("attempts") + "";
 							act[2] = jsonobj.getDouble("progress") + "";
 							act[3] = jsonobj.getDouble("success-rate") + "";
-							System.out.println(act[0]+"   "+ act[2]);
 							qActivity.put(act[0], act);
 							// System.out.println(jsonobj.getString("name"));
 						}

@@ -6,13 +6,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import rec.GetUserActivity;
+
 import java.util.Map.Entry;
 
 public class BNG {
 
 	public static ArrayList<ArrayList<String>> calculateSequenceRank(String user_id, String group_id, String domain,
 			String rec_dbstring, String rec_dbuser, String rec_dbpass, String um2_dbstring, String um2_dbuser,
-			String um2_dbpass, String[] contentList, String lastAct, double lastActRes, int proactive_max,
+			String um2_dbpass, String[] contentList, String lastAct, int proactive_max,
 			Map<String, List<String>> topicContents,
 			Map<String, Double> usrContentProgress,
 			HashMap<String, Double> itemKCEstimates) {
@@ -32,6 +35,27 @@ public class BNG {
 		Map<String, List<String>> itemKCs = static_data.getItemKcs();
 		Map<String, HashSet<String>> setChallenges = static_data.getSetChallenges();
 
+		
+		// DYNAMIC DATA
+		if (usrContentProgress == null || usrContentProgress.size() == 0) {
+			// Get progress data on coding/challenges/examples (all in one map)
+			HashMap<String, String[]> userActivityMap = GetUserActivity.getUserActivityReport(user_id, group_id, domain,
+					codingList.toArray(new String[codingList.size()]), "pcrs", GetUserActivity.pcrsActivityServiceURL);
+			userActivityMap.putAll(GetUserActivity.getUserActivityReport(user_id, group_id, domain, 
+					challengeList.toArray(new String[challengeList.size()]), "pcex_ch",
+					GetUserActivity.pcexChallengeActivityURL));
+			userActivityMap.putAll(GetUserActivity.getUserActivityReport(user_id, group_id, domain, 
+					exampleList.toArray(new String[exampleList.size()]), "pcex",
+					GetUserActivity.pcexExampleActivityURL));
+			
+			usrContentProgress = new HashMap<String,Double>();
+			for (Entry<String, String[]> entry : userActivityMap.entrySet())
+			{
+				//progress is the 3rd value in String[]
+				usrContentProgress.put(entry.getKey(), Double.parseDouble(entry.getValue()[2]));
+			}
+		}
+		
 //		second = (System.currentTimeMillis()-startTime) / 1000.0;
 //		System.out.println("got static data:" + second + " (sec)");
 
@@ -75,7 +99,7 @@ public class BNG {
 
 		for (String item : topicContents) {
 			if (codingList.contains(item)) {
-				estimate = itemKCEstimates.get(item);
+				estimate = (itemKCEstimates.get(item) == null ? 0 : itemKCEstimates.get(item));
 				progress = usrContentProgress.get(item) == null ? 0 : usrContentProgress.get(item);
 				if (isEligibleToRecommend(estimate, progress, masteryThreshold)) {
 					values = new double[3];
@@ -89,7 +113,7 @@ public class BNG {
 		
 		for (String item : topicContents) {
 			if (challengeList.contains(item)) {
-				estimate = itemKCEstimates.get(item);
+				estimate = (itemKCEstimates.get(item) == null ? 0 : itemKCEstimates.get(item));
 				progress = usrContentProgress.get(item) == null ? 0 : usrContentProgress.get(item);
 				if (isEligibleToRecommend(estimate, progress, masteryThreshold)) {
 					values = new double[3];
@@ -314,7 +338,7 @@ public class BNG {
 	private static double getAveragePLearn(String item, List<String> kcList, HashMap<String, Double> itemKCEstimates) {
 		double pLearnSum = 0;
 		for (String kc : kcList) {
-			pLearnSum += itemKCEstimates.get(kc);
+			pLearnSum += (itemKCEstimates.get(kc) == null ? 0 : itemKCEstimates.get(kc));
 		}
 		return (kcList.size() > 0 ? pLearnSum / kcList.size() : 0);
 	}
