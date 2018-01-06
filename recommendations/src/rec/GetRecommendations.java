@@ -251,7 +251,7 @@ public class GetRecommendations extends HttpServlet {
 			
 			//destroy objects
 			rec_cm = null; 	aggregate_cm = null; um2_cm = null;
-			itemKCEstimates.clear(); itemKCEstimates = null;
+			if (itemKCEstimates != null ) {itemKCEstimates.clear(); itemKCEstimates = null;}
 
 			//destroy data structures for dynamic data
 			contentList = null;
