@@ -71,6 +71,7 @@ public class GetRecommendations extends HttpServlet {
 			Map<String, List<String>> topicContents = getTopicContentMap(topicContentTxt);
 			String userContentProgressTxt = (String) jsonObject.get("userContentProgress");
 			Map<String, Double> usrContentProgress = getContentProgress(userContentProgressTxt);
+	        String updatesm = request.getParameter("updatesm");
 			//--end		
 				
 			String seq_id =  ""+System.nanoTime();
@@ -104,7 +105,7 @@ public class GetRecommendations extends HttpServlet {
 	    		//(b) get recommendations from the requested proactive method
 	    		if (proactive_method.toLowerCase().equals("bng")) {
 	    			itemKCEstimates = GetBNKCSummary.getItemKCEstimates(usr, grp, lastContentId,
-	    					lastContentResult, contentList);
+	    					lastContentResult, contentList, updatesm);
 	    			sequencingList = BNG.calculateSequenceRank(usr, grp, domain,
 	    					rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,
 	    					um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass,
@@ -185,7 +186,7 @@ public class GetRecommendations extends HttpServlet {
 					    	if (reactive_method.toLowerCase().equals("pgsc")) {
 					    		if ( itemKCEstimates == null) 
 					    			itemKCEstimates = GetBNKCSummary.getItemKCEstimates(usr, grp, lastContentId,
-					    					lastContentResult, contentList);
+					    					lastContentResult, contentList, updatesm);
 					    		recList = PGSC.generateReactiveRecommendations(
 					    				seq_id, usr, grp, cid, sid, lastContentId, lastContentResult,
 					    				reactive_max, contentList, itemKCEstimates,
