@@ -65,7 +65,7 @@ public class GetBNKCSummary {
 			method.addParameter("lastContentId", URLEncoder.encode(lastAct, "UTF-8"));
 			method.addParameter("lastContentResult", URLEncoder.encode(lastActRes, "UTF-8"));
 			method.addParameter("contents", getContents(contentList));
-			method.addParameter("updatesm", updatesm);
+			method.addParameter("updatesm", (updatesm == null ? "false" : updatesm));
 			int statusCode = client.executeMethod(method);
 
 			if (statusCode != -1) {
@@ -77,6 +77,8 @@ public class GetBNKCSummary {
 
 			}
 		} catch (Exception e) {
+			System.out.println("GetBNKSummary: error in getting estimates from user model.");
+			e.printStackTrace();
 		}
 		return jsonResponse;
 	}

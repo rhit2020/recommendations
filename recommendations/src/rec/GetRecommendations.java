@@ -71,7 +71,7 @@ public class GetRecommendations extends HttpServlet {
 			Map<String, List<String>> topicContents = getTopicContentMap(topicContentTxt);
 			String userContentProgressTxt = (String) jsonObject.get("userContentProgress");
 			Map<String, Double> usrContentProgress = getContentProgress(userContentProgressTxt);
-	        String updatesm = request.getParameter("updatesm");
+	        String updatesm = (String) jsonObject.get("updatesm");
 			//--end		
 				
 			String seq_id =  ""+System.nanoTime();
@@ -111,7 +111,7 @@ public class GetRecommendations extends HttpServlet {
 	    					um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass,
 	    					contentList, lastContentId, 
 	    					proactive_max,
-	    					topicContents, usrContentProgress,itemKCEstimates);    	
+	    					topicContents, usrContentProgress,itemKCEstimates, updatesm);    	
 	    		}
 	    		else if (proactive_method.toLowerCase().equals("random")) {
 	    			sequencingList = Random.calculateSequenceRank(topicContents, proactive_max);    	
