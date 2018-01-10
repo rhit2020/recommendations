@@ -26,7 +26,6 @@ public class RandOut {
 					                ); //the singleton instance
 
 		List<String> exRecList = generateRecommendedExamples(last_content_id, data);
-		
 		ArrayList<ArrayList<String>> recommendation_list = new ArrayList<ArrayList<String>>();
 		recommendation_list.addAll(createRecList(seq_id, user_id, group_id,session_id,
 				last_content_id, exRecList, n,
@@ -48,9 +47,11 @@ public class RandOut {
 		// get a map of content concepts <String, Map<Srting,String>> 1st val is
 		// concept, second is direction
 		Map<String, Map<String, String>> contentConcepts = data.getContentConceptMap();
-
+		
 		for (Entry<String, String> e : contentConcepts.get(last_content_id).entrySet()) {
-			exRecList.addAll(outcomeExamples.get(e.getKey()));
+			if (outcomeExamples.get(e.getKey()) != null) {
+				exRecList.addAll(outcomeExamples.get(e.getKey()));
+			}
 		}
 		
 		//shuffle the contents in the topic

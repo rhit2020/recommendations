@@ -201,7 +201,6 @@ public class GetRecommendations extends HttpServlet {
 					    				reactive_max, contentList, 
 					    				rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,
 					    				um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass);
-					    		
 					    	}
 					    	else {
 								recList = ReactiveRecommendation.generateReactiveRecommendations(seq_id, usr, grp, domain, cid, sid,
@@ -212,7 +211,9 @@ public class GetRecommendations extends HttpServlet {
 								getServletContext().getRealPath(rec_cm.relative_resource_path));
 					    	}
 					    }
-					}catch(Exception e){}	
+					}catch(Exception e){
+						e.printStackTrace();
+					}	
 				}   
 	        }
 			
