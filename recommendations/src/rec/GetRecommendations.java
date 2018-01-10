@@ -24,6 +24,7 @@ import rec.proactive.random.Random;
 import rec.proactive.KM;
 import rec.reactive.ReactiveRecommendation;
 import rec.reactive.pgsc.PGSC;
+import rec.reactive.randout.RandOut;
 
 
 /**
@@ -194,7 +195,15 @@ public class GetRecommendations extends HttpServlet {
 					    				rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,
 					    				um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass);
 					    		
-					    	}else {
+					    	} else if (reactive_method.toLowerCase().equals("randout")) {
+						    		recList = RandOut.generateReactiveRecommendations(
+					    				seq_id, usr, grp, cid, sid, lastContentId,
+					    				reactive_max, contentList, 
+					    				rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,
+					    				um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass);
+					    		
+					    	}
+					    	else {
 								recList = ReactiveRecommendation.generateReactiveRecommendations(seq_id, usr, grp, domain, cid, sid,
 								lastContentId, lastContentResult, reactive_max, methods, method_selected,
 							    contentList, reactive_threshold,
