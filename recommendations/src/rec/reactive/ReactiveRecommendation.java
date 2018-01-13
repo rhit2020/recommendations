@@ -98,7 +98,7 @@ public class ReactiveRecommendation {
 			else if (method.equalsIgnoreCase(methods[method_selected]))
 				shown = 1;
 			recommendation_list.addAll(createRecList(seq_id, user_id, group_id,session_id,
-					last_content_id,exampleMap, method, shown));
+					last_content_id,exampleMap, method, shown, n));
 		}
 		
 		closeDBConnections();
@@ -109,14 +109,17 @@ public class ReactiveRecommendation {
 	
 	private static ArrayList<ArrayList<String>> createRecList(String seq_rec_id, String user_id,
 			String group_id, String session_id, String last_content_id,			
-			SortedMap<String, Double> exampleMap, String method, int shown) {
+			SortedMap<String, Double> exampleMap, String method, int shown, int n) {
 		double sim;
 		String ex;
+		int count = n;
 		ArrayList<ArrayList<String>> recommendation_list = new ArrayList<ArrayList<String>>();
 		if (exampleMap !=null &&  exampleMap.isEmpty()== false)
 		{
 			for (Entry<String, Double> entry : exampleMap.entrySet())
 			{
+				if (count == 0)
+					break;
 				ex = entry.getKey();
 				sim = entry.getValue();
 				int id = rec_db.addRecommendation(seq_rec_id, user_id, group_id, session_id,
@@ -128,7 +131,8 @@ public class ReactiveRecommendation {
 					rec.add(ex); // example rdfid 
 					rec.add(df4.format(sim)); // similarity value
 					rec.add(method); //the approach which was used for recommendation
-					recommendation_list.add(rec);				
+					recommendation_list.add(rec);	
+					count--;
 				}				
 			}
 		}		
@@ -200,7 +204,7 @@ public class ReactiveRecommendation {
 		}
 		sortedRankMap.putAll(rankMap);
 
-		return getTopEntries(limit, sortedRankMap);	
+		return sortedRankMap;	
 	}
 
 	private static List<String> getActivitiesWithConcept(String concept, HashMap<String, ArrayList<String[]>> kcByContent ) {
@@ -216,18 +220,4 @@ public class ReactiveRecommendation {
 		return activities;
 	}
 	
-	public static SortedMap<String,Double> getTopEntries(int limit, SortedMap<String,Double> source) {
-		int count = 0;
-		TreeMap<String,Double> map = new TreeMap<String,Double>();
-		for (Map.Entry<String,Double> entry:source.entrySet())
-		{
-			if (count >= limit)
-				break;
-			map.put(entry.getKey(),entry.getValue());
-			count++;
-		}
-		return map;
-	}
-
-
 }

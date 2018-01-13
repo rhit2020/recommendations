@@ -42,8 +42,8 @@ public class PGSC {
 		
 		ArrayList<ArrayList<String>> recommendation_list = new ArrayList<ArrayList<String>>();
 		recommendation_list.addAll(createRecList(seq_id, user_id, group_id,session_id,
-				last_content_id, getTopEntries(n, reactive_threshold, sortedExampleMap), "pgsc", 1,
-				rec_dbstring, rec_dbuser, rec_dbpass));
+				last_content_id, sortedExampleMap, "pgsc",
+				rec_dbstring, rec_dbuser, rec_dbpass, n));
 
 		//TODO: clear data structures that are not needed anymore
 		rankMap.clear(); rankMap = null;
@@ -87,33 +87,35 @@ public class PGSC {
 	
 	private static ArrayList<ArrayList<String>> createRecList(String seq_rec_id, String user_id,
 			String group_id, String session_id, String last_content_id,			
-			SortedMap<String, Double> topNexamples, String method, int shown,
-			String rec_dbstring, String rec_dbuser, String rec_dbpass) {
+			SortedMap<String, Double> sortedRankMap, String method,
+			String rec_dbstring, String rec_dbuser, String rec_dbpass,
+			int n) {
 		double sim;
 		String ex;
+		int count = n;
 		ArrayList<ArrayList<String>> recommendation_list = new ArrayList<ArrayList<String>>();
-		if (topNexamples !=null &&  topNexamples.isEmpty()== false)
+		if (sortedRankMap !=null)
 		{
-			for (Entry<String, Double> entry : topNexamples.entrySet())
+			for (Entry<String, Double> entry : sortedRankMap.entrySet())
 			{
+				if (count == 0)
+					break;
 				ex = entry.getKey();
 				sim = entry.getValue();
 				if (RecDB == null)
 					RecDB = new RecDB(rec_dbstring, rec_dbuser, rec_dbpass);
 				RecDB.openConnection();
 				int id = RecDB.addRecommendation(seq_rec_id, user_id, group_id, session_id,
-						last_content_id, ex, method,sim, shown);
+						last_content_id, ex, method,sim, 1);
 				RecDB.closeConnection();
 
-				if (shown == 1 | shown == -1)
-				{
-					ArrayList<String> rec = new ArrayList<String>();
-					rec.add("" + id); // item_rec_id from the ent_recommendation table
-					rec.add(ex); // example rdfid 
-					rec.add(df4.format(sim)); // similarity value
-					rec.add(method); //the approach which was used for recommendation
-					recommendation_list.add(rec);				
-				}				
+				ArrayList<String> rec = new ArrayList<String>();
+				rec.add("" + id); // item_rec_id from the ent_recommendation table
+				rec.add(ex); // example rdfid 
+				rec.add(df4.format(sim)); // similarity value
+				rec.add(method); //the approach which was used for recommendation
+				recommendation_list.add(rec);	
+				count--;		
 			}
 		}		
 		return recommendation_list;
@@ -260,31 +262,6 @@ public class PGSC {
 		return sim;	
 	}
 
-	public static SortedMap<String,Double> getTopEntries(int limit, double reactive_threshold, SortedMap<String,Double> source) {
-		int count = 0;
-		TreeMap<String,Double> map = new TreeMap<String,Double>();
-		for (Map.Entry<String,Double> entry : source.entrySet())
-		{
-			if (count >= limit)
-				break;
-			if (entry.getValue() >= reactive_threshold) {
-				map.put(entry.getKey(),entry.getValue());
-				count++;
-			}
-		}
-		//if all of the values are below threshold, return only the first example
-		if (count == 0) {
-			for (Map.Entry<String,Double> entry : source.entrySet())
-			{
-				if (count == 1)
-					break; 
-				map.put(entry.getKey(),entry.getValue());
-				count++;
-			}
-		}	
-		return map;
-	}
-	
 	private static <T> Set<T> union(Set<T> setA, Set<T> setB) {
 		Set<T> tmp = new TreeSet<T>(setA);
 		tmp.addAll(setB);
