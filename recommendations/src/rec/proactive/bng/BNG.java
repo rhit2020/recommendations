@@ -78,7 +78,6 @@ public class BNG {
 //		second = (System.currentTimeMillis()-startTime) / 1000.0;
 //		System.out.println("Total time [got complete recs]:" + second + " (sec)");
 //		System.out.println("-----------------------------------------------");
-		
 		return sequenceList;
 	}
 
@@ -91,8 +90,8 @@ public class BNG {
 		Map<String, double[]> coRankMap = new HashMap<String, double[]>();
 		Map<String, double[]> chRankMap = new HashMap<String, double[]>();
 		Map<String, double[]> exRankMap = new HashMap<String, double[]>();
-		Map<String, double[]> coSortedMap = null;
-		Map<String, double[]> chSortedMap = null;
+		TreeMap<String, double[]> coSortedMap = null;
+		TreeMap<String, double[]> chSortedMap = null;
 		TreeMap<String, double[]> exSortedMap = null;
 		double estimate, progress;
 		double[] values;
@@ -182,8 +181,8 @@ public class BNG {
 	}
 
 	private static void addItemsToRecList(int proactive_max, ArrayList<ArrayList<String>> sequenceList,
-			Map<String, double[]> coRankMap, Map<String, double[]> chRankMap, Map<String, double[]> coSortedMap,
-			Map<String, double[]> chSortedMap, TreeMap<String, double[]> exSortedMap, 
+			Map<String, double[]> coRankMap, Map<String, double[]> chRankMap, TreeMap<String, double[]> coSortedMap,
+			TreeMap<String, double[]> chSortedMap, TreeMap<String, double[]> exSortedMap, 
 			String lastAct, double threshold, double masteryThreshold, HashSet<String> exampleList, 
 			HashMap<String, Double> itemKCEstimates, Map<String, HashSet<String>> setChallenges, String updatesm) {
 		
@@ -250,35 +249,32 @@ public class BNG {
 			}
 		}
 		
-		//Add eligible examples to the reclist, if any
-		if ( addedToRecList < proactive_max ) {
-			//first check examples above threshold
-			for (Entry<String, double[]> e : exSortedMap.entrySet()) {
-				if (addedToRecList == proactive_max)
-					break;
-				//if the example that we want to add to list is equal to the last activity that student attempted, 
-				//check updatesm, if updatesm is true, it means student click on a line
-				//don't recommend that example immediately, recommend next best example instead
-				if (e.getKey().equals(lastAct) && updatesm != null && updatesm.equals("true")) continue;
-				
-				ArrayList<String> list = new ArrayList<String>();
-				list.add(e.getKey());
-				list.add(getScore(addedToRecList));
-				list.add("bng");
-				sequenceList.add(list);
-//				System.out.println("~~~added to reclist: "+e.getKey());
-				addedToRecList++;
-			}	
-		}
-		
-		//Check if size of reclist has reached the number of items that we need to recommend
-		if (addedToRecList < proactive_max) {
-			//start by picking from challenges
-			for (Entry<String, double[]> e : chSortedMap.entrySet()) {
-				if (addedToRecList == proactive_max)
-					break;
-				if (addedChallenges.contains(e.getKey()) == false) {
-					estimate = e.getValue()[0]; //we don't filter by the estimate in the last round
+		/*
+		 * We assume  that if student solved all codings and challenges, we should not
+		 * recommend examples, even if they are not fully completed or even seen. Normally
+		 * this case should not happen because we expect that all estimates in examples
+		 * reached mastery after solving problems. In some cases, estimates reach very
+		 * close to mastery but if all problems are solved, there's no way to increase
+		 * estimates and the only way to stop recommendation is that student clicks all
+		 * lines which is not reasonable. For this reasons, if all codings/challenges
+		 * are sovled, examples will not be recommended.
+		 * Challenges or codings are not all solved if eligible
+		 * challenge list or eligible coding list is non empty.
+		 */
+		if (chSortedMap.size() > 0 || coSortedMap.size() > 0) {
+			//Add eligible examples to the reclist, if any
+			if ( addedToRecList < proactive_max ) {
+				//first check examples above threshold
+				for (Entry<String, double[]> e : exSortedMap.entrySet()) {
+					if (addedToRecList == proactive_max)
+						break;
+					//if the example that we want to add to list is equal to the last activity that student attempted, 
+					//don't recommend that example immediately, recommend next best example instead
+					if (e.getKey().equals(lastAct)) continue;
+					
+					//if an example has at least one of its challenges solved, don't recommend it
+					if ( atLeastOneExChallengedSolved(chSortedMap, setChallenges, e.getKey()) ) continue;
+					
 					ArrayList<String> list = new ArrayList<String>();
 					list.add(e.getKey());
 					list.add(getScore(addedToRecList));
@@ -286,31 +282,62 @@ public class BNG {
 					sequenceList.add(list);
 //					System.out.println("~~~added to reclist: "+e.getKey());
 					addedToRecList++;
-				}
-			}
-		}
-		//Check if size of reclist has reached the number of items that we need to recommend
-		if (addedToRecList < proactive_max) {
-			//after challenges, we move to codings
-			for (Entry<String, double[]> e : coSortedMap.entrySet()) {
-				if (addedToRecList == proactive_max)
-					break;
-				if (addedCodings.contains(e.getKey()) == false) {
-					estimate = e.getValue()[0]; //we don't filter by the estimate in the last round
-					ArrayList<String> list = new ArrayList<String>();
-					list.add(e.getKey());
-					list.add(getScore(addedToRecList));
-					list.add("bng");
-					sequenceList.add(list);
-//					System.out.println("~~~added to reclist: "+e.getKey());
-					addedToRecList++;
-				}
+				}	
 			}
 			
-			addedCodings.clear(); addedCodings = null;
-			addedChallenges.clear(); addedChallenges = null;
+			//Check if size of reclist has reached the number of items that we need to recommend
+			if (addedToRecList < proactive_max) {
+				//start by picking from challenges
+				for (Entry<String, double[]> e : chSortedMap.entrySet()) {
+					if (addedToRecList == proactive_max)
+						break;
+					if (addedChallenges.contains(e.getKey()) == false) {
+						estimate = e.getValue()[0]; //we don't filter by the estimate in the last round
+						ArrayList<String> list = new ArrayList<String>();
+						list.add(e.getKey());
+						list.add(getScore(addedToRecList));
+						list.add("bng");
+						sequenceList.add(list);
+//						System.out.println("~~~added to reclist: "+e.getKey());
+						addedToRecList++;
+					}
+				}
+			}
+			//Check if size of reclist has reached the number of items that we need to recommend
+			if (addedToRecList < proactive_max) {
+				//after challenges, we move to codings
+				for (Entry<String, double[]> e : coSortedMap.entrySet()) {
+					if (addedToRecList == proactive_max)
+						break;
+					if (addedCodings.contains(e.getKey()) == false) {
+						estimate = e.getValue()[0]; //we don't filter by the estimate in the last round
+						ArrayList<String> list = new ArrayList<String>();
+						list.add(e.getKey());
+						list.add(getScore(addedToRecList));
+						list.add("bng");
+						sequenceList.add(list);
+//						System.out.println("~~~added to reclist: "+e.getKey());
+						addedToRecList++;
+					}
+				}
+			}
 		}
+		addedCodings.clear(); addedCodings = null;
+		addedChallenges.clear(); addedChallenges = null;
 	}
+	
+	private static boolean atLeastOneExChallengedSolved(TreeMap<String, double[]> chSortedMap,
+			Map<String, HashSet<String>> setChallenges, String example) {
+		int countChNotSolved = 0;
+		HashSet<String> chList = setChallenges.get(example);
+		for (String ch : chList) {
+			for (String eligibleChToRec : chSortedMap.keySet())
+				if (eligibleChToRec.equals(ch))
+					countChNotSolved++;
+		}
+		return (chList.size() - countChNotSolved) > 0  ;
+	}
+
 		
 	/*
 	 * This method assigns score to recommended items in a topic based on the order
