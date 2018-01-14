@@ -35,7 +35,7 @@ public class PGSCDB extends DBInterface {
 
 			Map<String,Map<String,Double>> map = new HashMap<String, Map<String,Double>>();
 			
-			String query = " SELECT title, concept, `log(tf+1)idf` FROM rec.ent_content_concept_all " +
+			String query = " SELECT title, concept, `tfidf` FROM rec.ent_content_concept_all " +
 					" where title in (" + availableContentText + ");" ; 
 					
 			if (verbose) {
@@ -49,7 +49,7 @@ public class PGSCDB extends DBInterface {
 			while (rs.next()) {
 				content = rs.getString("title");
 				concept = rs.getString("concept");
-				weight = rs.getDouble("log(tf+1)idf");
+				weight = rs.getDouble("tfidf");
 				kcMap = map.get(content);
 				if (kcMap != null) {
 					kcMap.put(concept, weight);
