@@ -359,7 +359,7 @@ public class PGSCDB extends DBInterface {
 			Map<String, Integer> map = new HashMap<String, Integer>();
  
 			
-			String query = " SELECT title, count(distinct concept) as concept_no FROM rec.ent_content_concept_all " +
+			String query = " SELECT title, count(concept) as concept_no FROM rec.ent_content_concept_all " +
 					" where title in (" + availableContentText + ") " +
 					" group by title;";
 					

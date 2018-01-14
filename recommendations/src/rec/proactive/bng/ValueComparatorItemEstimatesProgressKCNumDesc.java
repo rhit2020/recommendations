@@ -21,11 +21,11 @@ public class ValueComparatorItemEstimatesProgressKCNumDesc implements Comparator
 			return 1;
 		else  { //if estimates are equal
 			if (estPro.get(a)[1] == estPro.get(b)[1] ) { //if progress is equal
-				if (estPro.get(a)[2] <= estPro.get(a)[2]) // comparing no. kcs, lower kc goes first
+				if (estPro.get(a)[2] <= estPro.get(b)[2]) // comparing no. kcs, lower kc goes first
 					return -1;
 				else
 					return 1;
-			} else if (estPro.get(a)[1] < estPro.get(a)[1]) {//if progress is lower
+			} else if (estPro.get(a)[1] < estPro.get(b)[1]) {//if progress is lower
 				return -1;
 			} else {
 				return 1;				

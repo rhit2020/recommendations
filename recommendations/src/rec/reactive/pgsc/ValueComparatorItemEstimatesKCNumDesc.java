@@ -19,12 +19,12 @@ public class ValueComparatorItemEstimatesKCNumDesc implements Comparator<String>
 	 * if estimates are equal, lower KC goes first
 	 *	 */
 	public int compare(String a, String b) {
-		if (est.get(a) >= est.get(b))  
+		if (est.get(a) > est.get(b))  
 			return -1;
 		else if (est.get(a) < est.get(b))
 			return 1;
 		else  { //if estimates are equal
-			if (kcs.get(a) <= kcs.get(a)) // comparing no. kcs, lower kc goes first
+			if (kcs.get(a) <= kcs.get(b)) // comparing no. kcs, lower kc goes first
 				return -1;
 			else
 				return 1;
