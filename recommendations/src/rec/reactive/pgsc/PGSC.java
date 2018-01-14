@@ -164,7 +164,8 @@ public class PGSC {
 					//set alpha 1 for this element
 					alpha[i][j] = 1;
 					//if s[i][j] is one, set alpha of other elements in the same row and column to 0. 
-					if (s[i][j] == 1)
+					//Math.round is to avoid rounding errors that could occurs in sqrt calculation required for s[i][j]
+					if ( (Math.round( s[i][j] * 100.0) / 100.0) == 1)
 					{
 						//set alpha 0 for other elements in the same row
 						for (int e = 0; e < etree.size(); e++)
