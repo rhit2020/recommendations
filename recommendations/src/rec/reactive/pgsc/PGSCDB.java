@@ -301,8 +301,6 @@ public class PGSCDB extends DBInterface {
 
 		
 		try {
-																												// comma
-
 			stmt = conn.createStatement(); // create a statement
 
 			Map<String,HashSet<String>> map = new HashMap<String,HashSet<String>>();
@@ -374,6 +372,39 @@ public class PGSCDB extends DBInterface {
 				content = rs.getString("title");
 				concept_no = rs.getInt("concept_no");
 				map.put(content, concept_no);
+			}
+			this.releaseStatement(stmt, rs);
+			return map;
+		} catch (SQLException ex) {
+			this.releaseStatement(stmt, rs);
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+			return null;
+		} finally {
+			this.releaseStatement(stmt, rs);
+		}
+	}
+
+	public Map<String, Integer> getTopicOrder(String course_id ) {	
+		try {																									
+			stmt = conn.createStatement(); // create a statement
+
+			Map<String,Integer> map = new HashMap<String,Integer>();
+
+			String query = "SELECT distinct topic_name, topic_order FROM rec.ent_topic_outcomes " +
+                           " where course_id = " + course_id + ";";
+
+			if (verbose) {
+				System.out.println(query);
+			}
+			rs = stmt.executeQuery(query);
+			String topic;
+			int order;
+			while (rs.next()) {
+				topic = rs.getString("topic_name");
+				order = Integer.parseInt(rs.getString("topic_order"));
+				map.put(topic, order);
 			}
 			this.releaseStatement(stmt, rs);
 			return map;

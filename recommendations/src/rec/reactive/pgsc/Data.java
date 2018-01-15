@@ -21,7 +21,7 @@ public class Data {
 	private Map<String,HashSet<String>> topicOutcomesMap;
 	private List<String> exampleList;
 	private Map<String, Integer> itemKCSize = new HashMap<String, Integer>();
-
+	private Map<String, Integer> topicOrderMap = new HashMap<String, Integer>();
 	private Map<String, List<List<String>>> contentSubtree;
 	
 
@@ -96,6 +96,12 @@ public class Data {
 		pgscDB = new PGSCDB(rec_dbstring, rec_dbuser, rec_dbpass);
 		pgscDB.openConnection();
 		itemKCSize = pgscDB.getItemKcSize(contents);
+		pgscDB.closeConnection();
+		
+		//fill topic orders
+		pgscDB = new PGSCDB(rec_dbstring, rec_dbuser, rec_dbpass);
+		pgscDB.openConnection();
+		topicOrderMap = pgscDB.getTopicOrder(course_id);
 		pgscDB.closeConnection();
 
 	}
@@ -241,8 +247,6 @@ public class Data {
 	//String sqlCommand = "SELECT distinct concept,`tfidf` FROM temp2_ent_jcontent_tfidf where title = '" + content + "';";
 	public Map<String,Double> getTFIDF(String content) {
 		Map<String,Double> weightMap = contentConceptMap.get(content);	
-		if (weightMap == null)
-			System.out.println("~~~~~~  weightMap is null.");
 		return weightMap;
 	}	
 
@@ -250,9 +254,7 @@ public class Data {
 	public List<String> getAdjacentConcept(String content, int sline,int eline) {
 		List<String> conceptList = new ArrayList<String>();
 		Map<Integer,Map<Integer,List<String>>> map = adjacentConceptMap.get(content);
-		if (map == null) {
-			System.out.println("~~~~~~  adjacentConceptMap is null");
-		} else {
+		if (map != null) {
 			Map<Integer,List<String>> elineMap;
 			List<String> concepts;
 			for (Integer s : map.keySet())
@@ -279,8 +281,6 @@ public class Data {
 	public List<String> getConceptsInSameLine(String content, int sline) {
 		List<String> conceptList = new ArrayList<String>();
 		Map<Integer,Map<Integer,List<String>>> map = adjacentConceptMap.get(content);	
-		if (map == null)
-			System.out.println("~~~~~~  adjacentConceptMap is null");
 
 		Map<Integer, List<String>> elineMap;
 		for (Integer s : map.keySet())
@@ -308,9 +308,7 @@ public class Data {
         List<Integer> endLines = new ArrayList<Integer>();
 		Map<Integer,List<Integer>> map = blockEndLineMap.get(content);
 		
-		if (map == null) {
-			System.out.println("~~~~~~  blockEndLineMap is null");
-		} else {
+		if (map != null) {
 			List<Integer> tmp = map.get(sline);
 	        if (tmp != null)
 	        {
@@ -346,6 +344,10 @@ public class Data {
 			}
 		}
 		return topicOutcomesSet;
+	}
+
+	public int getTopicOrder(String topic) {
+		return topicOrderMap.get(topic);
 	}
 	
 }

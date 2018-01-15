@@ -43,7 +43,7 @@ public class PGSC {
 		ArrayList<ArrayList<String>> recommendation_list = new ArrayList<ArrayList<String>>();
 		recommendation_list.addAll(createRecList(seq_id, user_id, group_id,session_id,
 				last_content_id, sortedExampleMap, "pgsc",
-				rec_dbstring, rec_dbuser, rec_dbpass, n));
+				rec_dbstring, rec_dbuser, rec_dbpass, n, topicContents));
 
 		//TODO: clear data structures that are not needed anymore
 		rankMap.clear(); rankMap = null;
@@ -89,11 +89,13 @@ public class PGSC {
 			String group_id, String session_id, String last_content_id,			
 			SortedMap<String, Double> sortedRankMap, String method,
 			String rec_dbstring, String rec_dbuser, String rec_dbpass,
-			int n) {
+			int n, Map<String, List<String>> topicContents) {
 		double sim;
 		String ex;
 		int count = n;
 		ArrayList<ArrayList<String>> recommendation_list = new ArrayList<ArrayList<String>>();
+		HashSet<String> eTopicSet;
+		HashSet<String> qTopicSet = getTopicSet(last_content_id, topicContents);
 		if (sortedRankMap !=null)
 		{
 			for (Entry<String, Double> entry : sortedRankMap.entrySet())
@@ -102,6 +104,10 @@ public class PGSC {
 					break;
 				ex = entry.getKey();
 				sim = entry.getValue();
+				if (sim == 0)
+					break;
+				eTopicSet = getTopicSet(ex, topicContents);
+				if (isExAheadQueTopics(eTopicSet, qTopicSet)) continue;
 				if (RecDB == null)
 					RecDB = new RecDB(rec_dbstring, rec_dbuser, rec_dbpass);
 				RecDB.openConnection();
@@ -121,10 +127,10 @@ public class PGSC {
 		return recommendation_list;
 	}
 
-	private static HashSet<String> getTopicSet(String q, Map<String, List<String>> topicContents) {
+	private static HashSet<String> getTopicSet(String content, Map<String, List<String>> topicContents) {
 		HashSet<String> lst = new HashSet<String>();
 		for (String t : topicContents.keySet())
-			if (topicContents.get(t).contains(q))
+			if (topicContents.get(t).contains(content))
 				lst.add(t);
 		return lst;
 	}
@@ -149,7 +155,6 @@ public class PGSC {
 		for (int i = 0; i < qtree.size(); i++)
 			for(int j = 0; j < etree.size(); j++)
 			{
-				
 				s[i][j] = simCosine(qtree.get(i),etree.get(j),qConceptWeight,eConceptWeight,
 						           kmap,qTopicSet,que);
 				
@@ -218,7 +223,7 @@ public class PGSC {
 		List<String> conceptSpace = new ArrayList<String>(union(qConceptSet, eConceptSet));
 		HashMap<String,Double> evector = new HashMap<String,Double>();// concept vector for example
 		HashMap<String,Double> qvector = new HashMap<String,Double>(); // concept vector for question
-		Set<String> conceptTopicSet;
+		HashSet<String> conceptTopicSet;
 		boolean isTargetConcept;
 		double lackKnowledge;
 		for (String c : conceptSpace)
@@ -250,6 +255,7 @@ public class PGSC {
 			eDemoninator += (evector.get(c) *  evector.get(c)); //each element in the example vector is raised to the power of 2 
 			qDenominator += (qvector.get(c) * qvector.get(c)); //each element in the example vector is raised to the power of 2 
 		}
+
 		//this is check for not getting NaN as sim
 		//possible NaN cases: when for one vector all weights are 0 for the static method
 		//for the goal based method, all concepts are not within target in both vector
@@ -263,6 +269,16 @@ public class PGSC {
 		return sim;	
 	}
 
+	private static boolean isExAheadQueTopics(HashSet<String> eTopicSet, HashSet<String> qTopicSet) {
+		for (String eTopic : eTopicSet) { //for every topic of the example
+			for (String qTopic : qTopicSet) { // for every topic of the question
+				//check order example topic and question topic
+				if (data.getTopicOrder(eTopic) > data.getTopicOrder(qTopic))
+					return true;
+			}
+		}
+		return false;
+	}
 	private static <T> Set<T> union(Set<T> setA, Set<T> setB) {
 		Set<T> tmp = new TreeSet<T>(setA);
 		tmp.addAll(setB);
