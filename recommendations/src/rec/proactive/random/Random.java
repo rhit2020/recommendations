@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 
 import rec.GetUserActivity;
@@ -27,6 +28,8 @@ public class Random {
 		HashSet<String> codingList = static_data.getCodingList();
 		HashSet<String> challengeList = static_data.getChallengeList();
 		HashSet<String> exampleList = static_data.getExampleList();
+		Map<String, HashSet<String>> setChallenges = static_data.getSetChallenges();
+
 
 		// DYNAMIC DATA
 		if (usrContentProgress == null || usrContentProgress.size() == 0) {
@@ -51,33 +54,62 @@ public class Random {
 		ArrayList<ArrayList<String>> sequenceList = new ArrayList<ArrayList<String>>();
 		for (String topic : topicContents.keySet()) {
 			getTopicRecommendation(proactive_max, sequenceList,
-					topicContents.get(topic), usrContentProgress);
+					topicContents.get(topic), usrContentProgress,
+					exampleList, setChallenges);
 		}
 		return sequenceList;
 	}
 		
 	
 	private static void getTopicRecommendation(int proactive_max, ArrayList<ArrayList<String>> sequenceList,
-			List<String> topicContents, Map<String, Double> usrContentProgress) {
+			List<String> topicContents, Map<String, Double> usrContentProgress,
+			HashSet<String> exampleList, Map<String, HashSet<String>> setChallenges) {
 	
 		//shuffle the contents in the topic
 		Collections.shuffle(topicContents);
 		double progress;
-		for (int i = 0; i < proactive_max; i++) {
-			if (i == topicContents.size()) 
+		int count = 0;
+		for (int i = 0; i < topicContents.size(); i++) {
+			if (count == proactive_max)
 				break;
 			else {
 				progress = usrContentProgress.get(topicContents.get(i)) == null ? 0 : 
 					       usrContentProgress.get(topicContents.get(i));
 				if (progress < 1) {
-					ArrayList<String> list = new ArrayList<String>();
-					list.add(topicContents.get(i));
-					list.add(getScore(i));
-					list.add("random");
-					sequenceList.add(list);
+					if (exampleList.contains(topicContents.get(i))) {
+						if (allExChallengedSolved(usrContentProgress,setChallenges,
+								topicContents.get(i)) == false) {
+							ArrayList<String> list = new ArrayList<String>();
+							list.add(topicContents.get(i));
+							list.add(getScore(count));
+							list.add("random");
+							sequenceList.add(list);
+							count++;
+						}
+					} else {
+						ArrayList<String> list = new ArrayList<String>();
+						list.add(topicContents.get(i));
+						list.add(getScore(count));
+						list.add("random");
+						sequenceList.add(list);
+						count++;
+					}
 				}
 			}
 		}
+	}
+	
+	private static boolean allExChallengedSolved( Map<String, Double> usrContentProgress,
+			Map<String, HashSet<String>> setChallenges, String example) {
+		int countChNotSolved = 0;
+		double progress;
+		HashSet<String> chList = setChallenges.get(example);
+		for (String ch : chList) {
+			progress = usrContentProgress.get(ch);
+			if (progress < 1)
+				countChNotSolved++;
+		}
+		return (countChNotSolved == 0)  ;
 	}
 
 	/*
