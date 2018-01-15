@@ -115,7 +115,10 @@ public class GetRecommendations extends HttpServlet {
 	    					topicContents, usrContentProgress,itemKCEstimates, updatesm);    	
 	    		}
 	    		else if (proactive_method.toLowerCase().equals("random")) {
-	    			sequencingList = Random.calculateSequenceRank(topicContents, proactive_max);    	
+	    			sequencingList = Random.calculateSequenceRank(usr, grp, domain, 
+	    					rec_cm.rec_dbstring, rec_cm.rec_dbuser, rec_cm.rec_dbpass,
+	    					um2_cm.dbstring, um2_cm.dbuser, um2_cm.dbpass,
+	    					topicContents, proactive_max, usrContentProgress, contentList);    	
 	    		}
 	    		else if (proactive_method.toLowerCase().equals("optimize4allqs")) {
 	    			sequencingList = Optimize4allqs.calculateSequenceRank(usr, grp, cid, domain, lastContentId,
