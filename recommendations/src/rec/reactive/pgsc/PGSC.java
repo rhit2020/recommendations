@@ -19,7 +19,6 @@ public class PGSC {
 
 	private static Data data;
 	private static RecDB RecDB;
-	public static DecimalFormat df4 = new DecimalFormat("#.####");
 
 	public static ArrayList<ArrayList<String>> generateReactiveRecommendations(
 			String seq_id, String user_id, String group_id, String course_id,
@@ -118,7 +117,7 @@ public class PGSC {
 				ArrayList<String> rec = new ArrayList<String>();
 				rec.add("" + id); // item_rec_id from the ent_recommendation table
 				rec.add(ex); // example rdfid 
-				rec.add(df4.format(sim)); // similarity value
+				rec.add(String.format("%.4f",sim)); // similarity value
 				rec.add(method); //the approach which was used for recommendation
 				recommendation_list.add(rec);	
 				count--;		

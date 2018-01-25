@@ -17,7 +17,6 @@ import rec.ValueComparator_StringDouble;
 public class ReactiveRecommendation {
 	
 	private static RecDB rec_db;
-	public static DecimalFormat df4 = new DecimalFormat("#.####");
 
 	public static void openDBConnections(String rec_dbstring, String rec_dbuser, String rec_dbpass) {
 		rec_db = new RecDB(rec_dbstring, rec_dbuser, rec_dbpass);
@@ -129,7 +128,7 @@ public class ReactiveRecommendation {
 					ArrayList<String> rec = new ArrayList<String>();
 					rec.add("" + id); // item_rec_id from the ent_recommendation table
 					rec.add(ex); // example rdfid 
-					rec.add(df4.format(sim)); // similarity value
+					rec.add(String.format("%.4f",sim)); // similarity value
 					rec.add(method); //the approach which was used for recommendation
 					recommendation_list.add(rec);	
 					count--;
