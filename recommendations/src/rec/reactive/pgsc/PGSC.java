@@ -116,7 +116,7 @@ public class PGSC {
 				ArrayList<String> rec = new ArrayList<String>();
 				rec.add("" + id); // item_rec_id from the ent_recommendation table
 				rec.add(ex); // example rdfid 
-				rec.add(String.format("%.4f",sim)); // similarity value
+				rec.add(""+((double)Math.round(sim * 10000d) / 10000d)); // similarity value
 				rec.add(method); //the approach which was used for recommendation
 				recommendation_list.add(rec);	
 				count--;		
