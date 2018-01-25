@@ -1,5 +1,6 @@
 package rec.reactive.pgsc;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -116,7 +117,7 @@ public class PGSC {
 				ArrayList<String> rec = new ArrayList<String>();
 				rec.add("" + id); // item_rec_id from the ent_recommendation table
 				rec.add(ex); // example rdfid 
-				rec.add(""+((double)Math.round(sim * 10000d) / 10000d)); // similarity value
+				rec.add(""+(sim <= 0.001 ? 0.001 : String.format("%.4f", sim))); // similarity value, we set values below 0.001 to 0.001 to avoid scientific notation
 				rec.add(method); //the approach which was used for recommendation
 				recommendation_list.add(rec);	
 				count--;		
