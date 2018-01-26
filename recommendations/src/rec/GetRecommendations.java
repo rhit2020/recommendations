@@ -310,10 +310,12 @@ public class GetRecommendations extends HttpServlet {
 			ArrayList<String> list;
 			for (String tc : topicContentTxt.split("\\|")) {
 				String[] tmp = tc.split(":");
-				list = new ArrayList<String>();
-				for (String c : tmp[1].split(",")) 
-					list.add(c);
-				topicContents.put(tmp[0], list);
+				if ( tmp.length > 1 ) {
+					list = new ArrayList<String>();
+					for (String c : tmp[1].split(",")) 
+						list.add(c);
+					topicContents.put(tmp[0], list);	
+				}
 			}
 		}
 		return topicContents;
