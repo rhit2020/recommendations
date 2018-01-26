@@ -34,9 +34,7 @@ import rec.reactive.randout.RandOut;
 public class GetRecommendations extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private RecConfigManager rec_cm;
-	private AggregateConfigManager aggregate_cm;
-	private UM2ConfigManager um2_cm;
+	
 
 	public GetRecommendations() {
 		super();       
@@ -47,9 +45,9 @@ public class GetRecommendations extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		rec_cm = new RecConfigManager(this);
-		aggregate_cm = new AggregateConfigManager(this);
-		um2_cm = new UM2ConfigManager(this);
+	    RecConfigManager rec_cm = new RecConfigManager(this);
+		AggregateConfigManager aggregate_cm = new AggregateConfigManager(this);
+		UM2ConfigManager um2_cm = new UM2ConfigManager(this);
 		
 		try {
 			//parse the json in the request
