@@ -49,7 +49,6 @@ public class GetBNKCSummary {
 					} catch (JSONException e) {
 						probability = 1.0;		
 					}
-					probability = jsonobj.getDouble("p");
 					itemKCEstimates.put(name, probability);
 				}
 			}
