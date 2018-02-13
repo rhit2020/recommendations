@@ -12,6 +12,7 @@ import java.util.HashMap;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class GetBNKCSummary {
@@ -41,6 +42,13 @@ public class GetBNKCSummary {
 				for (int i = 0; i < activity.length(); i++) {
 					JSONObject jsonobj = activity.getJSONObject(i);
 					name = jsonobj.getString("name");
+					//added try-catch to overcome the parse error that occurs when a new problem is added to the course that does not exist in the BN net.
+					//probability is set to 1.0 because the new content that is not in net does not have any concepts.
+					try {
+						probability = jsonobj.getDouble("p");
+					} catch (JSONException e) {
+						probability = 1.0;		
+					}
 					probability = jsonobj.getDouble("p");
 					itemKCEstimates.put(name, probability);
 				}
